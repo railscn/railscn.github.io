@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关于 — Ruby on Rails 指南</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+  <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
+  <meta property="og:title" content="关于 — Ruby on Rails 指南" />
+  <meta name="description" content="关于您看到的是 Rails 非官方中文翻译版本。这里需要关于此版本进行说明的有： 翻译源起 翻译基本原则 主要词汇对照" />
+  <meta property="og:description" content="关于您看到的是 Rails 非官方中文翻译版本。这里需要关于此版本进行说明的有： 翻译源起 翻译基本原则 主要词汇对照" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="Ruby on Rails 指南" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
+  <meta property="og:type" content="website" />
+</head>
+<body class="guide">
+  <div>
+    <div id="version-badge">edge</div>
+  </div>
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">更多信息在 <a href="https://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        更多 Ruby on Rails 信息
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="https://rubyonrails.org/blog">博客</a></li>
+        <li class="more-info"><a href="https://guides.rubyonrails.org/">指南</a></li>
+        <li class="more-info"><a href="https://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="https://discuss.rubyonrails.org/">论坛</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">在 GitHub 做贡献</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="返回首页">railsguides.cn</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">首页</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">指南目录</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+            <dl class="guides-section-container">
+                <div class="guides-section">
+                  <dt>从这里开始</dt>
+                  <dd><a href="getting_started.html">Rails 入门</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>模型（Model）</dt>
+                  <dd><a href="active_record_basics.html">Active Record 基础</a></dd>
+                  <dd><a href="active_record_migrations.html">Active Record 修改</a></dd>
+                  <dd><a href="active_record_validations.html">Active Record 验证</a></dd>
+                  <dd><a href="active_record_callbacks.html">Active Record 回调</a></dd>
+                  <dd><a href="association_basics.html">Active Record 关联</a></dd>
+                  <dd><a href="active_record_querying.html">Active Record 查询接口</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>视图（View）</dt>
+                  <dd><a href="layouts_and_rendering.html">Rails 的模板布局与视图呈现</a></dd>
+                  <dd><a href="form_helpers.html">Action View 表单辅助方法</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>控制器（Controller）</dt>
+                  <dd><a href="action_controller_overview.html">Action Controller 概览</a></dd>
+                  <dd><a href="routing.html">Rails 路由从入门到精通</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>其他组件</dt>
+                  <dd><a href="active_support_core_extensions.html">Active Support 核心扩展</a></dd>
+                  <dd><a href="action_mailer_basics.html">Action Mailer 基础</a></dd>
+                  <dd><a href="active_job_basics.html">Active Job 基础</a></dd>
+                  <dd><a href="active_storage_overview.html">Active Storage 概览</a></dd>
+                  <dd><a href="action_cable_overview.html">Action Cable 概览</a></dd>
+                  <dd><a href="webpacker.html">Webpacker</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>高级指南</dt>
+                  <dd><a href="i18n.html">Rails 国际化（I18n） API</a></dd>
+                  <dd><a href="testing.html">Rails 应用程序的测试</a></dd>
+                  <dd><a href="security.html">Rails 应用程序的安全</a></dd>
+                  <dd><a href="debugging_rails_applications.html">Rails 应用程序的调试</a></dd>
+                  <dd><a href="configuring.html">Rails 应用程序的配置</a></dd>
+                  <dd><a href="command_line.html">Rails 命令行</a></dd>
+                  <dd><a href="asset_pipeline.html">Asset Pipeline</a></dd>
+                  <dd><a href="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</a></dd>
+                  <dd><a href="autoloading_and_reloading_constants.html">自动加载和重载常量</a></dd>
+                  <dd><a href="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</a></dd>
+                  <dd><a href="caching_with_rails.html">Rails 缓存概览</a></dd>
+                  <dd><a href="api_app.html">用 Rails 只做应用程序后台 API</a></dd>
+                  <dd><a href="active_record_multiple_databases.html">Active Record 支持多数据库</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>扩展 Rails</dt>
+                  <dd><a href="rails_on_rack.html">Rack 中的 Rails</a></dd>
+                  <dd><a href="generators.html">创建和定制 Rails 生成器/模板</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>贡献</dt>
+                  <dd><a href="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</a></dd>
+                  <dd><a href="api_documentation_guidelines.html">API 文档指南</a></dd>
+                  <dd><a href="ruby_on_rails_guides_guidelines.html">指南大纲</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>政策（Policies）</dt>
+                  <dd><a href="maintenance_policy.html">维护政策</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>版本备忘</dt>
+                  <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
+                  <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
+                  <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
+                  <dd><a href="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</a></dd>
+                  <dd><a href="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</a></dd>
+                  <dd><a href="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</a></dd>
+                  <dd><a href="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</a></dd>
+                  <dd><a href="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</a></dd>
+                  <dd><a href="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</a></dd>
+                  <dd><a href="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</a></dd>
+                  <dd><a href="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</a></dd>
+                  <dd><a href="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</a></dd>
+                  <dd><a href="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</a></dd>
+                  <dd><a href="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</a></dd>
+                  <dd><a href="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</a></dd>
+                </div>
+            </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">贡献</a></li>
+        <li><a class="nav-item" href="about.html">关于</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">指南目录</option>
+              <optgroup label="从这里开始">
+                  <option value="getting_started.html">Rails 入门</option>
+              </optgroup>
+              <optgroup label="模型（Model）">
+                  <option value="active_record_basics.html">Active Record 基础</option>
+                  <option value="active_record_migrations.html">Active Record 修改</option>
+                  <option value="active_record_validations.html">Active Record 验证</option>
+                  <option value="active_record_callbacks.html">Active Record 回调</option>
+                  <option value="association_basics.html">Active Record 关联</option>
+                  <option value="active_record_querying.html">Active Record 查询接口</option>
+              </optgroup>
+              <optgroup label="视图（View）">
+                  <option value="layouts_and_rendering.html">Rails 的模板布局与视图呈现</option>
+                  <option value="form_helpers.html">Action View 表单辅助方法</option>
+              </optgroup>
+              <optgroup label="控制器（Controller）">
+                  <option value="action_controller_overview.html">Action Controller 概览</option>
+                  <option value="routing.html">Rails 路由从入门到精通</option>
+              </optgroup>
+              <optgroup label="其他组件">
+                  <option value="active_support_core_extensions.html">Active Support 核心扩展</option>
+                  <option value="action_mailer_basics.html">Action Mailer 基础</option>
+                  <option value="active_job_basics.html">Active Job 基础</option>
+                  <option value="active_storage_overview.html">Active Storage 概览</option>
+                  <option value="action_cable_overview.html">Action Cable 概览</option>
+                  <option value="webpacker.html">Webpacker</option>
+              </optgroup>
+              <optgroup label="高级指南">
+                  <option value="i18n.html">Rails 国际化（I18n） API</option>
+                  <option value="testing.html">Rails 应用程序的测试</option>
+                  <option value="security.html">Rails 应用程序的安全</option>
+                  <option value="debugging_rails_applications.html">Rails 应用程序的调试</option>
+                  <option value="configuring.html">Rails 应用程序的配置</option>
+                  <option value="command_line.html">Rails 命令行</option>
+                  <option value="asset_pipeline.html">Asset Pipeline</option>
+                  <option value="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</option>
+                  <option value="autoloading_and_reloading_constants.html">自动加载和重载常量</option>
+                  <option value="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</option>
+                  <option value="caching_with_rails.html">Rails 缓存概览</option>
+                  <option value="api_app.html">用 Rails 只做应用程序后台 API</option>
+                  <option value="active_record_multiple_databases.html">Active Record 支持多数据库</option>
+              </optgroup>
+              <optgroup label="扩展 Rails">
+                  <option value="rails_on_rack.html">Rack 中的 Rails</option>
+                  <option value="generators.html">创建和定制 Rails 生成器/模板</option>
+              </optgroup>
+              <optgroup label="贡献">
+                  <option value="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</option>
+                  <option value="api_documentation_guidelines.html">API 文档指南</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">指南大纲</option>
+              </optgroup>
+              <optgroup label="政策（Policies）">
+                  <option value="maintenance_policy.html">维护政策</option>
+              </optgroup>
+              <optgroup label="版本备忘">
+                  <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
+                  <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
+                  <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
+                  <option value="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</option>
+                  <option value="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</option>
+                  <option value="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</option>
+                  <option value="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</option>
+                  <option value="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</option>
+                  <option value="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</option>
+                  <option value="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</option>
+                  <option value="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</option>
+                  <option value="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</option>
+                  <option value="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</option>
+                  <option value="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</option>
+                  <option value="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>关于</h2><p>您看到的是 Rails 非官方中文翻译版本。</p><p>这里需要关于此版本进行说明的有：</p>
+<ul>
+<li>翻译源起</li>
+<li>翻译基本原则</li>
+<li>主要词汇对照</li>
+</ul>
+
+
+                <div id="subCol" data-turbolinks="false">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
+            <ol class="chapters">
+<li><a href="#%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91%E6%BA%90%E8%B5%B7">中文翻译源起</a></li>
+<li>
+<a href="#%E7%BF%BB%E8%AF%91%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99">翻译基本原则</a>
+
+<ul>
+<li><a href="#%E4%B8%AD%E8%8B%B1%E6%96%87%E6%B7%B7%E6%8E%92%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82">中英文混排格式要求</a></li>
+</ul>
+</li>
+<li>
+<a href="#%E4%B8%BB%E8%A6%81%E8%AF%8D%E6%B1%87%E5%AF%B9%E7%85%A7">主要词汇对照</a>
+
+<ul>
+<li><a href="#%E6%9C%AF%E8%AF%AD">术语</a></li>
+<li><a href="#%E7%BC%A9%E7%95%A5%E8%AF%AD">缩略语</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="中文翻译源起"><a class="anchorlink" href="#%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91%E6%BA%90%E8%B5%B7" data-turbolinks="false">1 中文翻译源起</a></h3><p>中文翻译已经有很多，但是后续维护非常少，所以随着时间的流逝，就都在过时中……</p><p>所以，我想要维护一个能够持久的翻译版本，同时也是我学习 Ruby on Rails 的一个途经。</p><h3 id="翻译基本原则"><a class="anchorlink" href="#%E7%BF%BB%E8%AF%91%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99" data-turbolinks="false">2 翻译基本原则</a></h3><p>中文技术文档的翻译，有一个度的把握非常重要，过度翻译会导致理解困难，术语保
+留又会可能不能领会意图，所以，中文技术文档翻译也需要讲求“信、达、雅”。</p><h4 id="中英文混排格式要求"><a class="anchorlink" href="#%E4%B8%AD%E8%8B%B1%E6%96%87%E6%B7%B7%E6%8E%92%E6%A0%BC%E5%BC%8F%E8%A6%81%E6%B1%82" data-turbolinks="false">2.1 中英文混排格式要求</a></h4>
+<ul>
+<li>英文单词、阿拉伯数字前后与中文文字之间要保留一个空格，与中文符号之间不需要空格；</li>
+<li>标点符号要全部使用中文标点符号，英文列举使用逗号，翻译后要使用顿号隔开；</li>
+</ul>
+<p>第一次翻译出现时在括号中加以注释。</p><h3 id="主要词汇对照"><a class="anchorlink" href="#%E4%B8%BB%E8%A6%81%E8%AF%8D%E6%B1%87%E5%AF%B9%E7%85%A7" data-turbolinks="false">3 主要词汇对照</a></h3><p>主要词汇包括术语和缩略语。</p><h4 id="术语"><a class="anchorlink" href="#%E6%9C%AF%E8%AF%AD" data-turbolinks="false">3.1 术语</a></h4>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td>模型</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>布局</td>
+</tr>
+</tbody>
+</table>
+<h4 id="缩略语"><a class="anchorlink" href="#%E7%BC%A9%E7%95%A5%E8%AF%AD" data-turbolinks="false">3.2 缩略语</a></h4>
+<table>
+<thead>
+<tr>
+<th>缩略语/简写</th>
+<th>全称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rails</td>
+<td>Ruby on Rails</td>
+</tr>
+<tr>
+<td>DRY</td>
+<td>Don't Repeat Yourself（不自我重复）</td>
+</tr>
+<tr>
+<td>COC</td>
+<td>Convention Over Configuration（约定高于配置）</td>
+</tr>
+</tbody>
+</table>
+
+
+        <h3>反馈</h3>
+        <p>
+          衷心希望您能帮我们提升指南质量。
+        </p>
+        <p>
+          您发现任何错误都可以帮助我们。
+          如果想要参与贡献可以参阅<a href="https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">文档贡献</a>章节获取相关细节。
+        </p>
+        <p>
+          如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
+          开始之前要检查一下
+          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          以确保您使用了正确的编写风格和编写习惯。
+        </p>
+        <p>
+          如果您发现了一个问题，但是自己不会修复，请在 Github 
+          <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
+        </p>
+        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        欢迎大家提出任何关于 Ruby on Rails 文档的问题。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>本作品基于<a href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>创作共享</p>
+<p>“Rails”、“Ruby on Rails” 和 Rails 标志都是 David Heinemeier Hansson 注册的商标，版权所有。</p>
+
+    </div>
+  </div>
+  <button id="back2Top">▲</button>
+  <script>
+		const button = document.querySelector("#back2Top");
+		BACK2TOP(button, 200);
+	</script>	
+</body>
+</html>

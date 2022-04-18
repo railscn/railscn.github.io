@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruby on Rails 7.1 Release Notes — Ruby on Rails 指南</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+  <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
+  <meta property="og:title" content="Ruby on Rails 7.1 Release Notes — Ruby on Rails 指南" />
+  <meta name="description" content="Ruby on Rails 7.1 Release NotesHighlights in Rails 7.1:" />
+  <meta property="og:description" content="Ruby on Rails 7.1 Release NotesHighlights in Rails 7.1:" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="Ruby on Rails 指南" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
+  <meta property="og:type" content="website" />
+</head>
+<body class="guide">
+  <div>
+    <div id="version-badge">edge</div>
+  </div>
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">更多信息在 <a href="https://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        更多 Ruby on Rails 信息
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="https://rubyonrails.org/blog">博客</a></li>
+        <li class="more-info"><a href="https://guides.rubyonrails.org/">指南</a></li>
+        <li class="more-info"><a href="https://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="https://discuss.rubyonrails.org/">论坛</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">在 GitHub 做贡献</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="返回首页">railsguides.cn</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">首页</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">指南目录</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+            <dl class="guides-section-container">
+                <div class="guides-section">
+                  <dt>从这里开始</dt>
+                  <dd><a href="getting_started.html">Rails 入门</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>模型（Model）</dt>
+                  <dd><a href="active_record_basics.html">Active Record 基础</a></dd>
+                  <dd><a href="active_record_migrations.html">Active Record 修改</a></dd>
+                  <dd><a href="active_record_validations.html">Active Record 验证</a></dd>
+                  <dd><a href="active_record_callbacks.html">Active Record 回调</a></dd>
+                  <dd><a href="association_basics.html">Active Record 关联</a></dd>
+                  <dd><a href="active_record_querying.html">Active Record 查询接口</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>视图（View）</dt>
+                  <dd><a href="layouts_and_rendering.html">Rails 的模板布局与视图呈现</a></dd>
+                  <dd><a href="form_helpers.html">Action View 表单辅助方法</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>控制器（Controller）</dt>
+                  <dd><a href="action_controller_overview.html">Action Controller 概览</a></dd>
+                  <dd><a href="routing.html">Rails 路由从入门到精通</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>其他组件</dt>
+                  <dd><a href="active_support_core_extensions.html">Active Support 核心扩展</a></dd>
+                  <dd><a href="action_mailer_basics.html">Action Mailer 基础</a></dd>
+                  <dd><a href="active_job_basics.html">Active Job 基础</a></dd>
+                  <dd><a href="active_storage_overview.html">Active Storage 概览</a></dd>
+                  <dd><a href="action_cable_overview.html">Action Cable 概览</a></dd>
+                  <dd><a href="webpacker.html">Webpacker</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>高级指南</dt>
+                  <dd><a href="i18n.html">Rails 国际化（I18n） API</a></dd>
+                  <dd><a href="testing.html">Rails 应用程序的测试</a></dd>
+                  <dd><a href="security.html">Rails 应用程序的安全</a></dd>
+                  <dd><a href="debugging_rails_applications.html">Rails 应用程序的调试</a></dd>
+                  <dd><a href="configuring.html">Rails 应用程序的配置</a></dd>
+                  <dd><a href="command_line.html">Rails 命令行</a></dd>
+                  <dd><a href="asset_pipeline.html">Asset Pipeline</a></dd>
+                  <dd><a href="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</a></dd>
+                  <dd><a href="autoloading_and_reloading_constants.html">自动加载和重载常量</a></dd>
+                  <dd><a href="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</a></dd>
+                  <dd><a href="caching_with_rails.html">Rails 缓存概览</a></dd>
+                  <dd><a href="api_app.html">用 Rails 只做应用程序后台 API</a></dd>
+                  <dd><a href="active_record_multiple_databases.html">Active Record 支持多数据库</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>扩展 Rails</dt>
+                  <dd><a href="rails_on_rack.html">Rack 中的 Rails</a></dd>
+                  <dd><a href="generators.html">创建和定制 Rails 生成器/模板</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>贡献</dt>
+                  <dd><a href="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</a></dd>
+                  <dd><a href="api_documentation_guidelines.html">API 文档指南</a></dd>
+                  <dd><a href="ruby_on_rails_guides_guidelines.html">指南大纲</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>政策（Policies）</dt>
+                  <dd><a href="maintenance_policy.html">维护政策</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>版本备忘</dt>
+                  <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
+                  <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
+                  <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
+                  <dd><a href="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</a></dd>
+                  <dd><a href="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</a></dd>
+                  <dd><a href="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</a></dd>
+                  <dd><a href="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</a></dd>
+                  <dd><a href="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</a></dd>
+                  <dd><a href="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</a></dd>
+                  <dd><a href="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</a></dd>
+                  <dd><a href="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</a></dd>
+                  <dd><a href="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</a></dd>
+                  <dd><a href="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</a></dd>
+                  <dd><a href="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</a></dd>
+                  <dd><a href="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</a></dd>
+                </div>
+            </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">贡献</a></li>
+        <li><a class="nav-item" href="about.html">关于</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">指南目录</option>
+              <optgroup label="从这里开始">
+                  <option value="getting_started.html">Rails 入门</option>
+              </optgroup>
+              <optgroup label="模型（Model）">
+                  <option value="active_record_basics.html">Active Record 基础</option>
+                  <option value="active_record_migrations.html">Active Record 修改</option>
+                  <option value="active_record_validations.html">Active Record 验证</option>
+                  <option value="active_record_callbacks.html">Active Record 回调</option>
+                  <option value="association_basics.html">Active Record 关联</option>
+                  <option value="active_record_querying.html">Active Record 查询接口</option>
+              </optgroup>
+              <optgroup label="视图（View）">
+                  <option value="layouts_and_rendering.html">Rails 的模板布局与视图呈现</option>
+                  <option value="form_helpers.html">Action View 表单辅助方法</option>
+              </optgroup>
+              <optgroup label="控制器（Controller）">
+                  <option value="action_controller_overview.html">Action Controller 概览</option>
+                  <option value="routing.html">Rails 路由从入门到精通</option>
+              </optgroup>
+              <optgroup label="其他组件">
+                  <option value="active_support_core_extensions.html">Active Support 核心扩展</option>
+                  <option value="action_mailer_basics.html">Action Mailer 基础</option>
+                  <option value="active_job_basics.html">Active Job 基础</option>
+                  <option value="active_storage_overview.html">Active Storage 概览</option>
+                  <option value="action_cable_overview.html">Action Cable 概览</option>
+                  <option value="webpacker.html">Webpacker</option>
+              </optgroup>
+              <optgroup label="高级指南">
+                  <option value="i18n.html">Rails 国际化（I18n） API</option>
+                  <option value="testing.html">Rails 应用程序的测试</option>
+                  <option value="security.html">Rails 应用程序的安全</option>
+                  <option value="debugging_rails_applications.html">Rails 应用程序的调试</option>
+                  <option value="configuring.html">Rails 应用程序的配置</option>
+                  <option value="command_line.html">Rails 命令行</option>
+                  <option value="asset_pipeline.html">Asset Pipeline</option>
+                  <option value="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</option>
+                  <option value="autoloading_and_reloading_constants.html">自动加载和重载常量</option>
+                  <option value="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</option>
+                  <option value="caching_with_rails.html">Rails 缓存概览</option>
+                  <option value="api_app.html">用 Rails 只做应用程序后台 API</option>
+                  <option value="active_record_multiple_databases.html">Active Record 支持多数据库</option>
+              </optgroup>
+              <optgroup label="扩展 Rails">
+                  <option value="rails_on_rack.html">Rack 中的 Rails</option>
+                  <option value="generators.html">创建和定制 Rails 生成器/模板</option>
+              </optgroup>
+              <optgroup label="贡献">
+                  <option value="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</option>
+                  <option value="api_documentation_guidelines.html">API 文档指南</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">指南大纲</option>
+              </optgroup>
+              <optgroup label="政策（Policies）">
+                  <option value="maintenance_policy.html">维护政策</option>
+              </optgroup>
+              <optgroup label="版本备忘">
+                  <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
+                  <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
+                  <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
+                  <option value="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</option>
+                  <option value="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</option>
+                  <option value="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</option>
+                  <option value="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</option>
+                  <option value="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</option>
+                  <option value="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</option>
+                  <option value="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</option>
+                  <option value="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</option>
+                  <option value="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</option>
+                  <option value="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</option>
+                  <option value="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</option>
+                  <option value="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Ruby on Rails 7.1 Release Notes</h2><p>Highlights in Rails 7.1:</p>
+
+                <div id="subCol" data-turbolinks="false">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
+            <ol class="chapters">
+<li><a href="#upgrading-to-rails-7-1">Upgrading to Rails 7.1</a></li>
+<li><a href="#major-features">Major Features</a></li>
+<li>
+<a href="#railties">Railties</a>
+
+<ul>
+<li><a href="#railties-removals">Removals</a></li>
+<li><a href="#railties-deprecations">Deprecations</a></li>
+<li><a href="#railties-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-cable">Action Cable</a>
+
+<ul>
+<li><a href="#action-cable-removals">Removals</a></li>
+<li><a href="#action-cable-deprecations">Deprecations</a></li>
+<li><a href="#action-cable-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-pack">Action Pack</a>
+
+<ul>
+<li><a href="#action-pack-removals">Removals</a></li>
+<li><a href="#action-pack-deprecations">Deprecations</a></li>
+<li><a href="#action-pack-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-view">Action View</a>
+
+<ul>
+<li><a href="#action-view-removals">Removals</a></li>
+<li><a href="#action-view-deprecations">Deprecations</a></li>
+<li><a href="#action-view-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-mailer">Action Mailer</a>
+
+<ul>
+<li><a href="#action-mailer-removals">Removals</a></li>
+<li><a href="#action-mailer-deprecations">Deprecations</a></li>
+<li><a href="#action-mailer-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-record">Active Record</a>
+
+<ul>
+<li><a href="#active-record-removals">Removals</a></li>
+<li><a href="#active-record-deprecations">Deprecations</a></li>
+<li><a href="#active-record-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-storage">Active Storage</a>
+
+<ul>
+<li><a href="#active-storage-removals">Removals</a></li>
+<li><a href="#active-storage-deprecations">Deprecations</a></li>
+<li><a href="#active-storage-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-model">Active Model</a>
+
+<ul>
+<li><a href="#active-model-removals">Removals</a></li>
+<li><a href="#active-model-deprecations">Deprecations</a></li>
+<li><a href="#active-model-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-support">Active Support</a>
+
+<ul>
+<li><a href="#active-support-removals">Removals</a></li>
+<li><a href="#active-support-deprecations">Deprecations</a></li>
+<li><a href="#active-support-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-job">Active Job</a>
+
+<ul>
+<li><a href="#active-job-removals">Removals</a></li>
+<li><a href="#active-job-deprecations">Deprecations</a></li>
+<li><a href="#active-job-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-text">Action Text</a>
+
+<ul>
+<li><a href="#action-text-removals">Removals</a></li>
+<li><a href="#action-text-deprecations">Deprecations</a></li>
+<li><a href="#action-text-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-mailbox">Action Mailbox</a>
+
+<ul>
+<li><a href="#action-mailbox-removals">Removals</a></li>
+<li><a href="#action-mailbox-deprecations">Deprecations</a></li>
+<li><a href="#action-mailbox-notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li>
+<a href="#ruby-on-rails-guides">Ruby on Rails Guides</a>
+
+<ul>
+<li><a href="#notable-changes">Notable changes</a></li>
+</ul>
+</li>
+<li><a href="#credits">Credits</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="upgrading-to-rails-7-1"><a class="anchorlink" href="#upgrading-to-rails-7-1" data-turbolinks="false">1 Upgrading to Rails 7.1</a></h3><p>If you're upgrading an existing application, it's a great idea to have good test
+coverage before going in. You should also first upgrade to Rails 7.0 in case you
+haven't and make sure your application still runs as expected before attempting
+an update to Rails 7.1. A list of things to watch out for when upgrading is
+available in the
+<a href="upgrading_ruby_on_rails.html#upgrading-from-rails-7-0-to-rails-7-1">Upgrading Ruby on Rails</a>
+guide.</p><h3 id="major-features"><a class="anchorlink" href="#major-features" data-turbolinks="false">2 Major Features</a></h3><h3 id="railties"><a class="anchorlink" href="#railties" data-turbolinks="false">3 Railties</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/railties/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="railties-removals"><a class="anchorlink" href="#railties-removals" data-turbolinks="false">3.1 Removals</a></h4><h4 id="railties-deprecations"><a class="anchorlink" href="#railties-deprecations" data-turbolinks="false">3.2 Deprecations</a></h4><h4 id="railties-notable-changes"><a class="anchorlink" href="#railties-notable-changes" data-turbolinks="false">3.3 Notable changes</a></h4><h3 id="action-cable"><a class="anchorlink" href="#action-cable" data-turbolinks="false">4 Action Cable</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/actioncable/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="action-cable-removals"><a class="anchorlink" href="#action-cable-removals" data-turbolinks="false">4.1 Removals</a></h4><h4 id="action-cable-deprecations"><a class="anchorlink" href="#action-cable-deprecations" data-turbolinks="false">4.2 Deprecations</a></h4><h4 id="action-cable-notable-changes"><a class="anchorlink" href="#action-cable-notable-changes" data-turbolinks="false">4.3 Notable changes</a></h4><h3 id="action-pack"><a class="anchorlink" href="#action-pack" data-turbolinks="false">5 Action Pack</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/actionpack/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="action-pack-removals"><a class="anchorlink" href="#action-pack-removals" data-turbolinks="false">5.1 Removals</a></h4><h4 id="action-pack-deprecations"><a class="anchorlink" href="#action-pack-deprecations" data-turbolinks="false">5.2 Deprecations</a></h4><h4 id="action-pack-notable-changes"><a class="anchorlink" href="#action-pack-notable-changes" data-turbolinks="false">5.3 Notable changes</a></h4><h3 id="action-view"><a class="anchorlink" href="#action-view" data-turbolinks="false">6 Action View</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/actionview/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="action-view-removals"><a class="anchorlink" href="#action-view-removals" data-turbolinks="false">6.1 Removals</a></h4><h4 id="action-view-deprecations"><a class="anchorlink" href="#action-view-deprecations" data-turbolinks="false">6.2 Deprecations</a></h4><h4 id="action-view-notable-changes"><a class="anchorlink" href="#action-view-notable-changes" data-turbolinks="false">6.3 Notable changes</a></h4><h3 id="action-mailer"><a class="anchorlink" href="#action-mailer" data-turbolinks="false">7 Action Mailer</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/actionmailer/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="action-mailer-removals"><a class="anchorlink" href="#action-mailer-removals" data-turbolinks="false">7.1 Removals</a></h4><h4 id="action-mailer-deprecations"><a class="anchorlink" href="#action-mailer-deprecations" data-turbolinks="false">7.2 Deprecations</a></h4><h4 id="action-mailer-notable-changes"><a class="anchorlink" href="#action-mailer-notable-changes" data-turbolinks="false">7.3 Notable changes</a></h4><h3 id="active-record"><a class="anchorlink" href="#active-record" data-turbolinks="false">8 Active Record</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/activerecord/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="active-record-removals"><a class="anchorlink" href="#active-record-removals" data-turbolinks="false">8.1 Removals</a></h4>
+<ul>
+<li>Remove support for <code>ActiveRecord.legacy_connection_handling</code>.</li>
+</ul>
+<h4 id="active-record-deprecations"><a class="anchorlink" href="#active-record-deprecations" data-turbolinks="false">8.2 Deprecations</a></h4><h4 id="active-record-notable-changes"><a class="anchorlink" href="#active-record-notable-changes" data-turbolinks="false">8.3 Notable changes</a></h4><h3 id="active-storage"><a class="anchorlink" href="#active-storage" data-turbolinks="false">9 Active Storage</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/activestorage/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="active-storage-removals"><a class="anchorlink" href="#active-storage-removals" data-turbolinks="false">9.1 Removals</a></h4><h4 id="active-storage-deprecations"><a class="anchorlink" href="#active-storage-deprecations" data-turbolinks="false">9.2 Deprecations</a></h4><h4 id="active-storage-notable-changes"><a class="anchorlink" href="#active-storage-notable-changes" data-turbolinks="false">9.3 Notable changes</a></h4><h3 id="active-model"><a class="anchorlink" href="#active-model" data-turbolinks="false">10 Active Model</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/activemodel/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="active-model-removals"><a class="anchorlink" href="#active-model-removals" data-turbolinks="false">10.1 Removals</a></h4><h4 id="active-model-deprecations"><a class="anchorlink" href="#active-model-deprecations" data-turbolinks="false">10.2 Deprecations</a></h4><h4 id="active-model-notable-changes"><a class="anchorlink" href="#active-model-notable-changes" data-turbolinks="false">10.3 Notable changes</a></h4><h3 id="active-support"><a class="anchorlink" href="#active-support" data-turbolinks="false">11 Active Support</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/activesupport/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="active-support-removals"><a class="anchorlink" href="#active-support-removals" data-turbolinks="false">11.1 Removals</a></h4><h4 id="active-support-deprecations"><a class="anchorlink" href="#active-support-deprecations" data-turbolinks="false">11.2 Deprecations</a></h4><h4 id="active-support-notable-changes"><a class="anchorlink" href="#active-support-notable-changes" data-turbolinks="false">11.3 Notable changes</a></h4><h3 id="active-job"><a class="anchorlink" href="#active-job" data-turbolinks="false">12 Active Job</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/activejob/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="active-job-removals"><a class="anchorlink" href="#active-job-removals" data-turbolinks="false">12.1 Removals</a></h4><h4 id="active-job-deprecations"><a class="anchorlink" href="#active-job-deprecations" data-turbolinks="false">12.2 Deprecations</a></h4><h4 id="active-job-notable-changes"><a class="anchorlink" href="#active-job-notable-changes" data-turbolinks="false">12.3 Notable changes</a></h4><h3 id="action-text"><a class="anchorlink" href="#action-text" data-turbolinks="false">13 Action Text</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/actiontext/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="action-text-removals"><a class="anchorlink" href="#action-text-removals" data-turbolinks="false">13.1 Removals</a></h4><h4 id="action-text-deprecations"><a class="anchorlink" href="#action-text-deprecations" data-turbolinks="false">13.2 Deprecations</a></h4><h4 id="action-text-notable-changes"><a class="anchorlink" href="#action-text-notable-changes" data-turbolinks="false">13.3 Notable changes</a></h4><h3 id="action-mailbox"><a class="anchorlink" href="#action-mailbox" data-turbolinks="false">14 Action Mailbox</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/actionmailbox/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="action-mailbox-removals"><a class="anchorlink" href="#action-mailbox-removals" data-turbolinks="false">14.1 Removals</a></h4><h4 id="action-mailbox-deprecations"><a class="anchorlink" href="#action-mailbox-deprecations" data-turbolinks="false">14.2 Deprecations</a></h4><h4 id="action-mailbox-notable-changes"><a class="anchorlink" href="#action-mailbox-notable-changes" data-turbolinks="false">14.3 Notable changes</a></h4><h3 id="ruby-on-rails-guides"><a class="anchorlink" href="#ruby-on-rails-guides" data-turbolinks="false">15 Ruby on Rails Guides</a></h3><p>Please refer to the <a href="https://github.com/rails/rails/blob/main/guides/CHANGELOG.md">Changelog</a> for detailed changes.</p><h4 id="notable-changes"><a class="anchorlink" href="#notable-changes" data-turbolinks="false">15.1 Notable changes</a></h4><h3 id="credits"><a class="anchorlink" href="#credits" data-turbolinks="false">16 Credits</a></h3><p>See the
+<a href="https://contributors.rubyonrails.org/">full list of contributors to Rails</a>
+for the many people who spent many hours making Rails, the stable and robust
+framework it is. Kudos to all of them.</p>
+
+        <h3>反馈</h3>
+        <p>
+          衷心希望您能帮我们提升指南质量。
+        </p>
+        <p>
+          您发现任何错误都可以帮助我们。
+          如果想要参与贡献可以参阅<a href="https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">文档贡献</a>章节获取相关细节。
+        </p>
+        <p>
+          如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
+          开始之前要检查一下
+          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          以确保您使用了正确的编写风格和编写习惯。
+        </p>
+        <p>
+          如果您发现了一个问题，但是自己不会修复，请在 Github 
+          <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
+        </p>
+        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        欢迎大家提出任何关于 Ruby on Rails 文档的问题。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>本作品基于<a href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>创作共享</p>
+<p>“Rails”、“Ruby on Rails” 和 Rails 标志都是 David Heinemeier Hansson 注册的商标，版权所有。</p>
+
+    </div>
+  </div>
+  <button id="back2Top">▲</button>
+  <script>
+		const button = document.querySelector("#back2Top");
+		BACK2TOP(button, 200);
+	</script>	
+</body>
+</html>

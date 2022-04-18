@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Development Dependencies Install — Ruby on Rails 指南</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+  <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
+  <meta property="og:title" content="Development Dependencies Install — Ruby on Rails 指南" />
+  <meta name="description" content="Development Dependencies InstallThis guide covers how to set up an environment for Ruby on Rails core development.After reading this guide, you will know: How to set up your machine for Rails development" />
+  <meta property="og:description" content="Development Dependencies InstallThis guide covers how to set up an environment for Ruby on Rails core development.After reading this guide, you will know: How to set up your machine for Rails development" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="Ruby on Rails 指南" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
+  <meta property="og:type" content="website" />
+</head>
+<body class="guide">
+  <div>
+    <div id="version-badge">edge</div>
+  </div>
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">更多信息在 <a href="https://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        更多 Ruby on Rails 信息
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="https://rubyonrails.org/blog">博客</a></li>
+        <li class="more-info"><a href="https://guides.rubyonrails.org/">指南</a></li>
+        <li class="more-info"><a href="https://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="https://discuss.rubyonrails.org/">论坛</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">在 GitHub 做贡献</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="返回首页">railsguides.cn</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">首页</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">指南目录</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+            <dl class="guides-section-container">
+                <div class="guides-section">
+                  <dt>从这里开始</dt>
+                  <dd><a href="getting_started.html">Rails 入门</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>模型（Model）</dt>
+                  <dd><a href="active_record_basics.html">Active Record 基础</a></dd>
+                  <dd><a href="active_record_migrations.html">Active Record 修改</a></dd>
+                  <dd><a href="active_record_validations.html">Active Record 验证</a></dd>
+                  <dd><a href="active_record_callbacks.html">Active Record 回调</a></dd>
+                  <dd><a href="association_basics.html">Active Record 关联</a></dd>
+                  <dd><a href="active_record_querying.html">Active Record 查询接口</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>视图（View）</dt>
+                  <dd><a href="layouts_and_rendering.html">Rails 的模板布局与视图呈现</a></dd>
+                  <dd><a href="form_helpers.html">Action View 表单辅助方法</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>控制器（Controller）</dt>
+                  <dd><a href="action_controller_overview.html">Action Controller 概览</a></dd>
+                  <dd><a href="routing.html">Rails 路由从入门到精通</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>其他组件</dt>
+                  <dd><a href="active_support_core_extensions.html">Active Support 核心扩展</a></dd>
+                  <dd><a href="action_mailer_basics.html">Action Mailer 基础</a></dd>
+                  <dd><a href="active_job_basics.html">Active Job 基础</a></dd>
+                  <dd><a href="active_storage_overview.html">Active Storage 概览</a></dd>
+                  <dd><a href="action_cable_overview.html">Action Cable 概览</a></dd>
+                  <dd><a href="webpacker.html">Webpacker</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>高级指南</dt>
+                  <dd><a href="i18n.html">Rails 国际化（I18n） API</a></dd>
+                  <dd><a href="testing.html">Rails 应用程序的测试</a></dd>
+                  <dd><a href="security.html">Rails 应用程序的安全</a></dd>
+                  <dd><a href="debugging_rails_applications.html">Rails 应用程序的调试</a></dd>
+                  <dd><a href="configuring.html">Rails 应用程序的配置</a></dd>
+                  <dd><a href="command_line.html">Rails 命令行</a></dd>
+                  <dd><a href="asset_pipeline.html">Asset Pipeline</a></dd>
+                  <dd><a href="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</a></dd>
+                  <dd><a href="autoloading_and_reloading_constants.html">自动加载和重载常量</a></dd>
+                  <dd><a href="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</a></dd>
+                  <dd><a href="caching_with_rails.html">Rails 缓存概览</a></dd>
+                  <dd><a href="api_app.html">用 Rails 只做应用程序后台 API</a></dd>
+                  <dd><a href="active_record_multiple_databases.html">Active Record 支持多数据库</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>扩展 Rails</dt>
+                  <dd><a href="rails_on_rack.html">Rack 中的 Rails</a></dd>
+                  <dd><a href="generators.html">创建和定制 Rails 生成器/模板</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>贡献</dt>
+                  <dd><a href="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</a></dd>
+                  <dd><a href="api_documentation_guidelines.html">API 文档指南</a></dd>
+                  <dd><a href="ruby_on_rails_guides_guidelines.html">指南大纲</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>政策（Policies）</dt>
+                  <dd><a href="maintenance_policy.html">维护政策</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>版本备忘</dt>
+                  <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
+                  <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
+                  <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
+                  <dd><a href="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</a></dd>
+                  <dd><a href="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</a></dd>
+                  <dd><a href="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</a></dd>
+                  <dd><a href="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</a></dd>
+                  <dd><a href="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</a></dd>
+                  <dd><a href="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</a></dd>
+                  <dd><a href="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</a></dd>
+                  <dd><a href="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</a></dd>
+                  <dd><a href="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</a></dd>
+                  <dd><a href="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</a></dd>
+                  <dd><a href="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</a></dd>
+                  <dd><a href="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</a></dd>
+                </div>
+            </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">贡献</a></li>
+        <li><a class="nav-item" href="about.html">关于</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">指南目录</option>
+              <optgroup label="从这里开始">
+                  <option value="getting_started.html">Rails 入门</option>
+              </optgroup>
+              <optgroup label="模型（Model）">
+                  <option value="active_record_basics.html">Active Record 基础</option>
+                  <option value="active_record_migrations.html">Active Record 修改</option>
+                  <option value="active_record_validations.html">Active Record 验证</option>
+                  <option value="active_record_callbacks.html">Active Record 回调</option>
+                  <option value="association_basics.html">Active Record 关联</option>
+                  <option value="active_record_querying.html">Active Record 查询接口</option>
+              </optgroup>
+              <optgroup label="视图（View）">
+                  <option value="layouts_and_rendering.html">Rails 的模板布局与视图呈现</option>
+                  <option value="form_helpers.html">Action View 表单辅助方法</option>
+              </optgroup>
+              <optgroup label="控制器（Controller）">
+                  <option value="action_controller_overview.html">Action Controller 概览</option>
+                  <option value="routing.html">Rails 路由从入门到精通</option>
+              </optgroup>
+              <optgroup label="其他组件">
+                  <option value="active_support_core_extensions.html">Active Support 核心扩展</option>
+                  <option value="action_mailer_basics.html">Action Mailer 基础</option>
+                  <option value="active_job_basics.html">Active Job 基础</option>
+                  <option value="active_storage_overview.html">Active Storage 概览</option>
+                  <option value="action_cable_overview.html">Action Cable 概览</option>
+                  <option value="webpacker.html">Webpacker</option>
+              </optgroup>
+              <optgroup label="高级指南">
+                  <option value="i18n.html">Rails 国际化（I18n） API</option>
+                  <option value="testing.html">Rails 应用程序的测试</option>
+                  <option value="security.html">Rails 应用程序的安全</option>
+                  <option value="debugging_rails_applications.html">Rails 应用程序的调试</option>
+                  <option value="configuring.html">Rails 应用程序的配置</option>
+                  <option value="command_line.html">Rails 命令行</option>
+                  <option value="asset_pipeline.html">Asset Pipeline</option>
+                  <option value="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</option>
+                  <option value="autoloading_and_reloading_constants.html">自动加载和重载常量</option>
+                  <option value="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</option>
+                  <option value="caching_with_rails.html">Rails 缓存概览</option>
+                  <option value="api_app.html">用 Rails 只做应用程序后台 API</option>
+                  <option value="active_record_multiple_databases.html">Active Record 支持多数据库</option>
+              </optgroup>
+              <optgroup label="扩展 Rails">
+                  <option value="rails_on_rack.html">Rack 中的 Rails</option>
+                  <option value="generators.html">创建和定制 Rails 生成器/模板</option>
+              </optgroup>
+              <optgroup label="贡献">
+                  <option value="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</option>
+                  <option value="api_documentation_guidelines.html">API 文档指南</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">指南大纲</option>
+              </optgroup>
+              <optgroup label="政策（Policies）">
+                  <option value="maintenance_policy.html">维护政策</option>
+              </optgroup>
+              <optgroup label="版本备忘">
+                  <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
+                  <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
+                  <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
+                  <option value="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</option>
+                  <option value="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</option>
+                  <option value="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</option>
+                  <option value="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</option>
+                  <option value="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</option>
+                  <option value="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</option>
+                  <option value="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</option>
+                  <option value="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</option>
+                  <option value="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</option>
+                  <option value="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</option>
+                  <option value="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</option>
+                  <option value="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Development Dependencies Install</h2><p>This guide covers how to set up an environment for Ruby on Rails core development.</p><p>After reading this guide, you will know:</p>
+<ul>
+<li>How to set up your machine for Rails development</li>
+</ul>
+
+
+                <div id="subCol" data-turbolinks="false">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
+            <ol class="chapters">
+<li><a href="#other-ways-to-set-up-your-environment">Other Ways to Set Up Your Environment</a></li>
+<li>
+<a href="#local-development">Local Development</a>
+
+<ul>
+<li><a href="#install-git">Install Git</a></li>
+<li><a href="#clone-the-ruby-on-rails-repository">Clone the Ruby on Rails Repository</a></li>
+<li><a href="#install-additional-tools-and-services">Install Additional Tools and Services</a></li>
+<li><a href="#database-configuration">Database Configuration</a></li>
+<li><a href="#install-javascript-dependencies">Install JavaScript dependencies</a></li>
+<li><a href="#installing-gem-dependencies">Installing gem dependencies</a></li>
+<li><a href="#contribute-to-rails">Contribute to Rails</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="other-ways-to-set-up-your-environment"><a class="anchorlink" href="#other-ways-to-set-up-your-environment" data-turbolinks="false">1 Other Ways to Set Up Your Environment</a></h3><p>If you don't want to set up Rails for development on your local machine you can use Codespaces, the VS Code Remote Plugin, or rails-dev-box. Learn more about these options <a href="https://guides.rubyonrails.org/contributing_to_ruby_on_rails.html#setting-up-a-development-environment">here</a>.</p><h3 id="local-development"><a class="anchorlink" href="#local-development" data-turbolinks="false">2 Local Development</a></h3><p>If you want to develop Ruby on Rails locally on your machine see the steps below.</p><h4 id="install-git"><a class="anchorlink" href="#install-git" data-turbolinks="false">2.1 Install Git</a></h4><p>Ruby on Rails uses Git for source code control. The <a href="https://git-scm.com/">Git homepage</a> has installation instructions. There are a variety of resources online that will help you get familiar with Git.</p><h4 id="clone-the-ruby-on-rails-repository"><a class="anchorlink" href="#clone-the-ruby-on-rails-repository" data-turbolinks="false">2.2 Clone the Ruby on Rails Repository</a></h4><p>Navigate to the folder where you want to download the Ruby on Rails source code (it will create its own <code>rails</code> subdirectory) and run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">git </span>clone https://github.com/rails/rails.git
+<span class="gp">$</span><span class="w"> </span><span class="nb">cd rails</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="git clone https://github.com/rails/rails.git
+cd rails
+">复制</button>
+</div>
+<h4 id="install-additional-tools-and-services"><a class="anchorlink" href="#install-additional-tools-and-services" data-turbolinks="false">2.3 Install Additional Tools and Services</a></h4><p>Some Rails tests depend on additional tools that you need to install before running those specific tests.</p><p>Here's the list of each gems' additional dependencies:</p>
+<ul>
+<li>Action Cable depends on Redis</li>
+<li>Active Record depends on SQLite3, MySQL and PostgreSQL</li>
+<li>Active Storage depends on Yarn (additionally Yarn depends on
+<a href="https://nodejs.org/">Node.js</a>), ImageMagick, FFmpeg, muPDF, and on macOS
+also XQuartz and Poppler.</li>
+<li>Active Support depends on memcached and Redis</li>
+<li>Railties depend on a JavaScript runtime environment, such as having
+<a href="https://nodejs.org/">Node.js</a> installed.</li>
+</ul>
+<p>Install all the services you need to properly test the full gem you'll be
+making changes to. How to install these services for macOS, Ubuntu, Fedora/CentOS,
+and FreeBSD are detailed below.</p><div class="note"><p>Redis' documentation discourages installations with package managers as those are usually outdated. Installing from source and bringing the server up is straight forward and well documented on <a href="https://redis.io/download#installation">Redis' documentation</a>.</p></div><div class="note"><p>Active Record tests <em>must</em> pass for at least MySQL, PostgreSQL, and SQLite3. Your patch will be rejected if tested against a single adapter, unless the change and tests are adapter specific.</p></div><p>Below you can find instructions on how to install all of the additional
+tools for different operating systems.</p><h5 id="macos"><a class="anchorlink" href="#macos" data-turbolinks="false">2.3.1 macOS</a></h5><p>On macOS you can use <a href="https://brew.sh/">Homebrew</a> to install all of the
+additional tools.</p><p>To install all run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">brew bundle</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="brew bundle
+">复制</button>
+</div>
+<p>You'll also need to start each of the installed services. To list all
+available services run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">brew </span>services list
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="brew services list
+">复制</button>
+</div>
+<p>You can then start each of the services one by one like this:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">brew </span>services start mysql
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="brew services start mysql
+">复制</button>
+</div>
+<p>Replace <code>mysql</code> with the name of the service you want to start.</p><h6 id="potential-issues"><a class="anchorlink" href="#potential-issues" data-turbolinks="false">2.3.1.1 Potential Issues</a></h6><p>This section details some of the potential issues you may run into with native extensions on macOS, particularly when bundling the mysql2 gem in local development. This documentation is subject to change and may be incorrect as Apple makes changes to the developer environment on Rails.</p><p>In order to compile the <code>mysql2</code> gem on macOS you will need the following:</p><p>1) <code>openssl@1.1</code> installed (not <code>openssl@3</code>)
+2) Ruby compiled with  <code>openssl@1.1</code>
+3) Set compiler flags in the bundle config for <code>mysql2</code>.</p><p>If both <code>openssl@1.1</code> and <code>openssl@3</code> are installed you will need to tell Ruby to use <code>openssl@1.1</code> in order for Rails to bundle <code>mysql2</code>.</p><p>In your <code>.bash_profile</code> set the <code>PATH</code> and <code>RUBY_CONFIGURE_OPTS</code> to point to <code>openssl@1.1</code>:</p><div class="code_container">
+<pre><code class="highlight plaintext">export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+'>复制</button>
+</div>
+<p>In your <code>~/.bundle/config</code> set the following for <code>mysql2</code>. Be sure to delete any other entries for <code>BUNDLE_BUILD__MYSQL2</code>:</p><div class="code_container">
+<pre><code class="highlight plaintext">BUNDLE_BUILD__MYSQL2: "--with-ldflags=-L/usr/local/opt/openssl@1.1/lib --with-cppflags=-L/usr/local/opt/openssl@1.1/include"
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='BUNDLE_BUILD__MYSQL2: "--with-ldflags=-L/usr/local/opt/openssl@1.1/lib --with-cppflags=-L/usr/local/opt/openssl@1.1/include"
+'>复制</button>
+</div>
+<p>By setting these flags before installing Ruby and bundling Rails you should be able to get your local macOS development environment working.</p><h5 id="ubuntu"><a class="anchorlink" href="#ubuntu" data-turbolinks="false">2.3.2 Ubuntu</a></h5><p>To install all run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt-get update
+<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt-get <span class="nb">install sqlite3 </span>libsqlite3-dev mysql-server libmysqlclient-dev postgresql postgresql-client postgresql-contrib libpq-dev redis-server memcached imagemagick ffmpeg mupdf mupdf-tools libxml2-dev
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>Install Yarn
+<span class="gp">$</span><span class="w"> </span>curl <span class="nt">-sS</span> https://dl.yarnpkg.com/debian/pubkey.gpg | <span class="nb">sudo </span>apt-key add -
+<span class="gp">$</span><span class="w"> </span><span class="nb">echo</span> <span class="s2">"deb https://dl.yarnpkg.com/debian/ stable main"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/yarn.list
+<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt-get <span class="nb">install yarn</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='sudo apt-get update
+sudo apt-get install sqlite3 libsqlite3-dev mysql-server libmysqlclient-dev postgresql postgresql-client postgresql-contrib libpq-dev redis-server memcached imagemagick ffmpeg mupdf mupdf-tools libxml2-dev
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get install yarn
+'>复制</button>
+</div>
+<h5 id="fedora-or-centos"><a class="anchorlink" href="#fedora-or-centos" data-turbolinks="false">2.3.3 Fedora or CentOS</a></h5><p>To install all run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>dnf <span class="nb">install </span>sqlite-devel sqlite-libs mysql-server mysql-devel postgresql-server postgresql-devel redis memcached imagemagick ffmpeg mupdf libxml2-devel
+<span class="go">
+</span><span class="gp">#</span><span class="w"> </span>Install Yarn
+<span class="gp">#</span><span class="w"> </span>Use this <span class="nb">command </span><span class="k">if </span>you <span class="k">do </span>not have Node.js installed
+<span class="gp">$</span><span class="w"> </span>curl <span class="nt">--silent</span> <span class="nt">--location</span> https://rpm.nodesource.com/setup_8.x | <span class="nb">sudo </span>bash -
+<span class="gp">#</span><span class="w"> </span>If you have Node.js installed, use this <span class="nb">command </span>instead
+<span class="gp">$</span><span class="w"> </span>curl <span class="nt">--silent</span> <span class="nt">--location</span> https://dl.yarnpkg.com/rpm/yarn.repo | <span class="nb">sudo tee</span> /etc/yum.repos.d/yarn.repo
+<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>dnf <span class="nb">install yarn</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="sudo dnf install sqlite-devel sqlite-libs mysql-server mysql-devel postgresql-server postgresql-devel redis memcached imagemagick ffmpeg mupdf libxml2-devel
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo dnf install yarn
+">复制</button>
+</div>
+<h5 id="arch-linux"><a class="anchorlink" href="#arch-linux" data-turbolinks="false">2.3.4 Arch Linux</a></h5><p>To install all run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>pacman <span class="nt">-S</span> sqlite mariadb libmariadbclient mariadb-clients postgresql postgresql-libs redis memcached imagemagick ffmpeg mupdf mupdf-tools poppler <span class="nb">yarn </span>libxml2
+<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>mariadb-install-db <span class="nt">--user</span><span class="o">=</span>mysql <span class="nt">--basedir</span><span class="o">=</span>/usr <span class="nt">--datadir</span><span class="o">=</span>/var/lib/mysql
+<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>systemctl start redis mariadb memcached
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="sudo pacman -S sqlite mariadb libmariadbclient mariadb-clients postgresql postgresql-libs redis memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2
+sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo systemctl start redis mariadb memcached
+">复制</button>
+</div>
+<div class="note"><p>If you are running Arch Linux, MySQL isn't supported anymore so you will need to
+use MariaDB instead (see <a href="https://www.archlinux.org/news/mariadb-replaces-mysql-in-repositories/">this announcement</a>).</p></div><h5 id="freebsd"><a class="anchorlink" href="#freebsd" data-turbolinks="false">2.3.5 FreeBSD</a></h5><p>To install all run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span>pkg <span class="nb">install sqlite3 </span>mysql80-client mysql80-server postgresql11-client postgresql11-server memcached imagemagick ffmpeg mupdf <span class="nb">yarn </span>libxml2
+<span class="gp">#</span><span class="w"> </span>portmaster databases/redis
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="pkg install sqlite3 mysql80-client mysql80-server postgresql11-client postgresql11-server memcached imagemagick ffmpeg mupdf yarn libxml2
+">复制</button>
+</div>
+<p>Or install everything through ports (these packages are located under the
+<code>databases</code> folder).</p><div class="note"><p>If you run into problems during the installation of MySQL, please see
+<a href="https://dev.mysql.com/doc/refman/en/freebsd-installation.html">the MySQL documentation</a>.</p></div><h4 id="database-configuration"><a class="anchorlink" href="#database-configuration" data-turbolinks="false">2.4 Database Configuration</a></h4><p>There are couple of additional steps required to configure database engines
+required for running Active Record tests.</p><p>PostgreSQL's authentication works differently. To set up the development environment
+with your development account, on Linux or BSD, you just have to run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">sudo</span> <span class="nt">-u</span> postgres createuser <span class="nt">--superuser</span> <span class="nv">$USER</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="sudo -u postgres createuser --superuser $USER
+">复制</button>
+</div>
+<p>and for macOS:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span>createuser <span class="nt">--superuser</span> <span class="nv">$USER</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="createuser --superuser $USER
+">复制</button>
+</div>
+<p>MySQL will create the users when the databases are created. The task assumes your user is <code>root</code> with no password.</p><p>Then, you need to create the test databases for both MySQL and PostgreSQL with:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>activerecord
+<span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>db:create
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="cd activerecord
+bundle exec rake db:create
+">复制</button>
+</div>
+<p>You can also create test databases for each database engine separately:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>activerecord
+<span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>db:mysql:build
+<span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>db:postgresql:build
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="cd activerecord
+bundle exec rake db:mysql:build
+bundle exec rake db:postgresql:build
+">复制</button>
+</div>
+<p>and you can drop the databases using:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>activerecord
+<span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>db:drop
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="cd activerecord
+bundle exec rake db:drop
+">复制</button>
+</div>
+<div class="note"><p>Using the Rake task to create the test databases ensures they have the correct character set and collation.</p></div><p>If you're using another database, check the file <code>activerecord/test/config.yml</code> or <code>activerecord/test/config.example.yml</code> for default connection information. You can edit <code>activerecord/test/config.yml</code> to provide different credentials on your machine, but you should not push any of those changes back to Rails.</p><h4 id="install-javascript-dependencies"><a class="anchorlink" href="#install-javascript-dependencies" data-turbolinks="false">2.5 Install JavaScript dependencies</a></h4><p>If you installed Yarn, you will need to install the JavaScript dependencies:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">yarn install</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="yarn install
+">复制</button>
+</div>
+<h4 id="installing-gem-dependencies"><a class="anchorlink" href="#installing-gem-dependencies" data-turbolinks="false">2.6 Installing gem dependencies</a></h4><p>Gems are installed with <a href="https://bundler.io/">Bundler</a> which ships by default with Ruby.</p><p>To install the Gemfile for Rails run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle install</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="bundle install
+">复制</button>
+</div>
+<p>If you don't need to run Active Record tests you can run:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle install</span> <span class="nt">--without</span> db
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="bundle install --without db
+">复制</button>
+</div>
+<h4 id="contribute-to-rails"><a class="anchorlink" href="#contribute-to-rails" data-turbolinks="false">2.7 Contribute to Rails</a></h4><p>After you've set up everything, read how you can start <a href="contributing_to_ruby_on_rails.html#running-an-application-against-your-local-branch">contributing</a>.</p>
+
+        <h3>反馈</h3>
+        <p>
+          衷心希望您能帮我们提升指南质量。
+        </p>
+        <p>
+          您发现任何错误都可以帮助我们。
+          如果想要参与贡献可以参阅<a href="https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">文档贡献</a>章节获取相关细节。
+        </p>
+        <p>
+          如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
+          开始之前要检查一下
+          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          以确保您使用了正确的编写风格和编写习惯。
+        </p>
+        <p>
+          如果您发现了一个问题，但是自己不会修复，请在 Github 
+          <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
+        </p>
+        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        欢迎大家提出任何关于 Ruby on Rails 文档的问题。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>本作品基于<a href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>创作共享</p>
+<p>“Rails”、“Ruby on Rails” 和 Rails 标志都是 David Heinemeier Hansson 注册的商标，版权所有。</p>
+
+    </div>
+  </div>
+  <button id="back2Top">▲</button>
+  <script>
+		const button = document.querySelector("#back2Top");
+		BACK2TOP(button, 200);
+	</script>	
+</body>
+</html>

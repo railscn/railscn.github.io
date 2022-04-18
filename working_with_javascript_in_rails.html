@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Working with JavaScript in Rails — Ruby on Rails 指南</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+  <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
+  <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
+  <meta property="og:title" content="Working with JavaScript in Rails — Ruby on Rails 指南" />
+  <meta name="description" content="Working with JavaScript in RailsThis guide covers the options for integrating JavaScript functionality into your Rails application, including the options you have for using external JavaScript packages and how to use Turbo with Rails.After reading this guide, you will know: How to use Rails without the need for a Node.js, Yarn, or a JavaScript bundler. How to create a new Rails application using import maps, esbuild, rollup, or webpack to bundle your JavaScript. What Turbo is, and how to use it. How to use the Turbo HTML helpers provided by Rails." />
+  <meta property="og:description" content="Working with JavaScript in RailsThis guide covers the options for integrating JavaScript functionality into your Rails application, including the options you have for using external JavaScript packages and how to use Turbo with Rails.After reading this guide, you will know: How to use Rails without the need for a Node.js, Yarn, or a JavaScript bundler. How to create a new Rails application using import maps, esbuild, rollup, or webpack to bundle your JavaScript. What Turbo is, and how to use it. How to use the Turbo HTML helpers provided by Rails." />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="Ruby on Rails 指南" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
+  <meta property="og:type" content="website" />
+</head>
+<body class="guide">
+  <div>
+    <div id="version-badge">edge</div>
+  </div>
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">更多信息在 <a href="https://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        更多 Ruby on Rails 信息
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="https://rubyonrails.org/blog">博客</a></li>
+        <li class="more-info"><a href="https://guides.rubyonrails.org/">指南</a></li>
+        <li class="more-info"><a href="https://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="https://discuss.rubyonrails.org/">论坛</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">在 GitHub 做贡献</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="返回首页">railsguides.cn</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">首页</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">指南目录</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+            <dl class="guides-section-container">
+                <div class="guides-section">
+                  <dt>从这里开始</dt>
+                  <dd><a href="getting_started.html">Rails 入门</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>模型（Model）</dt>
+                  <dd><a href="active_record_basics.html">Active Record 基础</a></dd>
+                  <dd><a href="active_record_migrations.html">Active Record 修改</a></dd>
+                  <dd><a href="active_record_validations.html">Active Record 验证</a></dd>
+                  <dd><a href="active_record_callbacks.html">Active Record 回调</a></dd>
+                  <dd><a href="association_basics.html">Active Record 关联</a></dd>
+                  <dd><a href="active_record_querying.html">Active Record 查询接口</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>视图（View）</dt>
+                  <dd><a href="layouts_and_rendering.html">Rails 的模板布局与视图呈现</a></dd>
+                  <dd><a href="form_helpers.html">Action View 表单辅助方法</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>控制器（Controller）</dt>
+                  <dd><a href="action_controller_overview.html">Action Controller 概览</a></dd>
+                  <dd><a href="routing.html">Rails 路由从入门到精通</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>其他组件</dt>
+                  <dd><a href="active_support_core_extensions.html">Active Support 核心扩展</a></dd>
+                  <dd><a href="action_mailer_basics.html">Action Mailer 基础</a></dd>
+                  <dd><a href="active_job_basics.html">Active Job 基础</a></dd>
+                  <dd><a href="active_storage_overview.html">Active Storage 概览</a></dd>
+                  <dd><a href="action_cable_overview.html">Action Cable 概览</a></dd>
+                  <dd><a href="webpacker.html">Webpacker</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>高级指南</dt>
+                  <dd><a href="i18n.html">Rails 国际化（I18n） API</a></dd>
+                  <dd><a href="testing.html">Rails 应用程序的测试</a></dd>
+                  <dd><a href="security.html">Rails 应用程序的安全</a></dd>
+                  <dd><a href="debugging_rails_applications.html">Rails 应用程序的调试</a></dd>
+                  <dd><a href="configuring.html">Rails 应用程序的配置</a></dd>
+                  <dd><a href="command_line.html">Rails 命令行</a></dd>
+                  <dd><a href="asset_pipeline.html">Asset Pipeline</a></dd>
+                  <dd><a href="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</a></dd>
+                  <dd><a href="autoloading_and_reloading_constants.html">自动加载和重载常量</a></dd>
+                  <dd><a href="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</a></dd>
+                  <dd><a href="caching_with_rails.html">Rails 缓存概览</a></dd>
+                  <dd><a href="api_app.html">用 Rails 只做应用程序后台 API</a></dd>
+                  <dd><a href="active_record_multiple_databases.html">Active Record 支持多数据库</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>扩展 Rails</dt>
+                  <dd><a href="rails_on_rack.html">Rack 中的 Rails</a></dd>
+                  <dd><a href="generators.html">创建和定制 Rails 生成器/模板</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>贡献</dt>
+                  <dd><a href="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</a></dd>
+                  <dd><a href="api_documentation_guidelines.html">API 文档指南</a></dd>
+                  <dd><a href="ruby_on_rails_guides_guidelines.html">指南大纲</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>政策（Policies）</dt>
+                  <dd><a href="maintenance_policy.html">维护政策</a></dd>
+                </div>
+                <div class="guides-section">
+                  <dt>版本备忘</dt>
+                  <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
+                  <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
+                  <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
+                  <dd><a href="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</a></dd>
+                  <dd><a href="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</a></dd>
+                  <dd><a href="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</a></dd>
+                  <dd><a href="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</a></dd>
+                  <dd><a href="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</a></dd>
+                  <dd><a href="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</a></dd>
+                  <dd><a href="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</a></dd>
+                  <dd><a href="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</a></dd>
+                  <dd><a href="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</a></dd>
+                  <dd><a href="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</a></dd>
+                  <dd><a href="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</a></dd>
+                  <dd><a href="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</a></dd>
+                </div>
+            </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">贡献</a></li>
+        <li><a class="nav-item" href="about.html">关于</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">指南目录</option>
+              <optgroup label="从这里开始">
+                  <option value="getting_started.html">Rails 入门</option>
+              </optgroup>
+              <optgroup label="模型（Model）">
+                  <option value="active_record_basics.html">Active Record 基础</option>
+                  <option value="active_record_migrations.html">Active Record 修改</option>
+                  <option value="active_record_validations.html">Active Record 验证</option>
+                  <option value="active_record_callbacks.html">Active Record 回调</option>
+                  <option value="association_basics.html">Active Record 关联</option>
+                  <option value="active_record_querying.html">Active Record 查询接口</option>
+              </optgroup>
+              <optgroup label="视图（View）">
+                  <option value="layouts_and_rendering.html">Rails 的模板布局与视图呈现</option>
+                  <option value="form_helpers.html">Action View 表单辅助方法</option>
+              </optgroup>
+              <optgroup label="控制器（Controller）">
+                  <option value="action_controller_overview.html">Action Controller 概览</option>
+                  <option value="routing.html">Rails 路由从入门到精通</option>
+              </optgroup>
+              <optgroup label="其他组件">
+                  <option value="active_support_core_extensions.html">Active Support 核心扩展</option>
+                  <option value="action_mailer_basics.html">Action Mailer 基础</option>
+                  <option value="active_job_basics.html">Active Job 基础</option>
+                  <option value="active_storage_overview.html">Active Storage 概览</option>
+                  <option value="action_cable_overview.html">Action Cable 概览</option>
+                  <option value="webpacker.html">Webpacker</option>
+              </optgroup>
+              <optgroup label="高级指南">
+                  <option value="i18n.html">Rails 国际化（I18n） API</option>
+                  <option value="testing.html">Rails 应用程序的测试</option>
+                  <option value="security.html">Rails 应用程序的安全</option>
+                  <option value="debugging_rails_applications.html">Rails 应用程序的调试</option>
+                  <option value="configuring.html">Rails 应用程序的配置</option>
+                  <option value="command_line.html">Rails 命令行</option>
+                  <option value="asset_pipeline.html">Asset Pipeline</option>
+                  <option value="working_with_javascript_in_rails.html">在 Rails 中使用 JavaScript</option>
+                  <option value="autoloading_and_reloading_constants.html">自动加载和重载常量</option>
+                  <option value="classic_to_zeitwerk_howto.html">如何从传统过渡到 Zeitwerk</option>
+                  <option value="caching_with_rails.html">Rails 缓存概览</option>
+                  <option value="api_app.html">用 Rails 只做应用程序后台 API</option>
+                  <option value="active_record_multiple_databases.html">Active Record 支持多数据库</option>
+              </optgroup>
+              <optgroup label="扩展 Rails">
+                  <option value="rails_on_rack.html">Rack 中的 Rails</option>
+                  <option value="generators.html">创建和定制 Rails 生成器/模板</option>
+              </optgroup>
+              <optgroup label="贡献">
+                  <option value="contributing_to_ruby_on_rails.html">为 Ruby on Rails 贡献</option>
+                  <option value="api_documentation_guidelines.html">API 文档指南</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">指南大纲</option>
+              </optgroup>
+              <optgroup label="政策（Policies）">
+                  <option value="maintenance_policy.html">维护政策</option>
+              </optgroup>
+              <optgroup label="版本备忘">
+                  <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
+                  <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
+                  <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
+                  <option value="6_0_release_notes.html">6.0 版本 —— 2019 年 9 月</option>
+                  <option value="5_2_release_notes.html">5.2 版本 —— 2018 年 4 月</option>
+                  <option value="5_1_release_notes.html">5.1 版本 —— 2017 年 4 月</option>
+                  <option value="5_0_release_notes.html">5.0 版本 —— 2016 年 6 月</option>
+                  <option value="4_2_release_notes.html">4.2 版本 —— 2014 年 12 月</option>
+                  <option value="4_1_release_notes.html">4.1 版本 —— 2014 年 4 月</option>
+                  <option value="4_0_release_notes.html">4.0 版本 —— 2013 年 6 月</option>
+                  <option value="3_2_release_notes.html">3.2 版本 —— 2012 年 1 月</option>
+                  <option value="3_1_release_notes.html">3.1 版本 —— 2011 年 8 月</option>
+                  <option value="3_0_release_notes.html">3.0 版本 —— 2010 年 8 月</option>
+                  <option value="2_3_release_notes.html">2.3 版本 —— 2009 年 3 月</option>
+                  <option value="2_2_release_notes.html">2.2 版本 —— 2008 年 11 月</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Working with JavaScript in Rails</h2><p>This guide covers the options for integrating JavaScript functionality into your Rails application,
+including the options you have for using external JavaScript packages and how to use Turbo with
+Rails.</p><p>After reading this guide, you will know:</p>
+<ul>
+<li>How to use Rails without the need for a Node.js, Yarn, or a JavaScript bundler.</li>
+<li>How to create a new Rails application using import maps, esbuild, rollup, or webpack to bundle
+your JavaScript.</li>
+<li>What Turbo is, and how to use it.</li>
+<li>How to use the Turbo HTML helpers provided by Rails.</li>
+</ul>
+
+
+                <div id="subCol" data-turbolinks="false">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
+            <ol class="chapters">
+<li>
+<a href="#import-maps">Import maps</a>
+
+<ul>
+<li><a href="#adding-npm-packages-with-importmap-rails">Adding NPM Packages with importmap-rails</a></li>
+</ul>
+</li>
+<li>
+<a href="#adding-npm-packages-with-javascript-bundlers">Adding NPM Packages with JavaScript Bundlers</a>
+
+<ul>
+<li><a href="#installing-node-js-and-yarn">Installing Node.js and Yarn</a></li>
+</ul>
+</li>
+<li><a href="#choosing-between-import-maps-and-a-javascript-bundler">Choosing Between Import Maps and a JavaScript Bundler</a></li>
+<li>
+<a href="#turbo">Turbo</a>
+
+<ul>
+<li><a href="#turbo-drive">Turbo Drive</a></li>
+<li><a href="#turbo-frames">Turbo Frames</a></li>
+<li><a href="#turbo-streams">Turbo Streams</a></li>
+</ul>
+</li>
+<li>
+<a href="#replacements-for-rails-ujs-functionality">Replacements for Rails/UJS Functionality</a>
+
+<ul>
+<li><a href="#method">Method</a></li>
+<li><a href="#confirmations">Confirmations</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="import-maps"><a class="anchorlink" href="#import-maps" data-turbolinks="false">1 Import maps</a></h3><p><a href="https://github.com/rails/importmap-rails">Import maps</a> let you import JavaScript modules using
+logical names that map to versioned files directly from the browser. Import maps are the default
+from Rails 7, allowing anyone to build modern JavaScript applications using most NPM packages
+without the need for transpiling or bundling.</p><p>Applications using import maps do not need <a href="https://nodejs.org/en/">Node.js</a> or
+<a href="https://yarnpkg.com/">Yarn</a> to function. If you plan to use Rails with <code>importmap-rails</code> to
+manage your JavaScript dependencies, there is no need to install Node.js or Yarn.</p><p>When using import maps, no separate build process is required, just start your server with
+<code>bin/rails server</code> and you are good to go.</p><h4 id="adding-npm-packages-with-importmap-rails"><a class="anchorlink" href="#adding-npm-packages-with-importmap-rails" data-turbolinks="false">1.1 Adding NPM Packages with importmap-rails</a></h4><p>To add new packages to your import map-powered application, run the <code>bin/importmap pin</code> command
+from your terminal:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span>bin/importmap pin react react-dom
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="bin/importmap pin react react-dom
+">复制</button>
+</div>
+<p>Then, import the package into <code>application.js</code> as usual:</p><div class="code_container">
+<pre><code class="highlight javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-dom</span><span class="dl">"</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='import React from "react"
+import ReactDOM from "react-dom"
+'>复制</button>
+</div>
+<h3 id="adding-npm-packages-with-javascript-bundlers"><a class="anchorlink" href="#adding-npm-packages-with-javascript-bundlers" data-turbolinks="false">2 Adding NPM Packages with JavaScript Bundlers</a></h3><p>Import maps are the default for new Rails applications, but if you prefer traditional JavaScript
+bundling, you can create new Rails applications with your choice of
+<a href="https://esbuild.github.io/">esbuild</a>, <a href="https://webpack.js.org/">webpack</a>, or
+<a href="https://rollupjs.org/guide/en/">rollup.js</a>.</p><p>To use a bundler instead of import maps in a new Rails application, pass the <code>—javascript</code> or <code>-j</code>
+option to <code>rails new</code>:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">rails </span>new my_new_app <span class="nt">--javascript</span><span class="o">=</span>webpack
+<span class="go">OR
+</span><span class="gp">$</span><span class="w"> </span><span class="nb">rails </span>new my_new_app <span class="nt">-j</span> webpack
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="rails new my_new_app --javascript=webpack
+rails new my_new_app -j webpack
+">复制</button>
+</div>
+<p>These bundling options each come with a simple configuration and integration with the asset
+pipeline via the <a href="https://github.com/rails/jsbundling-rails">jsbundling-rails</a> gem.</p><p>When using a bundling option, use <code>bin/dev</code> to start the Rails server and build JavaScript for
+development.</p><h4 id="installing-node-js-and-yarn"><a class="anchorlink" href="#installing-node-js-and-yarn" data-turbolinks="false">2.1 Installing Node.js and Yarn</a></h4><p>If you are using a JavaScript bundler in your Rails application, Node.js and Yarn must be
+installed.</p><p>Find the installation instructions at the <a href="https://nodejs.org/en/download/">Node.js website</a> and
+verify it’s installed correctly with the following command:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">node</span> <span class="nt">--version</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="node --version
+">复制</button>
+</div>
+<p>The version of your Node.js runtime should be printed out. Make sure it’s greater than <code>8.16.0</code>.</p><p>To install Yarn, follow the installation instructions at the
+<a href="https://classic.yarnpkg.com/en/docs/install">Yarn website</a>. Running this command should print out
+the Yarn version:</p><div class="code_container">
+<pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">yarn</span> <span class="nt">--version</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="yarn --version
+">复制</button>
+</div>
+<p>If it says something like <code>1.22.0</code>, Yarn has been installed correctly.</p><h3 id="choosing-between-import-maps-and-a-javascript-bundler"><a class="anchorlink" href="#choosing-between-import-maps-and-a-javascript-bundler" data-turbolinks="false">3 Choosing Between Import Maps and a JavaScript Bundler</a></h3><p>When you create a new Rails application, you will need to choose between import maps and a
+JavaScript bundling solution. Every application has different requirements, and you should
+consider your requirements carefully before choosing a JavaScript option, as migrating from one
+option to another may be time-consuming for large, complex applications.</p><p>Import maps are the default option because the Rails team believes in import maps' potential for
+reducing complexity, improving developer experience, and delivering performance gains.</p><p>For many applications, especially those that rely primarily on the <a href="https://hotwired.dev/">Hotwire</a>
+stack for their JavaScript needs, import maps will be the right option for the long term. You
+can read more about the reasoning behind making import maps the default in Rails 7
+<a href="https://world.hey.com/dhh/rails-7-will-have-three-great-answers-to-javascript-in-2021-8d68191b">here</a>.</p><p>Other applications may still need a traditional JavaScript bundler. Requirements that indicate
+that you should choose a traditional bundler include:</p>
+<ul>
+<li>If your code requires a transpilation step, such as JSX or TypeScript.</li>
+<li>If you need to use JavaScript libraries that include CSS or otherwise rely on
+<a href="https://webpack.js.org/loaders/">Webpack loaders</a>.</li>
+<li>If you are absolutely sure that you need
+<a href="https://webpack.js.org/guides/tree-shaking/">tree-shaking</a>.</li>
+<li>If you will install Bootstrap, Bulma, PostCSS, or Dart CSS through the
+<a href="https://github.com/rails/cssbundling-rails">cssbundling-rails gem</a>. All options provided by this
+gem except Tailwind will automatically install <code>esbuild</code> for you if you do not specify a different
+option in <code>rails new</code>.</li>
+</ul>
+<h3 id="turbo"><a class="anchorlink" href="#turbo" data-turbolinks="false">4 Turbo</a></h3><p>Whether you choose import maps or a traditional bundler, Rails ships with
+<a href="https://turbo.hotwired.dev/">Turbo</a> to speed up your application while dramatically reducing the
+amount of JavaScript that you will need to write.</p><p>Turbo lets your server deliver HTML directly as an alternative to the prevailing front-end
+frameworks that reduce the server-side of your Rails application to little more than a JSON API.</p><h4 id="turbo-drive"><a class="anchorlink" href="#turbo-drive" data-turbolinks="false">4.1 Turbo Drive</a></h4><p><a href="https://turbo.hotwired.dev/handbook/drive">Turbo Drive</a> speeds up page loads by avoiding full-page
+teardowns and rebuilds on every navigation request. Turbo Drive is an improvement on and
+replacement for Turbolinks.</p><h4 id="turbo-frames"><a class="anchorlink" href="#turbo-frames" data-turbolinks="false">4.2 Turbo Frames</a></h4><p><a href="https://turbo.hotwired.dev/handbook/frames">Turbo Frames</a> allow predefined parts of a page to be
+updated on request, without impacting the rest of the page’s content.</p><p>You can use Turbo Frames to build in-place editing without any custom JavaScript, lazy load
+content, and create server-rendered, tabbed interfaces with ease.</p><p>Rails provides HTML helpers to simplify the use of Turbo Frames through the
+<a href="https://github.com/hotwired/turbo-rails">turbo-rails</a> gem.</p><p>Using this gem, you can add a Turbo Frame to your application with the <code>turbo_frame_tag</code> helper
+like this:</p><div class="code_container">
+<pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">turbo_frame_tag</span> <span class="n">dom_id</span><span class="p">(</span><span class="n">post</span><span class="p">)</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+     <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">post</span><span class="p">.</span><span class="nf">title</span><span class="p">,</span> <span class="n">post_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="&lt;%= turbo_frame_tag dom_id(post) do %&gt;
+  &lt;div&gt;
+     &lt;%= link_to post.title, post_path(path) %&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+">复制</button>
+</div>
+<h4 id="turbo-streams"><a class="anchorlink" href="#turbo-streams" data-turbolinks="false">4.3 Turbo Streams</a></h4><p><a href="https://turbo.hotwired.dev/handbook/streams">Turbo Streams</a> deliver page changes as fragments of
+HTML wrapped in self-executing <code>&lt;turbo-stream&gt;</code> elements. Turbo Streams allow you to broadcast
+changes made by other users over WebSockets and update pieces of a page after a form submission
+without requiring a full page load.</p><p>Rails provides HTML and server-side helpers to simplify the use of Turbo Streams through the
+<a href="https://github.com/hotwired/turbo-rails">turbo-rails</a> gem.</p><p>Using this gem, you can render Turbo Streams from a controller action:</p><div class="code_container">
+<pre><code class="highlight ruby"><span class="k">def</span> <span class="nf">create</span>
+  <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span>
+
+  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+    <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+      <span class="nb">format</span><span class="p">.</span><span class="nf">turbo_stream</span>
+    <span class="k">else</span>
+      <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">status: :unprocessable_entity</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="def create
+  @post = Post.new(post_params)
+
+  respond_to do |format|
+    if @post.save
+      format.turbo_stream
+    else
+      format.html { render :new, status: :unprocessable_entity }
+    end
+  end
+end
+">复制</button>
+</div>
+<p>Rails will automatically look for a <code>.turbo_stream.erb</code> view file and render that view when found.</p><p>Turbo Stream responses can also be rendered inline in the controller action:</p><div class="code_container">
+<pre><code class="highlight ruby"><span class="k">def</span> <span class="nf">create</span>
+  <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span>
+
+  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+    <span class="k">if</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">save</span>
+      <span class="nb">format</span><span class="p">.</span><span class="nf">turbo_stream</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">turbo_stream: </span><span class="n">turbo_stream</span><span class="p">.</span><span class="nf">prepend</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">,</span> <span class="ss">partial: </span><span class="s1">'post'</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">status: :unprocessable_entity</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="def create
+  @post = Post.new(post_params)
+
+  respond_to do |format|
+    if @post.save
+      format.turbo_stream { render turbo_stream: turbo_stream.prepend('posts', partial: 'post') }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+    end
+  end
+end
+">复制</button>
+</div>
+<p>Finally, Turbo Streams can be initiated from a model or a background job using built-in helpers.
+These broadcasts can be used to update content via a WebSocket connection to all users, keeping
+page content fresh and bringing your application to life.</p><p>To broadcast a Turbo Stream from a model combine a model callback like this:</p><div class="code_container">
+<pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">after_create_commit</span> <span class="p">{</span> <span class="n">broadcast_append_to</span><span class="p">(</span><span class="s1">'posts'</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text="class Post &lt; ApplicationRecord
+  after_create_commit { broadcast_append_to('posts') }
+end
+">复制</button>
+</div>
+<p>With a WebSocket connection set up on the page that should receive the updates like this:</p><div class="code_container">
+<pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">turbo_stream_from</span> <span class="s2">"posts"</span> <span class="cp">%&gt;</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='&lt;%= turbo_stream_from "posts" %&gt;
+'>复制</button>
+</div>
+<h3 id="replacements-for-rails-ujs-functionality"><a class="anchorlink" href="#replacements-for-rails-ujs-functionality" data-turbolinks="false">5 Replacements for Rails/UJS Functionality</a></h3><p>Rails 6 shipped with a tool called UJS that allows developers to override the method of <code>&lt;a&gt;</code> tags
+to perform non-GET requests after a hyperlink click and to add confirmation dialogs before
+executing an action. This was the default before Rails 7, but it is now recommended to use Turbo
+instead.</p><h4 id="method"><a class="anchorlink" href="#method" data-turbolinks="false">5.1 Method</a></h4><p>Clicking links always results in an HTTP GET request. If your application is
+<a href="https://en.wikipedia.org/wiki/Representational_State_Transfer">RESTful</a>, some links are in fact
+actions that change data on the server, and should be performed with non-GET requests. This
+attribute allows marking up such links with an explicit method such as "post", "put", or "delete".</p><p>Turbo will scan <code>&lt;a&gt;</code> tags in your application for the <code>turbo-method</code> data attribute and use the
+specified method when present, overriding the default GET action.</p><p>For example:</p><div class="code_container">
+<pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">"Delete post"</span><span class="p">,</span> <span class="n">post_path</span><span class="p">(</span><span class="n">post</span><span class="p">),</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">turbo_method: </span><span class="s2">"delete"</span> <span class="p">}</span> <span class="cp">%&gt;</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='&lt;%= link_to "Delete post", post_path(post), data: { turbo_method: "delete" } %&gt;
+'>复制</button>
+</div>
+<p>This generates:</p><div class="code_container">
+<pre><code class="highlight html"><span class="nt">&lt;a</span> <span class="na">data-turbo-method=</span><span class="s">"delete"</span> <span class="na">href=</span><span class="s">"..."</span><span class="nt">&gt;</span>Delete post<span class="nt">&lt;/a&gt;</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='&lt;a data-turbo-method="delete" href="..."&gt;Delete post&lt;/a&gt;
+'>复制</button>
+</div>
+<p>An alternative to changing the method of a link with <code>data-turbo-method</code> is to use Rails
+<code>button_to</code> helper. For accessibility reasons, actual buttons and forms are preferable for any
+non-GET action.</p><h4 id="confirmations"><a class="anchorlink" href="#confirmations" data-turbolinks="false">5.2 Confirmations</a></h4><p>You can ask for an extra confirmation of the user by adding a <code>data-turbo-confirm</code> attribute on
+links and forms. The user will be presented with a JavaScript <code>confirm()</code> dialog containing the
+attribute’s text. If the user chooses to cancel, the action doesn't take place.</p><p>Adding this attribute on links will trigger the dialog on click, and adding it on forms will
+trigger it on submit. For example:</p><div class="code_container">
+<pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">"Delete post"</span><span class="p">,</span> <span class="n">post_path</span><span class="p">(</span><span class="n">post</span><span class="p">),</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">turbo_method: </span><span class="s2">"delete"</span><span class="p">,</span> <span class="ss">turbo_confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="cp">%&gt;</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='&lt;%= link_to "Delete post", post_path(post), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %&gt;
+'>复制</button>
+</div>
+<p>This generates:</p><div class="code_container">
+<pre><code class="highlight html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"..."</span> <span class="na">data-confirm=</span><span class="s">"Are you sure?"</span> <span class="na">data-turbo-method=</span><span class="s">"delete"</span><span class="nt">&gt;</span>Delete post<span class="nt">&lt;/a&gt;</span>
+</code></pre>
+<button class="clipboard-button" data-clipboard-text='&lt;a href="..." data-confirm="Are you sure?" data-turbo-method="delete"&gt;Delete post&lt;/a&gt;
+'>复制</button>
+</div>
+
+
+        <h3>反馈</h3>
+        <p>
+          衷心希望您能帮我们提升指南质量。
+        </p>
+        <p>
+          您发现任何错误都可以帮助我们。
+          如果想要参与贡献可以参阅<a href="https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">文档贡献</a>章节获取相关细节。
+        </p>
+        <p>
+          如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
+          开始之前要检查一下
+          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          以确保您使用了正确的编写风格和编写习惯。
+        </p>
+        <p>
+          如果您发现了一个问题，但是自己不会修复，请在 Github 
+          <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
+        </p>
+        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        欢迎大家提出任何关于 Ruby on Rails 文档的问题。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>本作品基于<a href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>创作共享</p>
+<p>“Rails”、“Ruby on Rails” 和 Rails 标志都是 David Heinemeier Hansson 注册的商标，版权所有。</p>
+
+    </div>
+  </div>
+  <button id="back2Top">▲</button>
+  <script>
+		const button = document.querySelector("#back2Top");
+		BACK2TOP(button, 200);
+	</script>	
+</body>
+</html>
