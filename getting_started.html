@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
   <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/chntypo.css" data-turbolinks-track="reload">
   <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
   <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
@@ -114,7 +115,7 @@
                   <dd><a href="maintenance_policy.html">维护政策</a></dd>
                 </div>
                 <div class="guides-section">
-                  <dt>版本备忘</dt>
+                  <dt>版本说明</dt>
                   <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
                   <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
                   <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
@@ -193,7 +194,7 @@
               <optgroup label="政策（Policies）">
                   <option value="maintenance_policy.html">维护政策</option>
               </optgroup>
-              <optgroup label="版本备忘">
+              <optgroup label="版本说明">
                   <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
                   <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
                   <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
@@ -361,7 +362,7 @@ Rails 可能会有一定的困难。这有一个精选的在线 Ruby 学习资�
 一个更新的 Ruby 版本。</p><p>在 Winodows 上安装 Rails，需要首先安装 <a href="https://rubyinstaller.org/">Ruby Installer</a>。</p><p>更多与操作系统相关的安装方法参阅
 <a href="https://www.ruby-lang.org/en/documentation/installation/">ruby-lang.org</a>。</p><h5 id="安装-sqlite3"><a class="anchorlink" href="#%E5%AE%89%E8%A3%85-sqlite3" data-turbolinks="false">3.1.2 安装 SQLite3</a></h5><p>SQLite3 数据库是 Rails 的默认数据库。许多类 UNIX 系统都会默认安装系统许可版
 本的 SQLite3。如果没有安装可参考 <a href="https://www.sqlite.org">SQLite3 站点</a>的安装
-说明进行安装。</p><p>验证 SQLite3 是否安装以及是否已经加载的哦 <code>PATH</code>：</p><div class="code_container">
+说明进行安装。</p><p>验证 SQLite3 是否安装以及是否已经加载到 <code>PATH</code>：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">sqlite3</span> <span class="nt">--version</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="sqlite3 --version
@@ -379,30 +380,26 @@ Rails 可能会有一定的困难。这有一个精选的在线 Ruby 学习资�
 <button class="clipboard-button" data-clipboard-text="rails --version
 ">复制</button>
 </div>
-<p>如果反馈类似于 “Rails 7.0.0”，说明您已经准备好了。</p><h4 id="创建-blog-应用程序"><a class="anchorlink" href="#%E5%88%9B%E5%BB%BA-blog-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F" data-turbolinks="false">3.2 创建 Blog 应用程序</a></h4><p>Rails comes with a number of scripts called generators that are designed to make
-your development life easier by creating everything that's necessary to start
-working on a particular task. One of these is the new application generator,
-which will provide you with the foundation of a fresh Rails application so that
-you don't have to write it yourself.</p><p>To use this generator, open a terminal, navigate to a directory where you have
-rights to create files, and run:</p><div class="code_container">
+<p>如果反馈信息类似于 “Rails 7.0.0”，则说明您的系统已经准备好了。</p><h4 id="创建-blog-应用程序"><a class="anchorlink" href="#%E5%88%9B%E5%BB%BA-blog-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F" data-turbolinks="false">3.2 创建 Blog 应用程序</a></h4><p>Rails 自带一组称为生成器的脚本程序，这些生成器是专门针对开发初期的各种任务、生成相应
+文件等进行的定制，使用这些生成器可以使您的开发更容易。这些生成器之一就是——新应用程序
+生成器，该生成器会生成一个全新的应用程序，包括基本目录结构和必要的文件等等，有了它就
+不需要您自己去一个个编写了。</p><p>使用该生成器，需要打开一个终端，进入您享有编写文件权限的目录，然后运行：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">rails </span>new blog
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="rails new blog
 ">复制</button>
 </div>
-<p>This will create a Rails application called Blog in a <code>blog</code> directory and
-install the gem dependencies that are already mentioned in <code>Gemfile</code> using
-<code>bundle install</code>.</p><div class="info"><p>You can see all of the command line options that the Rails application
-generator accepts by running <code>rails new --help</code>.</p></div><p>After you create the blog application, switch to its folder:</p><div class="code_container">
+<p>该命令将在 <code>blog</code> 目录生成一个叫做 Blog 的 Rails 应用程序，并且使用 <code>bundle install</code>
+ 命令安装 <code>Gemfile</code> 中提供的所有依赖的 Gem。
+.</p><div class="info"><p>通过运行 <code>rails new --help</code> 您可查阅 Rails 应用程序生成器可接受的所有命令行选项。</p></div><p>创建 blog 程序之后，进入应用程序文件夹：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>blog
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="cd blog
 ">复制</button>
 </div>
-<p>The <code>blog</code> directory will have a number of generated files and folders that make
-up the structure of a Rails application. Most of the work in this tutorial will
-happen in the <code>app</code> folder, but here's a basic rundown on the function of each
-of the files and folders that Rails creates by default:</p>
+<p><code>blog</code> 目录内有很多文件夹和文件，这些文件和文件夹共同构成了 Rails 应用程序。 接下来
+本教程的操作基本都是在 <code>app</code> 文件夹内进行，关于这些 Rails 生成的文件夹和文件的功能和
+用途见下表：</p>
 <table>
 <thead>
 <tr>
@@ -413,80 +410,79 @@ of the files and folders that Rails creates by default:</p>
 <tbody>
 <tr>
 <td>app/</td>
-<td>Contains the controllers, models, views, helpers, mailers, channels, jobs, and assets for your application. You'll focus on this folder for the remainder of this guide.</td>
+<td>包含控制器、模型、视图、helpers、mailers、channels、jobs、和应用程序资源等。本指南的其余部分也将重点关注此文件夹。</td>
 </tr>
 <tr>
 <td>bin/</td>
-<td>Contains the <code>rails</code> script that starts your app and can contain other scripts you use to set up, update, deploy, or run your application.</td>
+<td>包含用于启动您的应用和其他诸如创建、更新、发布或者运行应用程序的 <code>rails</code> 命令等。</td>
 </tr>
 <tr>
 <td>config/</td>
-<td>Contains configuration for your application's routes, database, and more. This is covered in more detail in <a href="configuring.html">Configuring Rails Applications</a>.</td>
+<td>包含设置应用程序路由、数据库等的配置文件，更多细节查阅 <a href="configuring.html">Rails 应用程序配置</a>。</td>
 </tr>
 <tr>
 <td>config.ru</td>
-<td>Rack configuration for Rack-based servers used to start the application. For more information about Rack, see the <a href="https://rack.github.io/">Rack website</a>.</td>
+<td>为基于 Rack 的服务器进行启动配置。更多信息参阅 <a href="https://rack.github.io/">Rack 站点</a>。</td>
 </tr>
 <tr>
 <td>db/</td>
-<td>Contains your current database schema, as well as the database migrations.</td>
+<td>包含您的当前数据库的 Schema 以及数据库迁移文件等。</td>
 </tr>
 <tr>
 <td>Gemfile<br>Gemfile.lock</td>
-<td>These files allow you to specify what gem dependencies are needed for your Rails application. These files are used by the Bundler gem. For more information about Bundler, see the <a href="https://bundler.io">Bundler website</a>.</td>
+<td>这些文件用于定义您的 Rails 应用程序有那些 Gem 依赖。通常配合 Bundler 使用，更多信息 参阅 <a href="https://bundler.io">Bundler 站点</a>。</td>
 </tr>
 <tr>
 <td>lib/</td>
-<td>Extended modules for your application.</td>
+<td>您的应用程序的扩展模块。</td>
 </tr>
 <tr>
 <td>log/</td>
-<td>Application log files.</td>
+<td>应用程序日志文件。</td>
 </tr>
 <tr>
 <td>public/</td>
-<td>Contains static files and compiled assets. When your app is running, this directory will be exposed as-is.</td>
+<td>包含静态文件和编译资源。当您的应用运行的时候，该目录会完全开放。</td>
 </tr>
 <tr>
 <td>Rakefile</td>
-<td>This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of Rails. Rather than changing <code>Rakefile</code>, you should add your own tasks by adding files to the <code>lib/tasks</code> directory of your application.</td>
+<td>此文件定位和加载可从命令行运行的任务。通过 Rails 组件定义任务。您应该通过将文件添加到应用程序的 <code>lib/tasks</code> 目录来添加自己的任务，而不是更改 <code>Rakefile</code>。</td>
 </tr>
 <tr>
 <td>README.md</td>
-<td>This is a brief instruction manual for your application. You should edit this file to tell others what your application does, how to set it up, and so on.</td>
+<td>这是您的应用的简要说明书——通过该文件内容告诉其他人您的应用是做什么的，如何运行等等。</td>
 </tr>
 <tr>
 <td>storage/</td>
-<td>Active Storage files for Disk Service. This is covered in <a href="active_storage_overview.html">Active Storage Overview</a>.</td>
+<td>基于硬盘服务的 Active Storage 文件存储目录。更多信息查阅 <a href="active_storage_overview.html">Active Storage 概览</a>。</td>
 </tr>
 <tr>
 <td>test/</td>
-<td>Unit tests, fixtures, and other test apparatus. These are covered in <a href="testing.html">Testing Rails Applications</a>.</td>
+<td>单元测试、夹具和其他测试数据。更多信息参阅<a href="testing.html">测试 Rails 应用程序</a>。</td>
 </tr>
 <tr>
 <td>tmp/</td>
-<td>Temporary files (like cache and pid files).</td>
+<td>临时文件（例如缓存和 pid 文件）。</td>
 </tr>
 <tr>
 <td>vendor/</td>
-<td>A place for all third-party code. In a typical Rails application this includes vendored gems.</td>
+<td>放置第三方代码的目录。典型的 Rails 应用程序这里会托管 Gem。</td>
 </tr>
 <tr>
 <td>.gitattributes</td>
-<td>This file defines metadata for specific paths in a git repository. This metadata can be used by git and other tools to enhance their behavior. See the <a href="https://git-scm.com/docs/gitattributes">gitattributes documentation</a> for more information.</td>
+<td>此文件定义一个 Git 代码库的规范路径元数据，可用于 Git 或者其他工具来增强其功能。更多细节参阅  <a href="https://git-scm.com/docs/gitattributes">gitattributes 文档</a>。</td>
 </tr>
 <tr>
 <td>.gitignore</td>
-<td>This file tells git which files (or patterns) it should ignore. See <a href="https://help.github.com/articles/ignoring-files">GitHub - Ignoring files</a> for more information about ignoring files.</td>
+<td>此文件告诉 Git 那些文件（或者模式）应该忽略追踪。更多信息查阅 <a href="https://help.github.com/articles/ignoring-files">GitHub - 忽略文件</a> 。</td>
 </tr>
 <tr>
 <td>.ruby-version</td>
-<td>This file contains the default Ruby version.</td>
+<td>此文件包含默认 Ruby 版本。</td>
 </tr>
 </tbody>
 </table>
-<h3 id="hello，rails！"><a class="anchorlink" href="#hello%EF%BC%8Crails%EF%BC%81" data-turbolinks="false">4 Hello，Rails！</a></h3><p>To begin with, let's get some text up on screen quickly. To do this, you need to
-get your Rails application server running.</p><h4 id="启动-web-服务器"><a class="anchorlink" href="#%E5%90%AF%E5%8A%A8-web-%E6%9C%8D%E5%8A%A1%E5%99%A8" data-turbolinks="false">4.1 启动 Web 服务器</a></h4><p>You actually have a functional Rails application already. To see it, you need to
+<h3 id="hello，rails！"><a class="anchorlink" href="#hello%EF%BC%8Crails%EF%BC%81" data-turbolinks="false">4 Hello，Rails！</a></h3><p>接下来，我们想在屏幕上显示一些文字。所以，您需要让 Rails 应用程序服务器运行起来。</p><h4 id="启动-web-服务器"><a class="anchorlink" href="#%E5%90%AF%E5%8A%A8-web-%E6%9C%8D%E5%8A%A1%E5%99%A8" data-turbolinks="false">4.1 启动 Web 服务器</a></h4><p>You actually have a functional Rails application already. To see it, you need to
 start a web server on your development machine. You can do this by running the
 following command in the <code>blog</code> directory:</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>server
@@ -2828,16 +2824,16 @@ the database. If possible, use UTF-8 as the internal storage of your database.</
         <p>
           如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
           开始之前要检查一下
-          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          <a href="https://edgeguides.rubyonrails.org">抢鲜版指南</a>中是否
           已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
-          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">《Ruby on Rails 指南》之指南</a>，
           以确保您使用了正确的编写风格和编写习惯。
         </p>
         <p>
           如果您发现了一个问题，但是自己不会修复，请在 Github 
           <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
         </p>
-        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        <p>最后，但并非不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
         欢迎大家提出任何关于 Ruby on Rails 文档的问题。
         </p>
       </div>

@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maintenance Policy for Ruby on Rails — Ruby on Rails 指南</title>
+  <title>Ruby on Rails 维护政策 — Ruby on Rails 指南</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
   <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/chntypo.css" data-turbolinks-track="reload">
   <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
   <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
-  <meta property="og:title" content="Maintenance Policy for Ruby on Rails — Ruby on Rails 指南" />
-  <meta name="description" content="Maintenance Policy for Ruby on RailsSupport of the Rails framework is divided into four groups: New features, bug fixes, security issues, and severe security issues. They are handled as follows, all versions, except for security releases, in X.Y.Z, format." />
-  <meta property="og:description" content="Maintenance Policy for Ruby on RailsSupport of the Rails framework is divided into four groups: New features, bug fixes, security issues, and severe security issues. They are handled as follows, all versions, except for security releases, in X.Y.Z, format." />
+  <meta property="og:title" content="Ruby on Rails 维护政策 — Ruby on Rails 指南" />
+  <meta name="description" content="Ruby on Rails 维护政策Rails 框架支持分为四部分：新功能、问题修复、安全问题和重大安全问题。 它们的处理方式如下，除安全版本外，所有版本均采用 X.Y.Z 格式。" />
+  <meta property="og:description" content="Ruby on Rails 维护政策Rails 框架支持分为四部分：新功能、问题修复、安全问题和重大安全问题。 它们的处理方式如下，除安全版本外，所有版本均采用 X.Y.Z 格式。" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:site_name" content="Ruby on Rails 指南" />
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
@@ -114,7 +115,7 @@
                   <dd><a href="maintenance_policy.html">维护政策</a></dd>
                 </div>
                 <div class="guides-section">
-                  <dt>版本备忘</dt>
+                  <dt>版本说明</dt>
                   <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
                   <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
                   <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
@@ -193,7 +194,7 @@
               <optgroup label="政策（Policies）">
                   <option value="maintenance_policy.html">维护政策</option>
               </optgroup>
-              <optgroup label="版本备忘">
+              <optgroup label="版本说明">
                   <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
                   <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
                   <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
@@ -219,18 +220,17 @@
 
   <div id="feature">
     <div class="wrapper">
-      <h2>Maintenance Policy for Ruby on Rails</h2><p>Support of the Rails framework is divided into four groups: New features, bug
-fixes, security issues, and severe security issues. They are handled as
-follows, all versions, except for security releases, in <code>X.Y.Z</code>, format.</p>
+      <h2>Ruby on Rails 维护政策</h2><p>Rails 框架支持分为四部分：新功能、问题修复、安全问题和重大安全问题。
+它们的处理方式如下，除安全版本外，所有版本均采用 <code>X.Y.Z</code> 格式。</p>
 
                 <div id="subCol" data-turbolinks="false">
             <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
             <ol class="chapters">
-<li><a href="#new-features">New Features</a></li>
-<li><a href="#bug-fixes">Bug Fixes</a></li>
-<li><a href="#security-issues">Security Issues</a></li>
-<li><a href="#severe-security-issues">Severe Security Issues</a></li>
-<li><a href="#unsupported-release-series">Unsupported Release Series</a></li>
+<li><a href="#%E6%96%B0%E5%8A%9F%E8%83%BD">新功能</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D">问题修复</a></li>
+<li><a href="#%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98">安全问题</a></li>
+<li><a href="#%E9%87%8D%E5%A4%A7%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98">重大安全问题</a></li>
+<li><a href="#%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%8F%91%E8%A1%8C%E7%B3%BB%E5%88%97">不支持的发行系列</a></li>
 </ol>
 
           </div>
@@ -241,33 +241,22 @@ follows, all versions, except for security releases, in <code>X.Y.Z</code>, form
   <div id="container">
     <div class="wrapper">
       <div id="mainCol">
-        <p>Rails follows a shifted version of <a href="https://semver.org/">semver</a>:</p><p><strong>Patch <code>Z</code></strong></p><p>Only bug fixes, no API changes, no new features.
-Except as necessary for security fixes.</p><p><strong>Minor <code>Y</code></strong></p><p>New features, may contain API changes (Serve as major versions of Semver).
-Breaking changes are paired with deprecation notices in the previous minor
-or major release.</p><p><strong>Major <code>X</code></strong></p><p>New features, will likely contain API changes. The difference between Rails'
-minor and major releases is the magnitude of breaking changes, and usually
-reserved for special occasions.</p><h3 id="new-features"><a class="anchorlink" href="#new-features" data-turbolinks="false">1 New Features</a></h3><p>New features are only added to the main branch and will not be made available
-in point releases.</p><h3 id="bug-fixes"><a class="anchorlink" href="#bug-fixes" data-turbolinks="false">2 Bug Fixes</a></h3><p>Only the latest release series will receive bug fixes. Bug fixes are typically
-added to the main branch, and backported to the x-y-stable branch of the latest
-release series if there is sufficient need. When enough bugs fixes have been added
-to an x-y-stable branch, a new patch release is built from it. For example, a
-theoretical 1.2.2 patch release would be built from the 1-2-stable branch.</p><p>In special situations, where someone from the Core Team agrees to support more series,
-they are included in the list of supported series.</p><p><strong>Currently included series:</strong> <code>7.1.Z</code>.</p><h3 id="security-issues"><a class="anchorlink" href="#security-issues" data-turbolinks="false">3 Security Issues</a></h3><p>The current release series and the next most recent one will receive patches
-and new versions in case of a security issue.</p><p>These releases are created by taking the last released version, applying the
-security patches, and releasing. Those patches are then applied to the end of
-the x-y-stable branch. For example, a theoretical 1.2.2.1 security release would
-be built from 1.2.2, and then added to the end of 1-2-stable. This means that
-security releases are easy to upgrade to if you're running the latest version
-of Rails.</p><p>Only direct security patches will be included in security releases. Fixes for
-non-security related bugs resulting from a security patch may be published on a
-release's x-y-stable branch, and will only be released as a new gem in
-accordance with the Bug Fixes policy.</p><p><strong>Currently included series:</strong> <code>7.1.Z</code>, <code>7.0.Z</code>, <code>6.1.Z</code>.</p><h3 id="severe-security-issues"><a class="anchorlink" href="#severe-security-issues" data-turbolinks="false">4 Severe Security Issues</a></h3><p>For severe security issues all releases in the current major series, and also the
-last release in the previous major series will receive patches and new versions. The
-classification of the security issue is judged by the core team.</p><p><strong>Currently included series:</strong> <code>7.1.Z</code>, <code>7.0.Z</code>, <code>6.1.Z</code>.</p><h3 id="unsupported-release-series"><a class="anchorlink" href="#unsupported-release-series" data-turbolinks="false">5 Unsupported Release Series</a></h3><p>When a release series is no longer supported, it's your own responsibility to
-deal with bugs and security issues. We may provide backports of the fixes and
-publish them to git, however there will be no new versions released. If you are
-not comfortable maintaining your own versions, you should upgrade to a
-supported version.</p>
+        <p>Rails 遵循<a href="https://semver.org/">语义化版本</a>使用：</p><p><strong>补丁版本 <code>Z</code></strong></p><p>只是修复一些小问题，没有 API 修改，没有新功能。
+必要的安全修复除外。</p><p><strong>次版本 <code>Y</code></strong></p><p>增加新功能，可能包含 API 修改（可考虑作为语义版本的主版本）。
+与以前的次要或主要版本中的弃用通知配对的重大更改。</p><p><strong>主版本 <code>X</code></strong></p><p>新功能，可能会包含 API 更改。Rails 的次要版本和主要版本之间的区别在于更改的
+幅度，并且通常会保留用于特定场合发布。</p><h3 id="新功能"><a class="anchorlink" href="#%E6%96%B0%E5%8A%9F%E8%83%BD" data-turbolinks="false">1 新功能</a></h3><p>新功能仅添加到主分支，不会在点后的版本中发布。</p><h3 id="问题修复"><a class="anchorlink" href="#%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D" data-turbolinks="false">2 问题修复</a></h3><p>只有最新的版本系列才会收到错误修复。错误修复通常添加到主分支，如果需要，则
+向后移植到最新版本系列的 x-y-stable 分支。当一个 x-y-stable 分支中添加了足够
+多的错误修复时，就会从中构建一个新的补丁版本。例如，理论上的 1.2.2 补丁版本
+将从 1-2-stable 分支构建。</p><p>特殊情况下，如果核心团队中的某个人同意支持更多系列，他们将被包含在支持系
+列列表中。</p><p><strong>当前包含系列：</strong> <code>7.1.Z</code>.</p><h3 id="安全问题"><a class="anchorlink" href="#%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98" data-turbolinks="false">3 安全问题</a></h3><p>当前版本系列和下一个最新版本将收到补丁和新版本，以防出现安全问题。</p><p>这些版本是通过获取最后发布的版本、并且应用了安全补丁后而创建的。然后将这些
+补丁应用到 x-y-stable 分支的最新版本。例如，理论上的 1.2.2.1 安全版本将从 1.2.2 
+构建，然后添加到 1-2-stable 的最新版本。这意味着如果您运行的是最新版本的 Rails，
+因为是安全版本则可以轻松升级。</p><p>只有直接的安全补丁才会包含在安全版本中。由安全补丁引起的非安全相关错误的修
+复可能会发布在版本的 x-y-stable 分支上，并且只会根据错误修复政策作为新 gem 
+发布。</p><p><strong>当前包含系列：</strong> <code>7.1.Z</code>, <code>7.0.Z</code>, <code>6.1.Z</code>.</p><h3 id="重大安全问题"><a class="anchorlink" href="#%E9%87%8D%E5%A4%A7%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98" data-turbolinks="false">4 重大安全问题</a></h3><p>对于严重的安全问题，当前主要系列中的所有版本以及之前主要系列中的最后一个版
+本都将收到补丁和新版本。安全问题的分类由核心团队判断。</p><p><strong>当前包含系列：</strong> <code>7.1.Z</code>, <code>7.0.Z</code>, <code>6.1.Z</code>.</p><h3 id="不支持的发行系列"><a class="anchorlink" href="#%E4%B8%8D%E6%94%AF%E6%8C%81%E7%9A%84%E5%8F%91%E8%A1%8C%E7%B3%BB%E5%88%97" data-turbolinks="false">5 不支持的发行系列</a></h3><p>当发行版本不再支持时，您需要自行处理错误和安全问题。我们可能会提供修补程序
+的反向移植并将它们发布到 git，但是不会发布新版本。如果您不能维护自己的版本，
+则应升级到支持的版本。</p>
 
         <h3>反馈</h3>
         <p>
@@ -280,16 +269,16 @@ supported version.</p>
         <p>
           如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
           开始之前要检查一下
-          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          <a href="https://edgeguides.rubyonrails.org">抢鲜版指南</a>中是否
           已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
-          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">《Ruby on Rails 指南》之指南</a>，
           以确保您使用了正确的编写风格和编写习惯。
         </p>
         <p>
           如果您发现了一个问题，但是自己不会修复，请在 Github 
           <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
         </p>
-        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        <p>最后，但并非不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
         欢迎大家提出任何关于 Ruby on Rails 文档的问题。
         </p>
       </div>

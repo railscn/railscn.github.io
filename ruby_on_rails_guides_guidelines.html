@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ruby on Rails 指南指导 — Ruby on Rails 指南</title>
+  <title>《Ruby on Rails 指南》之指南 — Ruby on Rails 指南</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
   <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/backtop.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" type="text/css" href="stylesheets/chntypo.css" data-turbolinks-track="reload">
   <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
   <script src="javascripts/turbolinks.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
-  <meta property="og:title" content="Ruby on Rails 指南指导 — Ruby on Rails 指南" />
-  <meta name="description" content="Ruby on Rails 指南指导This guide documents guidelines for writing Ruby on Rails Guides. This guide follows itself in a graceful loop, serving itself as an example.After reading this guide, you will know: About the conventions to be used in Rails documentation. How to generate guides locally." />
-  <meta property="og:description" content="Ruby on Rails 指南指导This guide documents guidelines for writing Ruby on Rails Guides. This guide follows itself in a graceful loop, serving itself as an example.After reading this guide, you will know: About the conventions to be used in Rails documentation. How to generate guides locally." />
+  <meta property="og:title" content="《Ruby on Rails 指南》之指南 — Ruby on Rails 指南" />
+  <meta name="description" content="《Ruby on Rails 指南》之指南本指南用于指导《Ruby on Rails 指南》的编写。本指南遵循由己及人，由人到己的原 则，本指南既是其他指南编写的指导，也是本指南本身的指导。通过阅读本指南，您会学到： Rails 文档的常用约定。 如何在本地生成指南。" />
+  <meta property="og:description" content="《Ruby on Rails 指南》之指南本指南用于指导《Ruby on Rails 指南》的编写。本指南遵循由己及人，由人到己的原 则，本指南既是其他指南编写的指导，也是本指南本身的指导。通过阅读本指南，您会学到： Rails 文档的常用约定。 如何在本地生成指南。" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:site_name" content="Ruby on Rails 指南" />
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
@@ -114,7 +115,7 @@
                   <dd><a href="maintenance_policy.html">维护政策</a></dd>
                 </div>
                 <div class="guides-section">
-                  <dt>版本备忘</dt>
+                  <dt>版本说明</dt>
                   <dd><a href="upgrading_ruby_on_rails.html">更新 Ruby on Rails</a></dd>
                   <dd><a href="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</a></dd>
                   <dd><a href="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</a></dd>
@@ -193,7 +194,7 @@
               <optgroup label="政策（Policies）">
                   <option value="maintenance_policy.html">维护政策</option>
               </optgroup>
-              <optgroup label="版本备忘">
+              <optgroup label="版本说明">
                   <option value="upgrading_ruby_on_rails.html">更新 Ruby on Rails</option>
                   <option value="7_0_release_notes.html">7.0 版本 —— 2021 年 12 月</option>
                   <option value="6_1_release_notes.html">6.1 版本 —— 2020 年 12 月</option>
@@ -219,10 +220,11 @@
 
   <div id="feature">
     <div class="wrapper">
-      <h2>Ruby on Rails 指南指导</h2><p>This guide documents guidelines for writing Ruby on Rails Guides. This guide follows itself in a graceful loop, serving itself as an example.</p><p>After reading this guide, you will know:</p>
+      <h2>《Ruby on Rails 指南》之指南</h2><p>本指南用于指导《Ruby on Rails 指南》的编写。本指南遵循由己及人，由人到己的原
+则，本指南既是其他指南编写的指导，也是本指南本身的指导。</p><p>通过阅读本指南，您会学到：</p>
 <ul>
-<li>About the conventions to be used in Rails documentation.</li>
-<li>How to generate guides locally.</li>
+<li>Rails 文档的常用约定。</li>
+<li>如何在本地生成指南。</li>
 </ul>
 
 
@@ -230,23 +232,23 @@
             <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
             <ol class="chapters">
 <li><a href="#markdown">Markdown</a></li>
-<li><a href="#prologue">Prologue</a></li>
-<li><a href="#headings">Headings</a></li>
-<li><a href="#linking-to-the-api">Linking to the API</a></li>
-<li><a href="#api-documentation-guidelines">API Documentation Guidelines</a></li>
+<li><a href="#%E5%BA%8F%E8%A8%80">序言</a></li>
+<li><a href="#%E6%A0%87%E9%A2%98">标题</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5%E5%88%B0-api">链接到 API</a></li>
+<li><a href="#api-%E6%96%87%E6%A1%A3%E6%8C%87%E5%AF%BC">API 文档指导</a></li>
 <li>
-<a href="#html-guides">HTML Guides</a>
+<a href="#html-%E6%8C%87%E5%8D%97">HTML 指南</a>
 
 <ul>
-<li><a href="#html-guides-generation">Generation</a></li>
-<li><a href="#validation">Validation</a></li>
+<li><a href="#html-%E6%8C%87%E5%8D%97-%E7%94%9F%E6%88%90">生成</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81">验证</a></li>
 </ul>
 </li>
 <li>
-<a href="#kindle-guides">Kindle Guides</a>
+<a href="#kindle-%E6%A0%BC%E5%BC%8F%E6%8C%87%E5%8D%97">Kindle 格式指南</a>
 
 <ul>
-<li><a href="#kindle-guides-generation">Generation</a></li>
+<li><a href="#kindle-%E6%A0%BC%E5%BC%8F%E6%8C%87%E5%8D%97-%E7%94%9F%E6%88%90">生成</a></li>
 </ul>
 </li>
 </ol>
@@ -259,25 +261,28 @@
   <div id="container">
     <div class="wrapper">
       <div id="mainCol">
-        <h3 id="markdown"><a class="anchorlink" href="#markdown" data-turbolinks="false">1 Markdown</a></h3><p>Guides are written in <a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a>. There is comprehensive <a href="https://daringfireball.net/projects/markdown/syntax">documentation for Markdown</a>, as well as a <a href="https://daringfireball.net/projects/markdown/basics">cheatsheet</a>.</p><h3 id="prologue"><a class="anchorlink" href="#prologue" data-turbolinks="false">2 Prologue</a></h3><p>Each guide should start with motivational text at the top (that's the little introduction in the blue area). The prologue should tell the reader what the guide is about, and what they will learn. As an example, see the <a href="routing.html">Routing Guide</a>.</p><h3 id="headings"><a class="anchorlink" href="#headings" data-turbolinks="false">3 Headings</a></h3><p>The title of every guide uses an <code>h1</code> heading; guide sections use <code>h2</code> headings; subsections use <code>h3</code> headings; etc. Note that the generated HTML output will use heading tags starting with <code>&lt;h2&gt;</code>.</p><div class="code_container">
-<pre><code class="highlight plaintext">Guide Title
+        <h3 id="markdown"><a class="anchorlink" href="#markdown" data-turbolinks="false">1 Markdown</a></h3><p>指南由 <a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a> 编写而成。
+这是综合性 <a href="https://daringfireball.net/projects/markdown/syntax">Markdown 文档</a>，以及<a href="https://daringfireball.net/projects/markdown/basics">备忘录</a>。</p><h3 id="序言"><a class="anchorlink" href="#%E5%BA%8F%E8%A8%80" data-turbolinks="false">2 序言</a></h3><p>每一篇指南都从顶部的励志小文（就是蓝色区域的简介）开始。序言应该告诉读者指
+南是关于什么的，以及他们将学到什么。例如查阅<a href="routing.html">路由指南</a>。</p><h3 id="标题"><a class="anchorlink" href="#%E6%A0%87%E9%A2%98" data-turbolinks="false">3 标题</a></h3><p>每一篇指南的标题使用 <code>h1</code> 级标题；指南的章用 <code>h2</code> 标题；节用 <code>h3</code> 标题；注意：生成的 HTML 使用从 <code>&lt;h2&gt;</code> 开始的标题。</p><div class="code_container">
+<pre><code class="highlight plaintext">指南标题
 ===========
 
-Section
+章
 -------
 
-### Sub Section
+### 节
 </code></pre>
-<button class="clipboard-button" data-clipboard-text="Guide Title
+<button class="clipboard-button" data-clipboard-text="指南标题
 ===========
 
-Section
+章
 -------
 
-### Sub Section
+### 节
 ">复制</button>
 </div>
-<p>When writing headings, capitalize all words except for prepositions, conjunctions, internal articles, and forms of the verb "to be":</p><div class="code_container">
+<p>编写标题时，所有单词（介词、连词、内部链接文章和动词“to be”的形式外）的首
+字母大写：</p><div class="code_container">
 <pre><code class="highlight plaintext">#### Assertions and Testing Jobs inside Components
 #### Middleware Stack is an Array
 #### When are Objects Saved?
@@ -287,65 +292,67 @@ Section
 #### When are Objects Saved?
 ">复制</button>
 </div>
-<p>Use the same inline formatting as regular text:</p><div class="code_container">
+<p>行内格式如常：</p><div class="code_container">
 <pre><code class="highlight plaintext">##### The `:content_type` Option
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="##### The `:content_type` Option
 ">复制</button>
 </div>
-<h3 id="linking-to-the-api"><a class="anchorlink" href="#linking-to-the-api" data-turbolinks="false">4 Linking to the API</a></h3><p>Links to the API (<code>api.rubyonrails.org</code>) are processed by the guides generator in the following manner:</p><p>Links that include a release tag are left untouched. For example</p><div class="code_container">
+<h3 id="链接到-api"><a class="anchorlink" href="#%E9%93%BE%E6%8E%A5%E5%88%B0-api" data-turbolinks="false">4 链接到 API</a></h3><p>链接到 API (<code>api.rubyonrails.org</code>) 的链接由指南生成器按照下面方式处理：</p><p>包含发布标签的链接不做修改直接输出。例如：</p><div class="code_container">
 <pre><code class="highlight plaintext">https://api.rubyonrails.org/v5.0.1/classes/ActiveRecord/Attributes/ClassMethods.html
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="https://api.rubyonrails.org/v5.0.1/classes/ActiveRecord/Attributes/ClassMethods.html
 ">复制</button>
 </div>
-<p>is not modified.</p><p>Please use these in release notes, since they should point to the corresponding version no matter the target being generated.</p><p>If the link does not include a release tag and edge guides are being generated, the domain is replaced by <code>edgeapi.rubyonrails.org</code>. For example,</p><div class="code_container">
+<p>不会修改，直接输出。</p><p>请在发行说明中这样使用，因为无论生成的目标如何，它们都应指向相应的版本。</p><p>如果链接不包含发行标签，链接就会指向抢鲜版，域名指向 <code>edgeapi.rubyonrails.org</code>。
+例如：</p><div class="code_container">
 <pre><code class="highlight plaintext">https://api.rubyonrails.org/classes/ActionDispatch/Response.html
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="https://api.rubyonrails.org/classes/ActionDispatch/Response.html
 ">复制</button>
 </div>
-<p>becomes</p><div class="code_container">
+<p>变成了</p><div class="code_container">
 <pre><code class="highlight plaintext">https://edgeapi.rubyonrails.org/classes/ActionDispatch/Response.html
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="https://edgeapi.rubyonrails.org/classes/ActionDispatch/Response.html
 ">复制</button>
 </div>
-<p>If the link does not include a release tag and release guides are being generated, the Rails version is injected. For example, if we are generating the guides for v5.1.0 the link</p><div class="code_container">
+<p>如果链接不包含发行标签，并且发行版指南已经生成，Rails 的版本就会强行介入。
+例如：如果我们已经生成了 v5.1.0 的指南，那么链接</p><div class="code_container">
 <pre><code class="highlight plaintext">https://api.rubyonrails.org/classes/ActionDispatch/Response.html
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="https://api.rubyonrails.org/classes/ActionDispatch/Response.html
 ">复制</button>
 </div>
-<p>becomes</p><div class="code_container">
+<p>就会变成</p><div class="code_container">
 <pre><code class="highlight plaintext">https://api.rubyonrails.org/v5.1.0/classes/ActionDispatch/Response.html
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="https://api.rubyonrails.org/v5.1.0/classes/ActionDispatch/Response.html
 ">复制</button>
 </div>
-<p>Please don't link to <code>edgeapi.rubyonrails.org</code> manually.</p><h3 id="api-documentation-guidelines"><a class="anchorlink" href="#api-documentation-guidelines" data-turbolinks="false">5 API Documentation Guidelines</a></h3><p>The guides and the API should be coherent and consistent where appropriate. In particular, these sections of the <a href="api_documentation_guidelines.html">API Documentation Guidelines</a> also apply to the guides:</p>
+<p>请不要手动链接到 <code>edgeapi.rubyonrails.org</code> 。</p><h3 id="api-文档指导"><a class="anchorlink" href="#api-%E6%96%87%E6%A1%A3%E6%8C%87%E5%AF%BC" data-turbolinks="false">5 API 文档指导</a></h3><p>在适当的情况下，指南和 API 应该是连贯一致的。特别是 <a href="api_documentation_guidelines.html">API 文档指南</a>
+的这些部分也适用于指南：</p>
 <ul>
-<li><a href="api_documentation_guidelines.html#wording">Wording</a></li>
-<li><a href="api_documentation_guidelines.html#english">English</a></li>
-<li><a href="api_documentation_guidelines.html#example-code">Example Code</a></li>
-<li><a href="api_documentation_guidelines.html#file-names">Filenames</a></li>
-<li><a href="api_documentation_guidelines.html#fonts">Fonts</a></li>
+<li><a href="api_documentation_guidelines.html#wording">措辞</a></li>
+<li><a href="api_documentation_guidelines.html#english">英文</a></li>
+<li><a href="api_documentation_guidelines.html#example-code">示例代码</a></li>
+<li><a href="api_documentation_guidelines.html#file-names">文件名</a></li>
+<li><a href="api_documentation_guidelines.html#fonts">字体</a></li>
 </ul>
-<h3 id="html-guides"><a class="anchorlink" href="#html-guides" data-turbolinks="false">6 HTML Guides</a></h3><p>Before generating the guides, make sure that you have the latest version of
-Bundler installed on your system. You can find the latest Bundler version
-<a href="https://rubygems.org/gems/bundler">here</a>. As of this writing, it's v1.17.1.</p><p>To install the latest version of Bundler, run <code>gem install bundler</code>.</p><h4 id="html-guides-generation"><a class="anchorlink" href="#html-guides-generation" data-turbolinks="false">6.1 Generation</a></h4><p>To generate all the guides, just <code>cd</code> into the <code>guides</code> directory, run <code>bundle install</code>, and execute:</p><div class="code_container">
+<h3 id="html-指南"><a class="anchorlink" href="#html-%E6%8C%87%E5%8D%97" data-turbolinks="false">6 HTML 指南</a></h3><p>生成指南前，确保您系统内已经安装了最新版的 Bundler。在<a href="https://rubygems.org/gems/bundler">这里</a>
+可以找到最新版 Bundler。编写本文时，最新版是 v2.3 。</p><p>安装最新版 Bundler，运行 <code>gem install bundler</code>。</p><h4 id="html-指南-生成"><a class="anchorlink" href="#html-%E6%8C%87%E5%8D%97-%E7%94%9F%E6%88%90" data-turbolinks="false">6.1 生成</a></h4><p>要生成所有指南，需要 <code>cd</code> 进入 <code>guides</code> 目录，运行 <code>bundle install</code>，然后执行：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>guides:generate
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bundle exec rake guides:generate
 ">复制</button>
 </div>
-<p>or</p><div class="code_container">
+<p>或者</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>guides:generate:html
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bundle exec rake guides:generate:html
 ">复制</button>
 </div>
-<p>Resulting HTML files can be found in the <code>./output</code> directory.</p><p>To process <code>my_guide.md</code> and nothing else use the <code>ONLY</code> environment variable:</p><div class="code_container">
+<p>生成的 HTML 文件在 <code>./output</code> 目录。</p><p>只处理 <code>my_guide.md</code> 需要使用 <code>ONLY</code> 环境变量：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">touch </span>my_guide.md
 <span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>guides:generate <span class="nv">ONLY</span><span class="o">=</span>my_guide
 </code></pre>
@@ -353,25 +360,26 @@ Bundler installed on your system. You can find the latest Bundler version
 bundle exec rake guides:generate ONLY=my_guide
 ">复制</button>
 </div>
-<p>By default, guides that have not been modified are not processed, so <code>ONLY</code> is rarely needed in practice.</p><p>To force processing all the guides, pass <code>ALL=1</code>.</p><p>If you want to generate guides in a language other than English, you can keep them in a separate directory under <code>source</code> (e.g. <code>source/es</code>) and use the <code>GUIDES_LANGUAGE</code> environment variable:</p><div class="code_container">
+<p>默认情况下，没有修改的指南不会被处理，所以在实践中 <code>ONLY</code> 很少用到。</p><p>强迫处理所有文档，需要传递 <code>ALL=1</code> 参数。</p><p>如果您想要生成非英文指南，您可以将该文档放置于 <code>source</code> 内的一独立的文件夹（
+例如：<code>source/es</code>），生成时使用 <code>GUIDES_LANGUAGE</code> 环境变量：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>guides:generate <span class="nv">GUIDES_LANGUAGE</span><span class="o">=</span>es
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bundle exec rake guides:generate GUIDES_LANGUAGE=es
 ">复制</button>
 </div>
-<p>If you want to see all the environment variables you can use to configure the generation script just run:</p><div class="code_container">
+<p>如果您想要查看所有环境变量，您可以运行生成脚本查看配置参数：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">rake</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="rake
 ">复制</button>
 </div>
-<h4 id="validation"><a class="anchorlink" href="#validation" data-turbolinks="false">6.2 Validation</a></h4><p>Please validate the generated HTML with:</p><div class="code_container">
+<h4 id="验证"><a class="anchorlink" href="#%E9%AA%8C%E8%AF%81" data-turbolinks="false">6.2 验证</a></h4><p>请验证生成的 HTML：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>guides:validate
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bundle exec rake guides:validate
 ">复制</button>
 </div>
-<p>Particularly, titles get an ID generated from their content and this often leads to duplicates.</p><h3 id="kindle-guides"><a class="anchorlink" href="#kindle-guides" data-turbolinks="false">7 Kindle Guides</a></h3><h4 id="kindle-guides-generation"><a class="anchorlink" href="#kindle-guides-generation" data-turbolinks="false">7.1 Generation</a></h4><p>To generate guides for the Kindle, use the following rake task:</p><div class="code_container">
+<p>需要注意的是，标题的 ID 是基于内容生成的，所有很容易重复。</p><h3 id="kindle-格式指南"><a class="anchorlink" href="#kindle-%E6%A0%BC%E5%BC%8F%E6%8C%87%E5%8D%97" data-turbolinks="false">7 Kindle 格式指南</a></h3><h4 id="kindle-格式指南-生成"><a class="anchorlink" href="#kindle-%E6%A0%BC%E5%BC%8F%E6%8C%87%E5%8D%97-%E7%94%9F%E6%88%90" data-turbolinks="false">7.1 生成</a></h4><p>生成 Kindle 格式指南，使用下面的 Rake 任务：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bundle exec rake </span>guides:generate:kindle
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bundle exec rake guides:generate:kindle
@@ -390,16 +398,16 @@ bundle exec rake guides:generate ONLY=my_guide
         <p>
           如果您发现有内容不完整或者有些内容需要更新，请进行相关补充和完善。
           开始之前要检查一下
-          <a href="https://edgeguides.rubyonrails.org">体验版指南</a>中是否
+          <a href="https://edgeguides.rubyonrails.org">抢鲜版指南</a>中是否
           已经修复了这些问题，或者这些问题是否出现在主分支（main branch）内。
-          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails 指南编写指导</a>，
+          如果以上检查完成后，确认为需要完善文档，请参考<a href="ruby_on_rails_guides_guidelines.html">《Ruby on Rails 指南》之指南</a>，
           以确保您使用了正确的编写风格和编写习惯。
         </p>
         <p>
           如果您发现了一个问题，但是自己不会修复，请在 Github 
           <a href="https://github.com/rails/rails/issues">发一个问题帖子</a>。
         </p>
-        <p>最后但不是不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
+        <p>最后，但并非不重要的是——<a href="https://discuss.rubyonrails.org/c/rubyonrails-docs">Rubyonrails-Docs 邮件列表</a>
         欢迎大家提出任何关于 Ruby on Rails 文档的问题。
         </p>
       </div>
