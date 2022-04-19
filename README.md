@@ -1,1 +1,1 @@
-# railscn.github.io
+# Ruby on Rails 指南
