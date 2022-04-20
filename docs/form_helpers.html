@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Action View Form Helpers — Ruby on Rails 指南</title>
+  <title>Action View 表单辅助方法 — Ruby on Rails 指南</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
   <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
@@ -14,9 +14,9 @@
   <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
-  <meta property="og:title" content="Action View Form Helpers — Ruby on Rails 指南" />
-  <meta name="description" content="Action View Form HelpersForms in web applications are an essential interface for user input. However, form markup can quickly become tedious to write and maintain because of the need to handle form control naming and its numerous attributes. Rails does away with this complexity by providing view helpers for generating form markup. However, since these helpers have different use cases, developers need to know the differences between the helper methods before putting them to use.After reading this guide, you will know: How to create search forms and similar kind of generic forms not representing any specific model in your application. How to make model-centric forms for creating and editing specific database records. How to generate select boxes from multiple types of data. What date and time helpers Rails provides. What makes a file upload form different. How to post forms to external resources and specify setting an authenticity_token. How to build complex forms." />
-  <meta property="og:description" content="Action View Form HelpersForms in web applications are an essential interface for user input. However, form markup can quickly become tedious to write and maintain because of the need to handle form control naming and its numerous attributes. Rails does away with this complexity by providing view helpers for generating form markup. However, since these helpers have different use cases, developers need to know the differences between the helper methods before putting them to use.After reading this guide, you will know: How to create search forms and similar kind of generic forms not representing any specific model in your application. How to make model-centric forms for creating and editing specific database records. How to generate select boxes from multiple types of data. What date and time helpers Rails provides. What makes a file upload form different. How to post forms to external resources and specify setting an authenticity_token. How to build complex forms." />
+  <meta property="og:title" content="Action View 表单辅助方法 — Ruby on Rails 指南" />
+  <meta name="description" content="Action View 表单辅助方法表单（Form）是 Web 应用程序中用户输入数据必备工具。但是，由于需要处理表单控 件命名及其众多属性，表单标记的编写和维护很快就会变得乏味。Rails 通过提供用 于生成表单标记的视图辅助方法来消除这种复杂性。但是，由于这些辅助方法有不同 的使用方法，开发人员需要在使用它们之前了解不同辅助方法之间的区别。通过阅读本指南，您将掌握： 如何在您的应用程序中创建不代表任何特定模型的搜索表单和其他类似类型的通用表单。 如何制作以模型为中心的表单来创建和编辑特定数据库记录。 如何从多种类型的数据中生成选择框。 Rails 提供了哪些日期和时间辅助方法。 是什么让文件上传表单与众不同。 如何将表单发布到外部资源并设置 authenticity_token。 如何构建复杂的表单。" />
+  <meta property="og:description" content="Action View 表单辅助方法表单（Form）是 Web 应用程序中用户输入数据必备工具。但是，由于需要处理表单控 件命名及其众多属性，表单标记的编写和维护很快就会变得乏味。Rails 通过提供用 于生成表单标记的视图辅助方法来消除这种复杂性。但是，由于这些辅助方法有不同 的使用方法，开发人员需要在使用它们之前了解不同辅助方法之间的区别。通过阅读本指南，您将掌握： 如何在您的应用程序中创建不代表任何特定模型的搜索表单和其他类似类型的通用表单。 如何制作以模型为中心的表单来创建和编辑特定数据库记录。 如何从多种类型的数据中生成选择框。 Rails 提供了哪些日期和时间辅助方法。 是什么让文件上传表单与众不同。 如何将表单发布到外部资源并设置 authenticity_token。 如何构建复杂的表单。" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:site_name" content="Ruby on Rails 指南" />
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
@@ -220,15 +220,18 @@
 
   <div id="feature">
     <div class="wrapper">
-      <h2>Action View Form Helpers</h2><p>Forms in web applications are an essential interface for user input. However, form markup can quickly become tedious to write and maintain because of the need to handle form control naming and its numerous attributes. Rails does away with this complexity by providing view helpers for generating form markup. However, since these helpers have different use cases, developers need to know the differences between the helper methods before putting them to use.</p><p>After reading this guide, you will know:</p>
+      <h2>Action View 表单辅助方法</h2><p>表单（Form）是 Web 应用程序中用户输入数据必备工具。但是，由于需要处理表单控
+件命名及其众多属性，表单标记的编写和维护很快就会变得乏味。Rails 通过提供用
+于生成表单标记的视图辅助方法来消除这种复杂性。但是，由于这些辅助方法有不同
+的使用方法，开发人员需要在使用它们之前了解不同辅助方法之间的区别。</p><p>通过阅读本指南，您将掌握：</p>
 <ul>
-<li>How to create search forms and similar kind of generic forms not representing any specific model in your application.</li>
-<li>How to make model-centric forms for creating and editing specific database records.</li>
-<li>How to generate select boxes from multiple types of data.</li>
-<li>What date and time helpers Rails provides.</li>
-<li>What makes a file upload form different.</li>
-<li>How to post forms to external resources and specify setting an <code>authenticity_token</code>.</li>
-<li>How to build complex forms.</li>
+<li>如何在您的应用程序中创建不代表任何特定模型的搜索表单和其他类似类型的通用表单。</li>
+<li>如何制作以模型为中心的表单来创建和编辑特定数据库记录。</li>
+<li>如何从多种类型的数据中生成选择框。</li>
+<li>Rails 提供了哪些日期和时间辅助方法。</li>
+<li>是什么让文件上传表单与众不同。</li>
+<li>如何将表单发布到外部资源并设置 <code>authenticity_token</code>。</li>
+<li>如何构建复杂的表单。</li>
 </ul>
 
 
@@ -236,25 +239,25 @@
             <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
             <ol class="chapters">
 <li>
-<a href="#dealing-with-basic-forms">Dealing with Basic Forms</a>
+<a href="#%E5%A4%84%E7%90%86%E5%9F%BA%E6%9C%AC%E8%A1%A8%E5%8D%95">处理基本表单</a>
 
 <ul>
-<li><a href="#a-generic-search-form">A Generic Search Form</a></li>
-<li><a href="#helpers-for-generating-form-elements">Helpers for Generating Form Elements</a></li>
-<li><a href="#other-helpers-of-interest">Other Helpers of Interest</a></li>
+<li><a href="#%E9%80%9A%E7%94%A8%E6%90%9C%E7%B4%A2%E8%A1%A8%E5%8D%95">通用搜索表单</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95">生成表单元素的辅助方法</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95">其他感兴趣的辅助方法</a></li>
 </ul>
 </li>
 <li>
-<a href="#dealing-with-model-objects">Dealing with Model Objects</a>
+<a href="#%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1">处理模型对象</a>
 
 <ul>
-<li><a href="#binding-a-form-to-an-object">Binding a Form to an Object</a></li>
+<li><a href="#%E7%BB%91%E5%AE%9A%E5%AF%B9%E8%B1%A1%E5%88%B0%E8%A1%A8%E5%8D%95">绑定对象到表单</a></li>
 <li><a href="#relying-on-record-identification">Relying on Record Identification</a></li>
-<li><a href="#how-do-forms-with-patch-put-or-delete-methods-work-questionmark">How do forms with PATCH, PUT, or DELETE methods work?</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-patch%E3%80%81put-%E6%88%96-delete-%E6%96%B9%E6%B3%95%E7%9A%84%E8%A1%A8%E5%8D%95%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%9F">使用 PATCH、PUT 或 DELETE 方法的表单如何工作？</a></li>
 </ul>
 </li>
 <li>
-<a href="#making-select-boxes-with-ease">Making Select Boxes with Ease</a>
+<a href="#%E8%BD%BB%E6%9D%BE%E5%88%B6%E4%BD%9C%E9%80%89%E6%8B%A9%E8%8F%9C%E5%8D%95">轻松制作选择菜单</a>
 
 <ul>
 <li><a href="#option-groups">Option Groups</a></li>
@@ -320,7 +323,7 @@
   <div id="container">
     <div class="wrapper">
       <div id="mainCol">
-        <div class="note"><p>This guide is not intended to be a complete documentation of available form helpers and their arguments. Please visit <a href="https://edgeapi.rubyonrails.org/">the Rails API documentation</a> for a complete reference.</p></div><h3 id="dealing-with-basic-forms"><a class="anchorlink" href="#dealing-with-basic-forms" data-turbolinks="false">1 Dealing with Basic Forms</a></h3><p>The main form helper is <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>.</p><div class="code_container">
+        <div class="note"><p>本指南并非表单辅助方法及其参数的完整文档，获取完整参考请查阅 <a href="https://edgeapi.rubyonrails.org/">Rails API 文档</a>。</p></div><h3 id="处理基本表单"><a class="anchorlink" href="#%E5%A4%84%E7%90%86%E5%9F%BA%E6%9C%AC%E8%A1%A8%E5%8D%95" data-turbolinks="false">1 处理基本表单</a></h3><p>最主要的表单辅助方法是 <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>。</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form_with</span> <span class="k">do</span> <span class="o">|</span><span class="n">form</span><span class="o">|</span> <span class="cp">%&gt;</span>
   Form contents
 <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
@@ -330,7 +333,8 @@
 &lt;% end %&gt;
 ">复制</button>
 </div>
-<p>When called without arguments like this, it creates a form tag which, when submitted, will POST to the current page. For instance, assuming the current page is a home page, the generated HTML will look like this:</p><div class="code_container">
+<p>当我们向这样调用没有参数的 <code>form_with</code> 的时候，它会创建一个表单标签，提交时
+将以 POST 方式发送当前页面。例如：假设当前页是主页，生成的 HTML 看起来像这样：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;form</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">action=</span><span class="s">"/"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts="</span> <span class="nt">/&gt;</span>
   Form contents
@@ -342,15 +346,18 @@
 &lt;/form&gt;
 '>复制</button>
 </div>
-<p>You'll notice that the HTML contains an <code>input</code> element with type <code>hidden</code>. This <code>input</code> is important, because non-GET forms cannot be successfully submitted without it.
-The hidden input element with the name <code>authenticity_token</code> is a security feature of Rails called <strong>cross-site request forgery protection</strong>, and form helpers generate it for every non-GET form (provided that this security feature is enabled). You can read more about this in the <a href="security.html#cross-site-request-forgery-csrf">Securing Rails Applications</a> guide.</p><h4 id="a-generic-search-form"><a class="anchorlink" href="#a-generic-search-form" data-turbolinks="false">1.1 A Generic Search Form</a></h4><p>One of the most basic forms you see on the web is a search form. This form contains:</p>
+<p>您会看到 HTML 包含一个类型（Type)为 <code>hidden</code> 的 <code>input</code> 元素，这个 <code>input</code> 元
+素很重要，因为是非 GET 表单没有该元素就不能成功提交。隐藏型 <code>input</code> 元素的名字为
+ <code>authenticity_token</code> 的属性是 Rails 中叫做 <strong>跨站点请求伪造保护（cross-site request forgery protection）</strong>
+ 的一个安全功能，对于每一个非 GET 表单（由安全功能启用提供）表单辅助方法都
+ 会生成它。更多信息查阅 <a href="security.html#cross-site-request-forgery-csrf">Rails 应用程序安全防护</a>指南。</p><h4 id="通用搜索表单"><a class="anchorlink" href="#%E9%80%9A%E7%94%A8%E6%90%9C%E7%B4%A2%E8%A1%A8%E5%8D%95" data-turbolinks="false">1.1 通用搜索表单</a></h4><p>网络上最常见的表单就是搜索表单。这种表单通常包含：</p>
 <ul>
-<li>a form element with "GET" method,</li>
-<li>a label for the input,</li>
-<li>a text input element, and</li>
-<li>a submit element.</li>
+<li>使用“GET”方法的表单，</li>
+<li>一个输入框的标签，</li>
+<li>一个输入文本输入框元素，和</li>
+<li>一个提交元所。</li>
 </ul>
-<p>To create this form you will use <code>form_with</code> and the form builder object it yields. Like so:</p><div class="code_container">
+<p>创建这样的表单您需要使用 <code>form_with</code> 和它生成的表单构造器对象。像这样：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form_with</span> <span class="ss">url: </span><span class="s2">"/search"</span><span class="p">,</span> <span class="ss">method: :get</span> <span class="k">do</span> <span class="o">|</span><span class="n">form</span><span class="o">|</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">label</span> <span class="ss">:query</span><span class="p">,</span> <span class="s2">"Search for:"</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:query</span> <span class="cp">%&gt;</span>
@@ -364,7 +371,7 @@ The hidden input element with the name <code>authenticity_token</code> is a secu
 &lt;% end %&gt;
 '>复制</button>
 </div>
-<p>This will generate the following HTML:</p><div class="code_container">
+<p>这将生成下面的 HTML：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/search"</span> <span class="na">method=</span><span class="s">"get"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="nt">&gt;</span>
   <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"query"</span><span class="nt">&gt;</span>Search for:<span class="nt">&lt;/label&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"query"</span> <span class="na">name=</span><span class="s">"query"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;</span>
@@ -378,12 +385,16 @@ The hidden input element with the name <code>authenticity_token</code> is a secu
 &lt;/form&gt;
 '>复制</button>
 </div>
-<div class="info"><p>Passing <code>url: my_specified_path</code> to <code>form_with</code> tells the form where to make the request. However, as explained below, you can also pass ActiveRecord objects to the form.</p></div><div class="info"><p>For every form input, an ID attribute is generated from its name (<code>"query"</code> in above example). These IDs can be very useful for CSS styling or manipulation of form controls with JavaScript.</p></div><div class="warning"><p>Use "GET" as the method for search forms. This allows users to bookmark a specific search and get back to it. More generally Rails encourages you to use the right HTTP verb for an action.</p></div><h4 id="helpers-for-generating-form-elements"><a class="anchorlink" href="#helpers-for-generating-form-elements" data-turbolinks="false">1.2 Helpers for Generating Form Elements</a></h4><p>The form builder object yielded by <code>form_with</code> provides numerous helper methods for generating form elements such as text fields, checkboxes, and radio buttons. The first parameter to these methods is always the name of the
-input. When the form is submitted, the name will be passed along with the form
-data, and will make its way to the <code>params</code> in the controller with the
-value entered by the user for that field. For example, if the form contains
-<code>&lt;%= form.text_field :query %&gt;</code>, then you would be able to get the value of this
-field in the controller with <code>params[:query]</code>.</p><p>When naming inputs, Rails uses certain conventions that make it possible to submit parameters with non-scalar values such as arrays or hashes, which will also be accessible in <code>params</code>. You can read more about them in chapter <a href="#understanding-parameter-naming-conventions">Understanding Parameter Naming Conventions</a> of this guide. For details on the precise usage of these helpers, please refer to the <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html">API documentation</a>.</p><h5 id="checkboxes"><a class="anchorlink" href="#checkboxes" data-turbolinks="false">1.2.1 Checkboxes</a></h5><p>Checkboxes are form controls that give the user a set of options they can enable or disable:</p><div class="code_container">
+<div class="info"><p>传递 <code>url: my_specified_path</code> 给 <code>form_with</code> 告诉表单哪里处理请求。然而，
+像后面我们还要涉及到的，您也可以传递 ActiveRecord 对象给表单。</p></div><div class="info"><p>对于每个表单输入，ID 属性由它的名字（上面示例中的<code>"query"</code>）生成。这些
+ ID 对于 CSS 的样式化或者利用 JavaScript 对表单急性控制非常有用。</p></div><div class="warning"><p>搜索表单要使用 “GET”方法。这允许用户为特定搜索添加书签并返回。
+一般情况下，Rails 鼓励您使用正确的 HTTP 动词来执行操作。</p></div><h4 id="生成表单元素的辅助方法"><a class="anchorlink" href="#%E7%94%9F%E6%88%90%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95" data-turbolinks="false">1.2 生成表单元素的辅助方法</a></h4><p>表单构造器由 <code>form_with</code> 生成，它会提供各种辅助方法来生成表单元素，例如文本
+框、选择框和单选按钮等。这些方法的第一个参数是输入框的名字。当表单提交时名字
+会随表单数据一起传递，并将用户输入的值以 <code>params</code> 的方式传递给控制器。例如：
+如果表单包含 <code>&lt;%= form.text_field :query %&gt;</code>，那么您会在控制器中使用 <code>params[:query]</code>
+ 获得该输入的值。</p><p>命名输入时，Rails 使用某些约定可以提交具有非标量值的参数，例如数组或哈希值，
+这些参数也可以在 params 中访问。您可以在本指南的<a href="#understanding-parameter-naming-conventions">了解参数命名约定</a>
+中了解有关它们的更多信息。有关这些帮助程序的精确用法的详细信息，请参阅 <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html">API 文档</a>。</p><h5 id="多选框"><a class="anchorlink" href="#%E5%A4%9A%E9%80%89%E6%A1%86" data-turbolinks="false">1.2.1 多选框</a></h5><p>多选框（Checkboxe）给用户提供一组可以选择或不选择的表单控件：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">check_box</span> <span class="ss">:pet_dog</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">label</span> <span class="ss">:pet_dog</span><span class="p">,</span> <span class="s2">"I own a dog"</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">check_box</span> <span class="ss">:pet_cat</span> <span class="cp">%&gt;</span>
@@ -395,7 +406,7 @@ field in the controller with <code>params[:query]</code>.</p><p>When naming inpu
 &lt;%= form.label :pet_cat, "I own a cat" %&gt;
 '>复制</button>
 </div>
-<p>This generates the following:</p><div class="code_container">
+<p>这将生成：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">id=</span><span class="s">"pet_dog"</span> <span class="na">name=</span><span class="s">"pet_dog"</span> <span class="na">value=</span><span class="s">"1"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"pet_dog"</span><span class="nt">&gt;</span>I own a dog<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">id=</span><span class="s">"pet_cat"</span> <span class="na">name=</span><span class="s">"pet_cat"</span> <span class="na">value=</span><span class="s">"1"</span> <span class="nt">/&gt;</span>
@@ -407,7 +418,10 @@ field in the controller with <code>params[:query]</code>.</p><p>When naming inpu
 &lt;label for="pet_cat"&gt;I own a cat&lt;/label&gt;
 '>复制</button>
 </div>
-<p>The first parameter to <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-check_box"><code>check_box</code></a> is the name of the input. The second parameter is the value of the input. This value will be included in the form data (and be present in <code>params</code>) when the checkbox is checked.</p><h5 id="radio-buttons"><a class="anchorlink" href="#radio-buttons" data-turbolinks="false">1.2.2 Radio Buttons</a></h5><p>Radio buttons, while similar to checkboxes, are controls that specify a set of options in which they are mutually exclusive (i.e., the user can only pick one):</p><div class="code_container">
+<p><a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-check_box"><code>check_box</code></a> 
+的第一个参数时输入的名字，第二个参数时输入的值，这个值当复选框被选择的时候
+会包含到表单数据（出现在 <code>params</code> 中）。</p><h5 id="单选按钮"><a class="anchorlink" href="#%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE" data-turbolinks="false">1.2.2 单选按钮</a></h5><p>单选按虽然类似多选框提供一组选项，但是其选项时互斥的（也就是用户只能从一组
+选项中选择一个选项）：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">radio_button</span> <span class="ss">:age</span><span class="p">,</span> <span class="s2">"child"</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">label</span> <span class="ss">:age_child</span><span class="p">,</span> <span class="s2">"I am younger than 21"</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">radio_button</span> <span class="ss">:age</span><span class="p">,</span> <span class="s2">"adult"</span> <span class="cp">%&gt;</span>
@@ -419,7 +433,7 @@ field in the controller with <code>params[:query]</code>.</p><p>When naming inpu
 &lt;%= form.label :age_adult, "I am over 21" %&gt;
 '>复制</button>
 </div>
-<p>Output:</p><div class="code_container">
+<p>输出：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"age_child"</span> <span class="na">name=</span><span class="s">"age"</span> <span class="na">value=</span><span class="s">"child"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"age_child"</span><span class="nt">&gt;</span>I am younger than 21<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"age_adult"</span> <span class="na">name=</span><span class="s">"age"</span> <span class="na">value=</span><span class="s">"adult"</span> <span class="nt">/&gt;</span>
@@ -431,9 +445,12 @@ field in the controller with <code>params[:query]</code>.</p><p>When naming inpu
 &lt;label for="age_adult"&gt;I am over 21&lt;/label&gt;
 '>复制</button>
 </div>
-<p>As with <code>check_box</code>, the second parameter to <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-radio_button"><code>radio_button</code></a> is the value of the input. Because these two radio buttons share the same name (<code>age</code>), the user will only be able to select one of them, and <code>params[:age]</code> will contain either <code>"child"</code> or <code>"adult"</code>.</p><div class="note"><p>Always use labels for checkbox and radio buttons. They associate text with a specific option and,
-by expanding the clickable region,
-make it easier for users to click the inputs.</p></div><h4 id="other-helpers-of-interest"><a class="anchorlink" href="#other-helpers-of-interest" data-turbolinks="false">1.3 Other Helpers of Interest</a></h4><p>Other form controls worth mentioning are text areas, hidden fields, password fields, number fields, date and time fields, and many more:</p><div class="code_container">
+<p>类似于 <code>check_box</code>，<a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-radio_button"><code>radio_button</code></a> 的
+第二个参数时输入的值。因为两个单选按钮共享一个名字（<code>age</code>），用户只能选择其
+中一个，<code>params[:age]</code> 的值也只能是 <code>"child"</code> 或者 <code>"adult"</code>。</p><div class="note"><p>多选框和单选按钮总是要使用标签（Label），其关联文本是选项，同时可以扩
+展点击区域，使该选项更容易点击到。</p></div><h4 id="其他感兴趣的辅助方法"><a class="anchorlink" href="#%E5%85%B6%E4%BB%96%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95" data-turbolinks="false">1.3 其他感兴趣的辅助方法</a></h4><p>其他值得注意的表单控件有文本区（textarea）、隐藏输入框（hidden fields）、密码
+输入框（password field）、数字输入框（number field）、日期和时间输入框（date 
+和 time field）等：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:message</span><span class="p">,</span> <span class="ss">size: </span><span class="s2">"70x5"</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">hidden_field</span> <span class="ss">:parent_id</span><span class="p">,</span> <span class="ss">value: </span><span class="s2">"foo"</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">password_field</span> <span class="ss">:password</span> <span class="cp">%&gt;</span>
@@ -467,7 +484,7 @@ make it easier for users to click the inputs.</p></div><h4 id="other-helpers-of-
 &lt;%= form.color_field :favorite_color %&gt;
 '>复制</button>
 </div>
-<p>Output:</p><div class="code_container">
+<p>输出：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"message"</span> <span class="na">id=</span><span class="s">"message"</span> <span class="na">cols=</span><span class="s">"70"</span> <span class="na">rows=</span><span class="s">"5"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"parent_id"</span> <span class="na">id=</span><span class="s">"parent_id"</span> <span class="na">value=</span><span class="s">"foo"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"password"</span> <span class="nt">/&gt;</span>
@@ -501,13 +518,15 @@ make it easier for users to click the inputs.</p></div><h4 id="other-helpers-of-
 &lt;input type="color" name="favorite_color" id="favorite_color" value="#000000" /&gt;
 '>复制</button>
 </div>
-<p>Hidden inputs are not shown to the user but instead hold data like any textual input. Values inside them can be changed with JavaScript.</p><div class="warning"><p>The search, telephone, date, time, color, datetime, datetime-local,
-month, week, URL, email, number, and range inputs are HTML5 controls.
-If you require your app to have a consistent experience in older browsers,
-you will need an HTML5 polyfill (provided by CSS and/or JavaScript).
-There is definitely <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills">no shortage of solutions for this</a>, although a popular tool at the moment is
-<a href="https://modernizr.com/">Modernizr</a>, which provides a simple way to add functionality based on the presence of
-detected HTML5 features.</p></div><div class="info"><p>If you're using password input fields (for any purpose), you might want to configure your application to prevent those parameters from being logged. You can learn about this in the <a href="security.html#logging">Securing Rails Applications</a> guide.</p></div><h3 id="dealing-with-model-objects"><a class="anchorlink" href="#dealing-with-model-objects" data-turbolinks="false">2 Dealing with Model Objects</a></h3><h4 id="binding-a-form-to-an-object"><a class="anchorlink" href="#binding-a-form-to-an-object" data-turbolinks="false">2.1 Binding a Form to an Object</a></h4><p>The <code>:model</code> argument of <code>form_with</code> allows us to bind the form builder object to a model object. This means that the form will be scoped to that model object, and the form's fields will be populated with values from that model object.</p><p>For example, if we have an <code>@article</code> model object like:</p><div class="code_container">
+<p>隐藏输入框用户是看不到的，但是也会像其他文本字段一样会绑定数据。字段值可以
+使用 JavaScript 修改。</p><div class="warning"><p>搜索、电话、日期、时间、颜色、日期时间、本地日期时间、月、星期、
+URL 地址、电子邮件、数字和使用 HTML5 控制的范围输入。如果您需要应用程序在旧
+浏览器中有一个持续的体验，您需要一个 HTML5 构建器（由 CSS 和/或 JavaScript 
+提供)。绝对<a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills">不缺解决方案</a>，
+目前最流行的工具是 <a href="https://modernizr.com/">Modernizr</a>，它提供了一种基于 
+HTML5 功能检测添加功能的简单方法。</p></div><div class="info"><p>如果您使用了密码输入框（可能基于某些原因），您应当配置应用程序不要在日
+志中记录这些参数。更多相关信息参阅 <a href="security.html#logging">Rails 应用程序安全防护</a>指南。</p></div><h3 id="处理模型对象"><a class="anchorlink" href="#%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1" data-turbolinks="false">2 处理模型对象</a></h3><h4 id="绑定对象到表单"><a class="anchorlink" href="#%E7%BB%91%E5%AE%9A%E5%AF%B9%E8%B1%A1%E5%88%B0%E8%A1%A8%E5%8D%95" data-turbolinks="false">2.1 绑定对象到表单</a></h4><p><code>form_with</code> 的 <code>:model</code> 参数允许我们绑定表单构建器到模型对象。这意味着表
+单将被限定为该模型对象，并且表单的字段将使用来自该模型对象的值填充。</p><p>例如：如果我们有 <code>@article</code> 模型对象：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="vi">@article</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;Article id: 42, title: "My Title", body: "My Body"&gt;</span>
 </code></pre>
@@ -515,7 +534,7 @@ detected HTML5 features.</p></div><div class="info"><p>If you're using password 
 # =&gt; #&lt;Article id: 42, title: "My Title", body: "My Body"&gt;
 '>复制</button>
 </div>
-<p>The following form:</p><div class="code_container">
+<p>表单：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form_with</span> <span class="ss">model: </span><span class="vi">@article</span> <span class="k">do</span> <span class="o">|</span><span class="n">form</span><span class="o">|</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">size: </span><span class="s2">"60x10"</span> <span class="cp">%&gt;</span>
@@ -529,7 +548,7 @@ detected HTML5 features.</p></div><div class="info"><p>If you're using password 
 &lt;% end %&gt;
 '>复制</button>
 </div>
-<p>Outputs:</p><div class="code_container">
+<p>输出：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/articles/42"</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"..."</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"article[title]"</span> <span class="na">id=</span><span class="s">"article_title"</span> <span class="na">value=</span><span class="s">"My Title"</span> <span class="nt">/&gt;</span>
@@ -549,18 +568,19 @@ detected HTML5 features.</p></div><div class="info"><p>If you're using password 
 &lt;/form&gt;
 '>复制</button>
 </div>
-<p>There are several things to notice here:</p>
+<p>这里有一些事情需要注意：</p>
 <ul>
-<li>The form <code>action</code> is automatically filled with an appropriate value for <code>@article</code>.</li>
-<li>The form fields are automatically filled with the corresponding values from <code>@article</code>.</li>
-<li>The form field names are scoped with <code>article[...]</code>. This means that <code>params[:article]</code> will be a hash containing all these field's values. You can read more about the significance of input names in chapter <a href="#understanding-parameter-naming-conventions">Understanding Parameter Naming Conventions</a> of this guide.</li>
-<li>The submit button is automatically given an appropriate text value.</li>
+<li>表单 <code>action</code> 的值是由相关的 <code>@article</code> 的值自动填充的。</li>
+<li>表单字段的值是由 <code>@article</code> 的对应值自动填充的。</li>
+<li>表单字段名字由 <code>article[...]</code> 限定。<code>params[:article]</code> 的意思就是包含所有字
+段值的哈希。关于更多输入字段意义的信息查阅本指南的<a href="#understanding-parameter-naming-conventions">理解参数命名约定</a>部分。</li>
+<li>提交按钮由给定的相关文本值自动生成。</li>
 </ul>
-<div class="info"><p>Conventionally your inputs will mirror model attributes. However, they don't have to! If there is other information you need you can include it in your form just as with attributes and access it via <code>params[:article][:my_nifty_non_attribute_input]</code>.</p></div><h5 id="the-fields-for-helper"><a class="anchorlink" href="#the-fields-for-helper" data-turbolinks="false">2.1.1 The <code>fields_for</code> Helper</a></h5><p>The <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-fields_for"><code>fields_for</code></a> helper creates a similar binding but without rendering a
-<code>&lt;form&gt;</code> tag. This can be used to render fields for additional model objects
-within the same form. For example, if you had a <code>Person</code> model with an
-associated <code>ContactDetail</code> model, you could create a single form for both like
-so:</p><div class="code_container">
+<div class="info"><p>通常，您的输入将反映模型属性。但是，这并非必须！如果您需要其他信息，您
+可以将其包含在表单中，就像使用属性一样，并通过 <code>params[:article][:my_nifty_non_attribute_input]</code> 
+调用并使用它。</p></div><h5 id="fields-for-辅助方法"><a class="anchorlink" href="#fields-for-%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95" data-turbolinks="false">2.1.1 <code>fields_for</code> 辅助方法</a></h5><p><a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-fields_for"><code>fields_for</code></a> 辅助方法可以实现一个的类似绑定输入但不用 <code>&lt;form&gt;</code> 标签。该方
+法常用于在同一表单内添加其他模型对象的渲染字段。例如：如果您有一个 <code>Person</code> 
+模型关联另一个 <code>ContactDetail</code> 模型，您就可以创建一个表单同时绑定两个模型：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form_with</span> <span class="ss">model: </span><span class="vi">@person</span> <span class="k">do</span> <span class="o">|</span><span class="n">person_form</span><span class="o">|</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">person_form</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:name</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">fields_for</span> <span class="ss">:contact_detail</span><span class="p">,</span> <span class="vi">@person</span><span class="p">.</span><span class="nf">contact_detail</span> <span class="k">do</span> <span class="o">|</span><span class="n">contact_detail_form</span><span class="o">|</span> <span class="cp">%&gt;</span>
@@ -576,7 +596,7 @@ so:</p><div class="code_container">
 &lt;% end %&gt;
 ">复制</button>
 </div>
-<p>Which produces the following output:</p><div class="code_container">
+<p>生成下面的输出：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/people"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"bL13x72pldyDD8bgtkjKQakJCpd4A8JdXGbfksxBDHdf1uC0kCMqe2tvVdUYfidJt0fj3ihC4NxiVHv8GVYxJA=="</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"person[name]"</span> <span class="na">id=</span><span class="s">"person_name"</span> <span class="nt">/&gt;</span>
@@ -590,40 +610,45 @@ so:</p><div class="code_container">
 &lt;/form&gt;
 '>复制</button>
 </div>
-<p>The object yielded by <code>fields_for</code> is a form builder like the one yielded by
-<code>form_with</code>.</p><h4 id="relying-on-record-identification"><a class="anchorlink" href="#relying-on-record-identification" data-turbolinks="false">2.2 Relying on Record Identification</a></h4><p>The Article model is directly available to users of the application, so - following the best practices for developing with Rails - you should declare it <strong>a resource</strong>:</p><div class="code_container">
+<p>由 <code>fields_for</code> 生成的对象表单构造器同 <code>form_with</code> 的类似。</p><h4 id="relying-on-record-identification"><a class="anchorlink" href="#relying-on-record-identification" data-turbolinks="false">2.2 Relying on Record Identification</a></h4><p>模型 Article 对应用程序用户而言可直接使用，所以，按照 Rails 开发最佳实践——
+您应当将其声明为<strong>一个资源</strong>：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="n">resources</span> <span class="ss">:articles</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="resources :articles
 ">复制</button>
 </div>
-<div class="info"><p>Declaring a resource has a number of side effects. See <a href="routing.html#resource-routing-the-rails-default">Rails Routing from the Outside In</a> guide for more information on setting up and using resources.</p></div><p>When dealing with RESTful resources, calls to <code>form_with</code> can get significantly easier if you rely on <strong>record identification</strong>. In short, you can just pass the model instance and have Rails figure out model name and the rest. In both of these examples, the long and short style have the same outcome:</p><div class="code_container">
-<pre><code class="highlight ruby"><span class="c1">## Creating a new article</span>
-<span class="c1"># long-style:</span>
+<div class="info"><p>声明一个资源有很多副作用。更多关于设置和使用资源的信息查阅 <a href="routing.html#resource-routing-the-rails-default">Rails 路由全解</a>。</p></div><p>当处理 REST 式资源时，如果您依赖<strong>记录标识</strong>调用 <code>form_with</code> 会变得容易。简而
+言之，您可以只传递模型实例并让 Rails 找出模型名称和其余部分。在这两个示例中，
+长短两种形式结果相同：</p><div class="code_container">
+<pre><code class="highlight ruby"><span class="c1">## 创建新 article</span>
+<span class="c1"># 长的形式：</span>
 <span class="n">form_with</span><span class="p">(</span><span class="ss">model: </span><span class="vi">@article</span><span class="p">,</span> <span class="ss">url: </span><span class="n">articles_path</span><span class="p">)</span>
-<span class="c1"># short-style:</span>
+<span class="c1"># 短的形式：</span>
 <span class="n">form_with</span><span class="p">(</span><span class="ss">model: </span><span class="vi">@article</span><span class="p">)</span>
 
-<span class="c1">## Editing an existing article</span>
-<span class="c1"># long-style:</span>
+<span class="c1">## 编辑一个已经存在的 article</span>
+<span class="c1"># 长的形式：</span>
 <span class="n">form_with</span><span class="p">(</span><span class="ss">model: </span><span class="vi">@article</span><span class="p">,</span> <span class="ss">url: </span><span class="n">article_path</span><span class="p">(</span><span class="vi">@article</span><span class="p">),</span> <span class="ss">method: </span><span class="s2">"patch"</span><span class="p">)</span>
-<span class="c1"># short-style:</span>
+<span class="c1"># 短的形式：</span>
 <span class="n">form_with</span><span class="p">(</span><span class="ss">model: </span><span class="vi">@article</span><span class="p">)</span>
 </code></pre>
-<button class="clipboard-button" data-clipboard-text='## Creating a new article
-# long-style:
+<button class="clipboard-button" data-clipboard-text='## 创建新 article
+# 长的形式：
 form_with(model: @article, url: articles_path)
-# short-style:
+# 短的形式：
 form_with(model: @article)
 
-## Editing an existing article
-# long-style:
+## 编辑一个已经存在的 article
+# 长的形式：
 form_with(model: @article, url: article_path(@article), method: "patch")
-# short-style:
+# 短的形式：
 form_with(model: @article)
 '>复制</button>
 </div>
-<p>Notice how the short-style <code>form_with</code> invocation is conveniently the same, regardless of the record being new or existing. Record identification is smart enough to figure out if the record is new by asking <code>record.persisted?</code>. It also selects the correct path to submit to, and the name based on the class of the object.</p><p>If you have a <a href="routing.html#singular-resources">singular resource</a>, you will need to call <code>resource</code> and <code>resolve</code> for it to work with <code>form_with</code>:</p><div class="code_container">
+<p>我们看到无论是新记录还是已经存在的记录，短形式的 <code>form_with</code> 调用方式都是相
+通的。记录识别系统很聪明，通过询问 <code>record.persisted?</code> 可以知道是否是新记录。
+也能够选择正确的提交路径和基于对象的类的名字。</p><p>如果您有一个<a href="routing.html#%E5%8D%95%E6%95%B0%E8%B5%84%E6%BA%90">单数资源</a>，您需要调用 <code>resource</code>
+ 和 <code>resolve</code> 来同 <code>form_with</code> 共同工作：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="n">resource</span> <span class="ss">:geocoder</span>
 <span class="n">resolve</span><span class="p">(</span><span class="s1">'Geocoder'</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="ss">:geocoder</span><span class="p">]</span> <span class="p">}</span>
 </code></pre>
@@ -631,25 +656,33 @@ form_with(model: @article)
 resolve('Geocoder') { [:geocoder] }
 ">复制</button>
 </div>
-<div class="warning"><p>When you're using STI (single-table inheritance) with your models, you can't rely on record identification on a subclass if only their parent class is declared a resource. You will have to specify <code>:url</code>, and <code>:scope</code> (the model name) explicitly.</p></div><h5 id="dealing-with-namespaces"><a class="anchorlink" href="#dealing-with-namespaces" data-turbolinks="false">2.2.1 Dealing with Namespaces</a></h5><p>If you have created namespaced routes, <code>form_with</code> has a nifty shorthand for that too. If your application has an admin namespace then</p><div class="code_container">
+<div class="warning"><p>当您的模型使用 STI（(single-table inheritance，单表继承）的时候，如果
+只有父类声明为资源，您不能在子类上依赖记录识别，您需要准确的定义 <code>:url</code> 和 
+<code>:scope</code> (模型名)。</p></div><h5 id="处理带命名空间的模型"><a class="anchorlink" href="#%E5%A4%84%E7%90%86%E5%B8%A6%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E6%A8%A1%E5%9E%8B" data-turbolinks="false">2.2.1 处理带命名空间的模型</a></h5><p>如果您已经创建了命名空间路由，<code>form_with</code> 有一个漂亮的短形式。假如您的应用程
+序使用的是 admin 命名空间，那么</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="n">form_with</span> <span class="ss">model: </span><span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="vi">@article</span><span class="p">]</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="form_with model: [:admin, @article]
 ">复制</button>
 </div>
-<p>will create a form that submits to the <code>ArticlesController</code> inside the admin namespace (submitting to <code>admin_article_path(@article)</code> in the case of an update). If you have several levels of namespacing then the syntax is similar:</p><div class="code_container">
+<p>将会创建一个提交到 admin 命名空间内 <code>ArticlesController</code> 的表单（提交到 
+<code>admin_article_path(@article)</code> 的更新动作）。如果您有多个级别的命名空间，语法
+类似：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="n">form_with</span> <span class="ss">model: </span><span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:management</span><span class="p">,</span> <span class="vi">@article</span><span class="p">]</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="form_with model: [:admin, :management, @article]
 ">复制</button>
 </div>
-<p>For more information on Rails' routing system and the associated conventions, please see <a href="routing.html">Rails Routing from the Outside In</a> guide.</p><h4 id="how-do-forms-with-patch-put-or-delete-methods-work-questionmark"><a class="anchorlink" href="#how-do-forms-with-patch-put-or-delete-methods-work-questionmark" data-turbolinks="false">2.3 How do forms with PATCH, PUT, or DELETE methods work?</a></h4><p>The Rails framework encourages RESTful design of your applications, which means you'll be making a lot of "PATCH", "PUT", and "DELETE" requests (besides "GET" and "POST"). However, most browsers <em>don't support</em> methods other than "GET" and "POST" when it comes to submitting forms.</p><p>Rails works around this issue by emulating other methods over POST with a hidden input named <code>"_method"</code>, which is set to reflect the desired method:</p><div class="code_container">
+<p>有关 Rails 路由系统和相关约定的更多信息查阅 <a href="routing.html">Rails 路由全解</a>指南。</p><h4 id="使用-patch、put-或-delete-方法的表单如何工作？"><a class="anchorlink" href="#%E4%BD%BF%E7%94%A8-patch%E3%80%81put-%E6%88%96-delete-%E6%96%B9%E6%B3%95%E7%9A%84%E8%A1%A8%E5%8D%95%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%9F" data-turbolinks="false">2.3 使用 PATCH、PUT 或 DELETE 方法的表单如何工作？</a></h4><p>Rails 框架鼓励应用程序使用 REST 式设计，这就是说您会面对 “PATCH”、“PUT”
+和“DELETE”请求（除了“GET”和“POST”外）。然而大多数浏览器在提交表单的时
+候<strong>不支持</strong>初“GET”和“POST”之外的方法。</p><p>Rails 通过使用名为 <code>"_method"</code> 的隐藏 input 字段在 POST 上模拟其他方法来解决
+此问题，这就是如何设置为希望的方法：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="n">form_with</span><span class="p">(</span><span class="ss">url: </span><span class="n">search_path</span><span class="p">,</span> <span class="ss">method: </span><span class="s2">"patch"</span><span class="p">)</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text='form_with(url: search_path, method: "patch")
 '>复制</button>
 </div>
-<p>Output:</p><div class="code_container">
+<p>输出：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;form</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">action=</span><span class="s">"/search"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"_method"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"patch"</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"f755bb0ed134b76c432144748a6d4b7a7ddf2b71"</span> <span class="nt">/&gt;</span>
@@ -663,7 +696,8 @@ resolve('Geocoder') { [:geocoder] }
 &lt;/form&gt;
 '>复制</button>
 </div>
-<p>When parsing POSTed data, Rails will take into account the special <code>_method</code> parameter and act as if the HTTP method was the one specified inside it ("PATCH" in this example).</p><p>When rendering a form, submission buttons can override the declared <code>method</code> attribute through the <code>formmethod:</code> keyword:</p><div class="code_container">
+<p>当解析 POST 发送的数据时，Rails 会考虑特定的 <code>_method</code> 参数并将其 HTTP 方法作
+为指定方法（本里中为“PATCH”）。</p><p>When rendering a form, submission buttons can override the declared <code>method</code> attribute through the <code>formmethod:</code> keyword:</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form_with</span> <span class="ss">url: </span><span class="s2">"/posts/1"</span><span class="p">,</span> <span class="ss">method: :patch</span> <span class="k">do</span> <span class="o">|</span><span class="n">form</span><span class="o">|</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">button</span> <span class="s2">"Delete"</span><span class="p">,</span> <span class="ss">formmethod: :delete</span><span class="p">,</span> <span class="ss">data: </span><span class="p">{</span> <span class="ss">confirm: </span><span class="s2">"Are you sure?"</span> <span class="p">}</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">button</span> <span class="s2">"Update"</span> <span class="cp">%&gt;</span>
@@ -695,7 +729,7 @@ resolve('Geocoder') { [:geocoder] }
 &lt;/form&gt;
 '>复制</button>
 </div>
-<div class="warning"><p>In Rails 6.0 and 5.2, all forms using <code>form_with</code> implement <code>remote: true</code> by default. These forms will submit data using an XHR (Ajax) request. To disable this include <code>local: true</code>. To dive deeper see <a href="working_with_javascript_in_rails.html#remote-elements">Working with JavaScript in Rails</a> guide.</p></div><h3 id="making-select-boxes-with-ease"><a class="anchorlink" href="#making-select-boxes-with-ease" data-turbolinks="false">3 Making Select Boxes with Ease</a></h3><p>Select boxes in HTML require a significant amount of markup - one <code>&lt;option&gt;</code> element for each option to choose from. So Rails provides helper methods to reduce this burden.</p><p>For example, let's say we have a list of cities for the user to choose from. We can use the <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-select"><code>select</code></a> helper like so:</p><div class="code_container">
+<div class="warning"><p>In Rails 6.0 and 5.2, all forms using <code>form_with</code> implement <code>remote: true</code> by default. These forms will submit data using an XHR (Ajax) request. To disable this include <code>local: true</code>. To dive deeper see <a href="working_with_javascript_in_rails.html#remote-elements">Working with JavaScript in Rails</a> guide.</p></div><h3 id="轻松制作选择菜单"><a class="anchorlink" href="#%E8%BD%BB%E6%9D%BE%E5%88%B6%E4%BD%9C%E9%80%89%E6%8B%A9%E8%8F%9C%E5%8D%95" data-turbolinks="false">3 轻松制作选择菜单</a></h3><p>Select boxes in HTML require a significant amount of markup - one <code>&lt;option&gt;</code> element for each option to choose from. So Rails provides helper methods to reduce this burden.</p><p>For example, let's say we have a list of cities for the user to choose from. We can use the <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-select"><code>select</code></a> helper like so:</p><div class="code_container">
 <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">form</span><span class="p">.</span><span class="nf">select</span> <span class="ss">:city</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Berlin"</span><span class="p">,</span> <span class="s2">"Chicago"</span><span class="p">,</span> <span class="s2">"Madrid"</span><span class="p">]</span> <span class="cp">%&gt;</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text='&lt;%= form.select :city, ["Berlin", "Chicago", "Madrid"] %&gt;

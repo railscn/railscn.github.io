@@ -482,37 +482,28 @@ Rails 可能会有一定的困难。这有一个精选的在线 Ruby 学习资�
 </tr>
 </tbody>
 </table>
-<h3 id="hello，rails！"><a class="anchorlink" href="#hello%EF%BC%8Crails%EF%BC%81" data-turbolinks="false">4 Hello，Rails！</a></h3><p>接下来，我们想在屏幕上显示一些文字。所以，您需要让 Rails 应用程序服务器运行起来。</p><h4 id="启动-web-服务器"><a class="anchorlink" href="#%E5%90%AF%E5%8A%A8-web-%E6%9C%8D%E5%8A%A1%E5%99%A8" data-turbolinks="false">4.1 启动 Web 服务器</a></h4><p>You actually have a functional Rails application already. To see it, you need to
-start a web server on your development machine. You can do this by running the
-following command in the <code>blog</code> directory:</p><div class="code_container">
+<h3 id="hello，rails！"><a class="anchorlink" href="#hello%EF%BC%8Crails%EF%BC%81" data-turbolinks="false">4 Hello，Rails！</a></h3><p>接下来，我们想在屏幕上显示一些文字。所以，您需要让 Rails 应用程序服务器运行起来。</p><h4 id="启动-web-服务器"><a class="anchorlink" href="#%E5%90%AF%E5%8A%A8-web-%E6%9C%8D%E5%8A%A1%E5%99%A8" data-turbolinks="false">4.1 启动 Web 服务器</a></h4><p>实际上，Rails 早已准备好了一切。让我们来看一下，如何在开发计算机上启动 Web 
+服务器：您需要在 <code>blog</code> 目录下运行命令：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>server
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails server
 ">复制</button>
 </div>
-<div class="info"><p>If you are using Windows, you have to pass the scripts under the <code>bin</code>
-folder directly to the Ruby interpreter e.g. <code>ruby bin\rails server</code>.</p></div><div class="info"><p>JavaScript asset compression requires you
-have a JavaScript runtime available on your system, in the absence
-of a runtime you will see an <code>execjs</code> error during asset compression.
-Usually macOS and Windows come with a JavaScript runtime installed.
-<code>therubyrhino</code> is the recommended runtime for JRuby users and is added by
-default to the <code>Gemfile</code> in apps generated under JRuby. You can investigate
-all the supported runtimes at <a href="https://github.com/rails/execjs#readme">ExecJS</a>.</p></div><p>This will start up Puma, a web server distributed with Rails by default. To see
-your application in action, open a browser window and navigate to
-<a href="http://localhost:3000">http://localhost:3000</a>. You should see the Rails default information page:</p><p><img src="images/getting_started/rails_welcome.png" alt="Rails startup page screenshot"></p><p>When you want to stop the web server, hit Ctrl+C in the terminal window where
-it's running. In the development environment, Rails does not generally
-require you to restart the server; changes you make in files will be
-automatically picked up by the server.</p><p>The Rails startup page is the <em>smoke test</em> for a new Rails
-application: it makes sure that you have your software configured correctly
-enough to serve a page.</p><h4 id="说-hello-，rails"><a class="anchorlink" href="#%E8%AF%B4-hello-%EF%BC%8Crails" data-turbolinks="false">4.2 说 "Hello"，Rails</a></h4><p>To get Rails saying "Hello", you need to create at minimum a <em>route</em>, a
-<em>controller</em> with an <em>action</em>, and a <em>view</em>. A route maps a request to a
-controller action. A controller action performs the necessary work to handle the
-request, and prepares any data for the view. A view displays data in a desired
-format.</p><p>In terms of implementation: Routes are rules written in a Ruby <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL
-(Domain-Specific Language)</a>.
-Controllers are Ruby classes, and their public methods are actions. And views
-are templates, usually written in a mixture of HTML and Ruby.</p><p>Let's start by adding a route to our routes file, <code>config/routes.rb</code>, at the
-top of the <code>Rails.application.routes.draw</code> block:</p><div class="code_container">
+<div class="info"><p>如果您使用的是 Windows 操作系统，需要传递 <code>bin</code>文件夹下的启动脚本给 Ruby
+ 解释器，例如： <code>ruby bin\rails server</code>。</p></div><div class="info"><p>JavaScript 资产压缩需要操作系统提供 JavaScript 运行时环境，如果没有程序
+在进行资产压缩时您会收到 <code>execjs</code> 错误信息。macOS 和 Windows 通常会预先安装
+ JavaScript 运行时环境。JRuby 用户推荐使用 <code>therubyrhino</code> 运行时环境，想要添
+ 该软件可以通过在应用程序的 <code>Gemfile</code> 中添加。您可以在 <a href="https://github.com/rails/execjs#readme">ExecJS</a>
+  查阅所有的运行时环境详情。</p></div><p>这将启动 Rails 默认的 Web 服务器——Puma。要查看您的应用程序，打开浏览器窗口，
+进入 <a href="http://localhost:3000">http://localhost:3000</a>。您会看到 Rails 默认信息页面：</p><p><img src="images/getting_started/rails_welcome.png" alt="Rails 启动页面截屏"></p><p>要停止 Web 服务器，在服务器运行终端窗口内点击 Ctrl+C。在开发环境下，Rails 通
+常不需要您重启服务器；您所作的文件修改会被服务器捕捉到并且自动加载。</p><p>Rails 启动页面只是针对新 Rails 应用程序的<em>冒烟测试</em>：它只确保您的服务器配置
+正确并且可以运行提供网页服务。</p><h4 id="说-hello-，rails"><a class="anchorlink" href="#%E8%AF%B4-hello-%EF%BC%8Crails" data-turbolinks="false">4.2 说 "Hello"，Rails</a></h4><p>让 Rails 说“Hello”，您需要创建最简单的<strong>路由（route）</strong>，一个<strong>控制器（controller）</strong>
+和一个<strong>动作（action）</strong>和一个<strong>视图（view）</strong>。路由映射请求（request）到控制器
+动作（action）；控制器动作执行必要的运算处理请求，然后为视图（view)准备数据。
+最后视图根据需要呈现最终结果。</p><p>用术语解释：路由使用 Ruby <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL (Domain-Specific Language)</a> 
+编写的规则；控制器是 Ruby 类，其公共方法就是动作；视图就是混合 HTML 和 Ruby
+ 的模板。</p><p>让我们开始添加一条路由到路由文件 <code>config/routes.rb</code> 中，在 <code>Rails.application.routes.draw</code> 块
+的顶部加入：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
   <span class="n">get</span> <span class="s2">"/articles"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"articles#index"</span>
 
@@ -526,16 +517,15 @@ top of the <code>Rails.application.routes.draw</code> block:</p><div class="code
 end
 '>复制</button>
 </div>
-<p>The route above declares that <code>GET /articles</code> requests are mapped to the <code>index</code>
-action of <code>ArticlesController</code>.</p><p>To create <code>ArticlesController</code> and its <code>index</code> action, we'll run the controller
-generator (with the <code>--skip-routes</code> option because we already have an
-appropriate route):</p><div class="code_container">
+<p>上面的路由声明 <code>GET /articles</code> 请求映射到 <code>ArticlesController</code> 控制器的 <code>index</code> 
+动作上。</p><p>创建 <code>ArticlesController</code> 和它的 <code>index</code> 动作，我们需要运行控制器生成器（使用
+ <code>--skip-routes</code> 选项是因为我们已经有了路由）：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate controller Articles index <span class="nt">--skip-routes</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails generate controller Articles index --skip-routes
 ">复制</button>
 </div>
-<p>Rails will create several files for you:</p><div class="code_container">
+<p>Rails 会生成一些文件：</p><div class="code_container">
 <pre><code class="highlight plaintext">create  app/controllers/articles_controller.rb
 invoke  erb
 create    app/views/articles
@@ -557,8 +547,7 @@ create    app/helpers/articles_helper.rb
 invoke    test_unit
 ">复制</button>
 </div>
-<p>The most important of these is the controller file,
-<code>app/controllers/articles_controller.rb</code>. Let's take a look at it:</p><div class="code_container">
+<p>最重要的是控制器文件 <code>app/controllers/articles_controller.rb</code>。然我们看一看它：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
   <span class="k">end</span>
@@ -570,8 +559,8 @@ invoke    test_unit
 end
 ">复制</button>
 </div>
-<p>The <code>index</code> action is empty. When an action does not explicitly render a view
-(or otherwise trigger an HTTP response), Rails will automatically render a view
+<p><code>index</code> 动作没有内容。当一个动作没有没有明确指定渲染的视图（或者以其他方式
+触发一个 HTTP 响应）时，Rails will automatically render a view
 that matches the name of the controller and action. Convention Over
 Configuration! Views are located in the <code>app/views</code> directory. So the <code>index</code>
 action will render <code>app/views/articles/index.html.erb</code> by default.</p><p>Let's open <code>app/views/articles/index.html.erb</code>, and replace its contents with:</p><div class="code_container">
