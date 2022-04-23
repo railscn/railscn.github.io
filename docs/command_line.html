@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>命令行（The Rails Command Line） — Ruby on Rails 指南</title>
+  <title>Rails 命令行 — Ruby on Rails 指南</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css" data-turbolinks-track="reload">
   <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
   <link rel="stylesheet" type="text/css" href="stylesheets/highlight.css" data-turbolinks-track="reload">
@@ -14,9 +14,9 @@
   <script src="javascripts/clipboard.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/guides.js" data-turbolinks-track="reload"></script>
   <script src="javascripts/back2top.js" data-turbolinks-track="reload"></script>
-  <meta property="og:title" content="命令行（The Rails Command Line） — Ruby on Rails 指南" />
-  <meta name="description" content="命令行（The Rails Command Line）After reading this guide, you will know: How to create a Rails application. How to generate models, controllers, database migrations, and unit tests. How to start a development server. How to experiment with objects through an interactive shell." />
-  <meta property="og:description" content="命令行（The Rails Command Line）After reading this guide, you will know: How to create a Rails application. How to generate models, controllers, database migrations, and unit tests. How to start a development server. How to experiment with objects through an interactive shell." />
+  <meta property="og:title" content="Rails 命令行 — Ruby on Rails 指南" />
+  <meta name="description" content="Rails 命令行通过阅读本指南，您将了解： 如何创建 Rails 应用程序。 如何创建模型、控制器、数据库改迁和单元测试。 如何启动开发服务器。 如何通过互动 Shell 体验对象。" />
+  <meta property="og:description" content="Rails 命令行通过阅读本指南，您将了解： 如何创建 Rails 应用程序。 如何创建模型、控制器、数据库改迁和单元测试。 如何启动开发服务器。 如何通过互动 Shell 体验对象。" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:site_name" content="Ruby on Rails 指南" />
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/4223" />
@@ -220,12 +220,12 @@
 
   <div id="feature">
     <div class="wrapper">
-      <h2>命令行（The Rails Command Line）</h2><p>After reading this guide, you will know:</p>
+      <h2>Rails 命令行</h2><p>通过阅读本指南，您将了解：</p>
 <ul>
-<li>How to create a Rails application.</li>
-<li>How to generate models, controllers, database migrations, and unit tests.</li>
-<li>How to start a development server.</li>
-<li>How to experiment with objects through an interactive shell.</li>
+<li>如何创建 Rails 应用程序。</li>
+<li>如何创建模型、控制器、数据库改迁和单元测试。</li>
+<li>如何启动开发服务器。</li>
+<li>如何通过互动 Shell 体验对象。</li>
 </ul>
 
 
@@ -233,7 +233,7 @@
             <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />题要</h3>
             <ol class="chapters">
 <li>
-<a href="#command-line-basics">Command Line Basics</a>
+<a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80">命令行基础</a>
 
 <ul>
 <li><a href="#rails-new"><code>rails new</code></a></li>
@@ -271,7 +271,8 @@
   <div id="container">
     <div class="wrapper">
       <div id="mainCol">
-        <div class="note"><p>This tutorial assumes you have basic Rails knowledge from reading the <a href="getting_started.html">Getting Started with Rails Guide</a>.</p></div><h3 id="command-line-basics"><a class="anchorlink" href="#command-line-basics" data-turbolinks="false">1 Command Line Basics</a></h3><p>There are a few commands that are absolutely critical to your everyday usage of Rails. In the order of how much you'll probably use them are:</p>
+        <div class="note"><p>此教程假设您通过阅读 <a href="getting_started.html">Rails 入门指南</a>
+已具备 Rails 基础知识。</p></div><h3 id="命令行基础"><a class="anchorlink" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80" data-turbolinks="false">1 命令行基础</a></h3><p>有一些命令对您日常使用 Rails 至关重要。按照您可能会使用它们的顺序依次是：</p>
 <ul>
 <li><code>bin/rails console</code></li>
 <li><code>bin/rails server</code></li>
@@ -283,7 +284,8 @@
 <li><code>bin/rails dbconsole</code></li>
 <li><code>rails new app_name</code></li>
 </ul>
-<p>You can get a list of rails commands available to you, which will often depend on your current directory, by typing <code>rails --help</code>. Each command has a description, and should help you find the thing you need.</p><div class="code_container">
+<p>当您输入 <code>rails --help</code> 时，根据您所在的当前目录位置，您会得到一个可用 Rails 命令列表。
+每个命令后面有说明和您可能需要的提示。</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">rails</span> <span class="nt">--help</span>
 <span class="go">Usage: rails COMMAND [ARGS]
 
@@ -319,7 +321,8 @@ In addition to those commands, there are:
 <button class="clipboard-button" data-clipboard-text="rails --help
 ">复制</button>
 </div>
-<p>Let's create a simple Rails application to step through each of these commands in context.</p><h4 id="rails-new"><a class="anchorlink" href="#rails-new" data-turbolinks="false">1.1 <code>rails new</code></a></h4><p>The first thing we'll want to do is create a new Rails application by running the <code>rails new</code> command after installing Rails.</p><div class="info"><p>You can install the rails gem by typing <code>gem install rails</code>, if you don't have it already.</p></div><div class="code_container">
+<p>让我们创建一个 Rails 应用程序赶紧体验一下这些命令吧。</p><h4 id="rails-new"><a class="anchorlink" href="#rails-new" data-turbolinks="false">1.1 <code>rails new</code></a></h4><p>安装好 Rails 后我们想做的第一件事就是通过运行 <code>rails new</code> 命令创建一个新 Rails 应用程
+序。</p><div class="info"><p>如果您还没有安装 Rails 可以通过输入 <code>gem install rails</code> 安装相关 Rails Gem。</p></div><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">rails </span>new commandsapp
 <span class="go">     create
      create  README.md
@@ -336,82 +339,84 @@ In addition to those commands, there are:
 <button class="clipboard-button" data-clipboard-text="rails new commandsapp
 ">复制</button>
 </div>
-<p>Rails will set you up with what seems like a huge amount of stuff for such a tiny command! You've got the entire Rails directory structure now with all the code you need to run our simple application right out of the box.</p><p>If you wish to skip some files or components from being generated, you can append the following arguments to your <code>rails new</code> command:</p>
+<p>一个简单的命令 Rails 生成了很多东西！您已经拥有了完整的 Rails 目录和可以马上运行的代码。</p><p>如果您想在生成应用程序时忽略某些文件和组件，您可以在使用 <code>rails new</code> 命令时后面添加上
+下面这些参数：</p>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
-<th>Description</th>
+<th>参数</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>--skip-git</code></td>
-<td>Skip .gitignore file</td>
+<td>忽略 .gitignore 文件</td>
 </tr>
 <tr>
 <td><code>--skip-keeps</code></td>
-<td>Skip source control .keep files</td>
+<td>忽略源代码控制的 .keep 文件</td>
 </tr>
 <tr>
 <td><code>--skip-action-mailer</code></td>
-<td>Skip Action Mailer files</td>
+<td>忽略 Action Mailer 文件</td>
 </tr>
 <tr>
 <td><code>--skip-action-mailbox</code></td>
-<td>Skip Action Mailbox gem</td>
+<td>忽略 Action Mailbox gem</td>
 </tr>
 <tr>
 <td><code>--skip-action-text</code></td>
-<td>Skip Action Text gem</td>
+<td>忽略 Action Text gem</td>
 </tr>
 <tr>
 <td><code>--skip-active-record</code></td>
-<td>Skip Active Record files</td>
+<td>忽略 Active Record 文件</td>
 </tr>
 <tr>
 <td><code>--skip-active-job</code></td>
-<td>Skip Active Job</td>
+<td>忽略 Active Job</td>
 </tr>
 <tr>
 <td><code>--skip-active-storage</code></td>
-<td>Skip Active Storage files</td>
+<td>忽略 Active Storage 文件</td>
 </tr>
 <tr>
 <td><code>--skip-action-cable</code></td>
-<td>Skip Action Cable files</td>
+<td>忽略 Action Cable 文件</td>
 </tr>
 <tr>
 <td><code>--skip-asset-pipeline</code></td>
-<td>Skip Asset Pipeline</td>
+<td>忽略 Asset Pipeline</td>
 </tr>
 <tr>
 <td><code>--skip-javascript</code></td>
-<td>Skip JavaScript files</td>
+<td>忽略 JavaScript 文件</td>
 </tr>
 <tr>
 <td><code>--skip-hotwire</code></td>
-<td>Skip Hotwire integration</td>
+<td>忽略 Hotwire 集成</td>
 </tr>
 <tr>
 <td><code>--skip-jbuilder</code></td>
-<td>Skip jbuilder gem</td>
+<td>忽略 jbuilder Gem</td>
 </tr>
 <tr>
 <td><code>--skip-test</code></td>
-<td>Skip test files</td>
+<td>忽略测试文件</td>
 </tr>
 <tr>
 <td><code>--skip-system-test</code></td>
-<td>Skip system test files</td>
+<td>忽略系统测试文件</td>
 </tr>
 <tr>
 <td><code>--skip-bootsnap</code></td>
-<td>Skip bootsnap gem</td>
+<td>忽略 Bootsnap Gem</td>
 </tr>
 </tbody>
 </table>
-<h4 id="bin-rails-server"><a class="anchorlink" href="#bin-rails-server" data-turbolinks="false">1.2 <code>bin/rails server</code></a></h4><p>The <code>bin/rails server</code> command launches a web server named Puma which comes bundled with Rails. You'll use this any time you want to access your application through a web browser.</p><p>With no further work, <code>bin/rails server</code> will run our new shiny Rails app:</p><div class="code_container">
+<h4 id="bin-rails-server"><a class="anchorlink" href="#bin-rails-server" data-turbolinks="false">1.2 <code>bin/rails server</code></a></h4><p>命令 <code>bin/rails server</code> 启动 Rails 默认绑定的 Puma Web 服务器。此命令在任何您想要通过
+浏览器查看应用程序的时候都可以使用。</p><p>不需要其他操作，<code>bin/rails server</code> 就会让我们的新 Rails 应用程序跑起来：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>commandsapp
 <span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>server
 <span class="gp">=&gt;</span><span class="w"> </span>Booting Puma
@@ -428,13 +433,15 @@ Use Ctrl-C to stop
 bin/rails server
 ">复制</button>
 </div>
-<p>With just three commands we whipped up a Rails server listening on port 3000. Go to your browser and open <a href="http://localhost:3000">http://localhost:3000</a>, you will see a basic Rails app running.</p><div class="info"><p>You can also use the alias "s" to start the server: <code>bin/rails s</code>.</p></div><p>The server can be run on a different port using the <code>-p</code> option. The default development environment can be changed using <code>-e</code>.</p><div class="code_container">
+<p>只需三个命令一个监听 3000 端口的服务器已经运行起来了。打开浏览器输入 <a href="http://localhost:3000">http://localhost:3000</a>，您将会看到一个最简 Rails 应用程序已经运行。</p><div class="info"><p>您也可以使用别名（Alias）“s” 启动服务器：<code>bin/rails s</code>。</p></div><p>使用 <code>-p</code> 选项可以定制服务器运行端口。默认开发环境可以通过修改 <code>-e</code> 选型来改变。</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>server <span class="nt">-e</span> production <span class="nt">-p</span> 4000
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails server -e production -p 4000
 ">复制</button>
 </div>
-<p>The <code>-b</code> option binds Rails to the specified IP, by default it is localhost. You can run a server as a daemon by passing a <code>-d</code> option.</p><h4 id="bin-rails-generate"><a class="anchorlink" href="#bin-rails-generate" data-turbolinks="false">1.3 <code>bin/rails generate</code></a></h4><p>The <code>bin/rails generate</code> command uses templates to create a whole lot of things. Running <code>bin/rails generate</code> by itself gives a list of available generators:</p><div class="info"><p>You can also use the alias "g" to invoke the generator command: <code>bin/rails g</code>.</p></div><div class="code_container">
+<p>选项 <code>-b</code> 绑定 Rails 应用到指定的 IP，默认是 localhost。您可以通过使用 <code>-d</code>选项启用服务器
+的守护进程模式。</p><h4 id="bin-rails-generate"><a class="anchorlink" href="#bin-rails-generate" data-turbolinks="false">1.3 <code>bin/rails generate</code></a></h4><p>命令 <code>bin/rails generate</code> 通过模板创建相关组件。直接运行 <code>bin/rails generate</code> 显示
+可用生成器：</p><div class="info"><p>您也可以使用别名 “g” 来调用生成器命令：<code>bin/rails g</code>。</p></div><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate
 <span class="go">Usage: rails generate GENERATOR [args] [options]
 
@@ -454,7 +461,9 @@ Rails:
 <button class="clipboard-button" data-clipboard-text="bin/rails generate
 ">复制</button>
 </div>
-<div class="note"><p>You can install more generators through generator gems, portions of plugins you'll undoubtedly install, and you can even create your own!</p></div><p>Using generators will save you a large amount of time by writing <strong>boilerplate code</strong>, code that is necessary for the app to work.</p><p>Let's make our own controller with the controller generator. But what command should we use? Let's ask the generator:</p><div class="info"><p>All Rails console utilities have help text. As with most *nix utilities, you can try adding <code>--help</code> or <code>-h</code> to the end, for example <code>bin/rails server --help</code>.</p></div><div class="code_container">
+<div class="note"><p>您可以通过生成器 Gem安装更多的生成器，您肯定还要安装一些插件，您还会创建自己的
+生成器！</p></div><p>使用生成器您可以通过写<strong>样板代码</strong>（应用运转必须的代码）来节省大量的时间。</p><p>让我们使用控制器生成器生成我们自己的控制器。那么应该用什么命令呢？我们来问一下生成器：</p><div class="info"><p>所有 Rails 终端工具都有帮助。就像类 *nix 工具一样，您可以尝试添加 <code>--help</code> 或者
+ <code>-h</code> 在最后，例如 <code>bin/rails server --help</code>。</p></div><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate controller
 <span class="go">Usage: bin/rails generate controller NAME [action action] [options]
 
