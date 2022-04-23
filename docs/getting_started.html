@@ -560,22 +560,19 @@ end
 ">复制</button>
 </div>
 <p><code>index</code> 动作没有内容。当一个动作没有没有明确指定渲染的视图（或者以其他方式
-触发一个 HTTP 响应）时，Rails will automatically render a view
-that matches the name of the controller and action. Convention Over
-Configuration! Views are located in the <code>app/views</code> directory. So the <code>index</code>
-action will render <code>app/views/articles/index.html.erb</code> by default.</p><p>Let's open <code>app/views/articles/index.html.erb</code>, and replace its contents with:</p><div class="code_container">
+触发一个 HTTP 响应）时，Rails 会根据控制器和动作名称自动匹配视图。约定优于配置！视图
+位置在 <code>app/views</code> 目录。所以，<code>index</code> 动作默认由 <code>app/views/articles/index.html.erb</code> 
+渲染。</p><p>让我们打开文件 <code>app/views/articles/index.html.erb</code>，输入以下内容：</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;h1&gt;</span>Hello, Rails!<span class="nt">&lt;/h1&gt;</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="&lt;h1&gt;Hello, Rails!&lt;/h1&gt;
 ">复制</button>
 </div>
-<p>If you previously stopped the web server to run the controller generator,
-restart it with <code>bin/rails server</code>. Now visit <a href="http://localhost:3000/articles">http://localhost:3000/articles</a>,
-and see our text displayed!</p><h4 id="设定应用程序主页"><a class="anchorlink" href="#%E8%AE%BE%E5%AE%9A%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%BB%E9%A1%B5" data-turbolinks="false">4.3 设定应用程序主页</a></h4><p>At the moment, <a href="http://localhost:3000">http://localhost:3000</a> still displays a page with the Ruby on Rails logo.
-Let's display our "Hello, Rails!" text at <a href="http://localhost:3000">http://localhost:3000</a> as well. To do
-so, we will add a route that maps the <em>root path</em> of our application to the
-appropriate controller and action.</p><p>Let's open <code>config/routes.rb</code>, and add the following <code>root</code> route to the top of
-the <code>Rails.application.routes.draw</code> block:</p><div class="code_container">
+<p>如果您前面运行控制器生成器时已经停止了 Web 服务器，那么用 <code>bin/rails server</code> 重启服
+务器。然后访问 <a href="http://localhost:3000/articles">http://localhost:3000/articles</a>，看一看我们设定的文字。</p><h4 id="设定应用程序主页"><a class="anchorlink" href="#%E8%AE%BE%E5%AE%9A%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%BB%E9%A1%B5" data-turbolinks="false">4.3 设定应用程序主页</a></h4><p>此时，<a href="http://localhost:3000">http://localhost:3000</a> 还是那个显示 Ruby on Rails 标志的页面。让我们在 <a href="http://localhost:3000">http://localhost:3000</a> 
+显示我们设定的 "Hello, Rails!" 吧。要想达到这个效果，我们还需要添加一条路由来映射应
+用程序的<strong>根路径（root path）</strong> 到特定的控制器和动作上。</p><p>我们打开 <code>config/routes.rb</code>，添加下面的 <code>root</code> 路由到 <code>Rails.application.routes.draw</code> 
+代码块的顶部：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
   <span class="n">root</span> <span class="s2">"articles#index"</span>
 
@@ -589,26 +586,24 @@ the <code>Rails.application.routes.draw</code> block:</p><div class="code_contai
 end
 '>复制</button>
 </div>
-<p>Now we can see our "Hello, Rails!" text when we visit <a href="http://localhost:3000">http://localhost:3000</a>,
-confirming that the <code>root</code> route is also mapped to the <code>index</code> action of
-<code>ArticlesController</code>.</p><div class="info"><p>To learn more about routing, see <a href="routing.html">Rails Routing from the Outside In</a>.</p></div><h3 id="自动加载"><a class="anchorlink" href="#%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD" data-turbolinks="false">5 自动加载</a></h3><p>Rails applications <strong>do not</strong> use <code>require</code> to load application code.</p><p>You may have noticed that <code>ArticlesController</code> inherits from <code>ApplicationController</code>, but <code>app/controllers/articles_controller.rb</code> does not have anything like</p><div class="code_container">
+<p>现在当我们访问 <a href="http://localhost:3000">http://localhost:3000</a> 的时候看到我们设定的“Hello, Rails!”了，这表明
+ <code>root</code> 路由确实映射到了 <code>ArticlesController</code> 控制器的 <code>index</code> 动作上。</p><div class="info"><p>学习更多路由知识，查阅 <a href="routing.html">Rails 路由全解</a>。</p></div><h3 id="自动加载"><a class="anchorlink" href="#%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD" data-turbolinks="false">5 自动加载</a></h3><p>Rails 应用程序<strong>不</strong>使用 <code>require</code> 来加载 application 代码。</p><p>您可能已经注意到 <code>ArticlesController</code> 继承自 <code>ApplicationController</code>，但是 <code>app/controllers/articles_controller.rb</code> 中没有类似</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"application_controller"</span> <span class="c1"># DON'T DO THIS.</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="require &quot;application_controller&quot; # DON'T DO THIS.
 ">复制</button>
 </div>
-<p>Application classes and modules are available everywhere, you do not need and <strong>should not</strong> load anything under <code>app</code> with <code>require</code>. This feature is called <em>autoloading</em>, and you can learn more about it in <a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html"><em>Autoloading and Reloading Constants</em></a>.</p><p>You only need <code>require</code> calls for two use cases:</p>
+<p>的代码。</p><p>Application 类和模块在应用程序中随处可用，在 <code>app</code> 目录您不需要并且<strong>不应当</strong>使用 
+<code>require</code> 加载任何东西。这个功能叫做<strong>自动加载（autoloading）</strong>，更多信息查阅<a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html"><em>常量的自动加载和重载</em></a>。</p><p>您需要使用 <code>require</code> 的情况只有两种：</p>
 <ul>
-<li>To load files under the <code>lib</code> directory.</li>
-<li>To load gem dependencies that have <code>require: false</code> in the <code>Gemfile</code>.</li>
+<li>加载 <code>lib</code> 目录的文件。</li>
+<li>加载在 <code>Gemfile</code> 中已经设置 <code>require: false</code> 的 Gem。</li>
 </ul>
-<h3 id="mvc-和您"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8" data-turbolinks="false">6 MVC 和您</a></h3><p>So far, we've discussed routes, controllers, actions, and views. All of these
-are typical pieces of a web application that follows the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC (Model-View-Controller)</a> pattern.
-MVC is a design pattern that divides the responsibilities of an application to
-make it easier to reason about. Rails follows this design pattern by convention.</p><p>Since we have a controller and a view to work with, let's generate the next
-piece: a model.</p><h4 id="mvc-和您-生成模型"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8-%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B" data-turbolinks="false">6.1 生成模型</a></h4><p>A <em>model</em> is a Ruby class that is used to represent data. Additionally, models
-can interact with the application's database through a feature of Rails called
-<em>Active Record</em>.</p><p>To define a model, we will use the model generator:</p><div class="code_container">
+<h3 id="mvc-和您"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8" data-turbolinks="false">6 MVC 和您</a></h3><p>迄今为止，我们已经讨论过路由、控制器、动作和视图。所有的这些，都是遵循 
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC (Model-View-Controller)</a>
+模式的 Web 应用的典型组成。MVC 是一种将应用程序的职责分开以使其更容易管理的设计模式。
+Rails 按照管理就遵从了这种设计模式。</p><p>因为我们已经有了一个控制器和一个视图，接下来我们要生成另一部分：一个模型。</p><h4 id="mvc-和您-生成模型"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8-%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B" data-turbolinks="false">6.1 生成模型</a></h4><p>一个<strong>模型（model）</strong>就是一个用于表示数据 Ruby 类。另外，模型可以同应用程序的数据库
+用 Rails 的 <strong>Active Record</strong> 进行互动。</p><p>定一个模型，我们需要使用模型生成器：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate model Article title:string body:text
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails generate model Article title:string body:text
