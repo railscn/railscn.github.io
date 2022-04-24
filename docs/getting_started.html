@@ -257,7 +257,7 @@
 
 <ul>
 <li><a href="#mvc-%E5%92%8C%E6%82%A8-%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B">生成模型</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%AE%E6%94%B9">数据库修改</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%B9%E8%BF%81">数据库改迁</a></li>
 <li><a href="#%E7%94%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%92%E5%8A%A8">用模型与数据库互动</a></li>
 <li><a href="#%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8">显示文章列表</a></li>
 </ul>
@@ -336,7 +336,7 @@ Rails 可能会有一定的困难。这有一个精选的在线 Ruby 学习资�
 “每一条知识在系统中有应该是单一的、明确的、权威的表述”。只有不重复编写相同的信息，
 我们的代码才会更易于维护、更具有扩展性且错误更少。</li>
 <li>
-<strong>COC - Convention Over Configuration（约定高于配置）:</strong> Rails 认为在 Web 应用程
+<strong>COC - Convention Over Configuration（约定优于配置）:</strong> Rails 认为在 Web 应用程
 序开发中每件事都有最好的方式——这些最好的方式就是默认的约定设置，而不是去进行无休止的
 配置文件设定。</li>
 </ul>
@@ -602,17 +602,16 @@ end
 <h3 id="mvc-和您"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8" data-turbolinks="false">6 MVC 和您</a></h3><p>迄今为止，我们已经讨论过路由、控制器、动作和视图。所有的这些，都是遵循 
 <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC (Model-View-Controller)</a>
 模式的 Web 应用的典型组成。MVC 是一种将应用程序的职责分开以使其更容易管理的设计模式。
-Rails 按照管理就遵从了这种设计模式。</p><p>因为我们已经有了一个控制器和一个视图，接下来我们要生成另一部分：一个模型。</p><h4 id="mvc-和您-生成模型"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8-%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B" data-turbolinks="false">6.1 生成模型</a></h4><p>一个<strong>模型（model）</strong>就是一个用于表示数据 Ruby 类。另外，模型可以同应用程序的数据库
-用 Rails 的 <strong>Active Record</strong> 进行互动。</p><p>定一个模型，我们需要使用模型生成器：</p><div class="code_container">
+Rails 按照管理就遵从了这种设计模式。</p><p>因为我们已经有了一个控制器和一个视图，接下来我们要生成另一部分：一个模型。</p><h4 id="mvc-和您-生成模型"><a class="anchorlink" href="#mvc-%E5%92%8C%E6%82%A8-%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B" data-turbolinks="false">6.1 生成模型</a></h4><p>一个<strong>模型（Model）</strong>就是一个用于表示数据的 Ruby 类。另外，模型可以同应用程
+序的数据库基于 Rails 的 <strong>Active Record</strong> 进行互动。</p><p>定义一个模型，我们需要使用模型生成器：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>generate model Article title:string body:text
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails generate model Article title:string body:text
 ">复制</button>
 </div>
-<div class="note"><p>Model names are <strong>singular</strong>, because an instantiated model represents a
-single data record. To help remember this convention, think of how you would
-call the model's constructor: we want to write <code>Article.new(...)</code>, <strong>not</strong>
-<code>Articles.new(...)</code>.</p></div><p>This will create several files:</p><div class="code_container">
+<div class="note"><p>模型名字用<strong>单数</strong>，因为一个实例化的模型代表一个数据。为了有助于记住
+这条约定，想象一下您要调用模型生成器：我们想要写新文章——<code>Article.new(...)</code>，
+<strong>不是</strong>新文章们——<code>Articles.new(...)</code>。</p></div><p>这将生成一些文件：</p><div class="code_container">
 <pre><code class="highlight plaintext">invoke  active_record
 create    db/migrate/&lt;timestamp&gt;_create_articles.rb
 create    app/models/article.rb
@@ -628,11 +627,9 @@ create      test/models/article_test.rb
 create      test/fixtures/articles.yml
 ">复制</button>
 </div>
-<p>The two files we'll focus on are the migration file
-(<code>db/migrate/&lt;timestamp&gt;_create_articles.rb</code>) and the model file
-(<code>app/models/article.rb</code>).</p><h4 id="数据库修改"><a class="anchorlink" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%AE%E6%94%B9" data-turbolinks="false">6.2 数据库修改</a></h4><p><em>Migrations</em> are used to alter the structure of an application's database. In
-Rails applications, migrations are written in Ruby so that they can be
-database-agnostic.</p><p>Let's take a look at the contents of our new migration file:</p><div class="code_container">
+<p>两个主要的文件是改迁文件（<code>db/migrate/&lt;timestamp&gt;_create_articles.rb</code>）和模型
+文件（<code>app/models/article.rb</code>）。</p><h4 id="数据库改迁"><a class="anchorlink" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%B9%E8%BF%81" data-turbolinks="false">6.2 数据库改迁</a></h4><p><strong>改迁（Migration）</strong>用于修改用用程序的数据库结构。在 Rails 应用程序中，改迁
+文件使用 Ruby 编写，所以他们可以做到与数据库系统无关。</p><p>我们来看一下我们的新改迁文件内容：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">7.0</span><span class="p">]</span>
   <span class="k">def</span> <span class="nf">change</span>
     <span class="n">create_table</span> <span class="ss">:articles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
@@ -656,21 +653,18 @@ database-agnostic.</p><p>Let's take a look at the contents of our new migration 
 end
 ">复制</button>
 </div>
-<p>The call to <code>create_table</code> specifies how the <code>articles</code> table should be
-constructed. By default, the <code>create_table</code> method adds an <code>id</code> column as an
-auto-incrementing primary key. So the first record in the table will have an
-<code>id</code> of 1, the next record will have an <code>id</code> of 2, and so on.</p><p>Inside the block for <code>create_table</code>, two columns are defined: <code>title</code> and
-<code>body</code>. These were added by the generator because we included them in our
-generate command (<code>bin/rails generate model Article title:string body:text</code>).</p><p>On the last line of the block is a call to <code>t.timestamps</code>. This method defines
-two additional columns named <code>created_at</code> and <code>updated_at</code>. As we will see,
-Rails will manage these for us, setting the values when we create or update a
-model object.</p><p>Let's run our migration with the following command:</p><div class="code_container">
+<p>调用 <code>create_table</code> 指定将对 <code>articles</code> 表的进行修改。默认情况下，<code>create_table</code>
+ 方法添加 <code>id</code> 栏做为自增主键。所以表的第一条记录的 <code>id</code> 是 1，下一条记录的
+ <code>id</code> 是 2，以此类推。</p><p>在代码块 <code>create_table</code> 内定义了两栏：<code>title</code> 和 <code>body</code>。因为我们在生成命令中
+（<code>bin/rails generate model Article title:string body:text</code>）定义了他们，所以生
+成器自动添加了该栏位。</p><p>代码块最后调用了 <code>t.timestamps</code>，该命令定义了两个叫做 <code>created_at</code> 和 <code>updated_at</code> 
+的附加栏位。如我们所见，Rails 自动管理它们，在创建和个更新模型对象时设置相应值。</p><p>用下面命令运行改迁：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>db:migrate
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails db:migrate
 ">复制</button>
 </div>
-<p>The command will display output indicating that the table was created:</p><div class="code_container">
+<p>执行显示表已创建：</p><div class="code_container">
 <pre><code class="highlight plaintext">==  CreateArticles: migrating ===================================
 -- create_table(:articles)
    -&gt; 0.0018s
@@ -682,29 +676,27 @@ model object.</p><p>Let's run our migration with the following command:</p><div 
 ==  CreateArticles: migrated (0.0018s) ==========================
 ">复制</button>
 </div>
-<div class="info"><p>To learn more about migrations, see <a href="active_record_migrations.html">Active Record Migrations</a>.</p></div><p>Now we can interact with the table using our model.</p><h4 id="用模型与数据库互动"><a class="anchorlink" href="#%E7%94%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%92%E5%8A%A8" data-turbolinks="false">6.3 用模型与数据库互动</a></h4><p>To play with our model a bit, we're going to use a feature of Rails called the
-<em>console</em>. The console is an interactive coding environment just like <code>irb</code>, but
-it also automatically loads Rails and our application code.</p><p>Let's launch the console with this command:</p><div class="code_container">
+<div class="info"><p>学习更多改迁知识查阅 <a href="active_record_migrations.html">Active Record 改迁</a>。</p></div><p>现在我们可以使用模型与表互动了！</p><h4 id="用模型与数据库互动"><a class="anchorlink" href="#%E7%94%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%92%E5%8A%A8" data-turbolinks="false">6.3 用模型与数据库互动</a></h4><p>要控制模型，可以使用 Rails 叫做 <strong>console</strong> 的功能。Console 是一个类似 <code>irb</code> 
+代码互动环境，但是可以自动加载 Rails 和应用程序代码。</p><p>用下面命令加载 console：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>console
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="bin/rails console
 ">复制</button>
 </div>
-<p>You should see an <code>irb</code> prompt like:</p><div class="code_container">
+<p>您应当看到一个 <code>irb</code> 提示符：</p><div class="code_container">
 <pre><code class="highlight irb"><span class="go">Loading development environment (Rails 7.0.0)
 </span><span class="gp">irb(main):001:0&gt;</span><span class="w">
 </span></code></pre>
 <button class="clipboard-button" data-clipboard-text="">复制</button>
 </div>
-<p>At this prompt, we can initialize a new <code>Article</code> object:</p><div class="code_container">
+<p>在该提示符后我们初始化一个新 <code>Article</code> 对象：</p><div class="code_container">
 <pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="n">article</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">title: </span><span class="s2">"Hello Rails"</span><span class="p">,</span> <span class="ss">body: </span><span class="s2">"I am on Rails!"</span><span class="p">)</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text='article = Article.new(title: "Hello Rails", body: "I am on Rails!")
 '>复制</button>
 </div>
-<p>It's important to note that we have only <em>initialized</em> this object. This object
-is not saved to the database at all. It's only available in the console at the
-moment. To save the object to the database, we must call <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-save"><code>save</code></a>:</p><div class="code_container">
+<p>一定要记住我们只是<strong>初始化</strong>该对象，并没有存储到数据库。此时该对象仅存在于 
+console 内。要保存该对象到数据库，必须调用 <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-save"><code>save</code></a>：</p><div class="code_container">
 <pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="n">article</span><span class="p">.</span><span class="nf">save</span>
 <span class="go">(0.1ms)  begin transaction
 Article Create (0.4ms)  INSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "Hello Rails"], ["body", "I am on Rails!"], ["created_at", "2020-01-18 23:47:30.734416"], ["updated_at", "2020-01-18 23:47:30.734416"]]
@@ -714,36 +706,32 @@ Article Create (0.4ms)  INSERT INTO "articles" ("title", "body", "created_at", "
 <button class="clipboard-button" data-clipboard-text="article.save
 ">复制</button>
 </div>
-<p>The above output shows an <code>INSERT INTO "articles" ...</code> database query. This
-indicates that the article has been inserted into our table. And if we take a
-look at the <code>article</code> object again, we see something interesting has happened:</p><div class="code_container">
+<p>上面的输出显示一条 <code>INSERT INTO "articles" ...</code> 数据库查询。这表示该文章已经
+插入我们的表中。我们再看一下 <code>article</code> 对象，我们看到有意思的事情发生了：</p><div class="code_container">
 <pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="n">article</span>
 <span class="p">=&gt;</span> <span class="kt">#&lt;</span><span class="no">Article</span> <span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Hello Rails"</span><span class="p">,</span> <span class="ss">body: </span><span class="s2">"I am on Rails!"</span><span class="p">,</span> <span class="ss">created_at: </span><span class="s2">"2020-01-18 23:47:30"</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="s2">"2020-01-18 23:47:30"</span><span class="kt">&gt;</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="article
 ">复制</button>
 </div>
-<p>The <code>id</code>, <code>created_at</code>, and <code>updated_at</code> attributes of the object are now set.
-Rails did this for us when we saved the object.</p><p>When we want to fetch this article from the database, we can call <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find"><code>find</code></a>
-on the model and pass the <code>id</code> as an argument:</p><div class="code_container">
+<p>对象的 <code>id</code>、<code>created_at</code> 和 <code>updated_at</code> 属性都设定了值。是 Rails 在我们保存
+对象时做了该设置。</p><p>当我们想要从数据库获取该文章时，我们在模型上调用 <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-find"><code>find</code></a> 方法并且传递参数 <code>id</code> ：</p><div class="code_container">
 <pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="no">Article</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="p">=&gt;</span> <span class="kt">#&lt;</span><span class="no">Article</span> <span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Hello Rails"</span><span class="p">,</span> <span class="ss">body: </span><span class="s2">"I am on Rails!"</span><span class="p">,</span> <span class="ss">created_at: </span><span class="s2">"2020-01-18 23:47:30"</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="s2">"2020-01-18 23:47:30"</span><span class="kt">&gt;</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="Article.find(1)
 ">复制</button>
 </div>
-<p>And when we want to fetch all articles from the database, we can call <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/Scoping/Named/ClassMethods.html#method-i-all"><code>all</code></a>
-on the model:</p><div class="code_container">
+<p>当我们想要从数据库中获取全部文章时在模型上调用 <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/Scoping/Named/ClassMethods.html#method-i-all"><code>all</code></a> 方法：</p><div class="code_container">
 <pre><code class="highlight irb"><span class="gp">irb&gt;</span><span class="w"> </span><span class="no">Article</span><span class="p">.</span><span class="nf">all</span>
 <span class="p">=&gt;</span> <span class="kt">#&lt;</span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Relation</span> <span class="p">[</span><span class="kt">#&lt;</span><span class="no">Article</span> <span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Hello Rails"</span><span class="p">,</span> <span class="ss">body: </span><span class="s2">"I am on Rails!"</span><span class="p">,</span> <span class="ss">created_at: </span><span class="s2">"2020-01-18 23:47:30"</span><span class="p">,</span> <span class="ss">updated_at: </span><span class="s2">"2020-01-18 23:47:30"</span><span class="kt">&gt;</span><span class="p">]</span><span class="kt">&gt;</span>
 </code></pre>
 <button class="clipboard-button" data-clipboard-text="Article.all
 ">复制</button>
 </div>
-<p>This method returns an <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/Relation.html"><code>ActiveRecord::Relation</code></a> object, which
-you can think of as a super-powered array.</p><div class="info"><p>To learn more about models, see <a href="active_record_basics.html">Active Record Basics</a> and <a href="active_record_querying.html">Active Record Query Interface</a>.</p></div><p>Models are the final piece of the MVC puzzle. Next, we will connect all of the
-pieces together.</p><h4 id="显示文章列表"><a class="anchorlink" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8" data-turbolinks="false">6.4 显示文章列表</a></h4><p>Let's go back to our controller in <code>app/controllers/articles_controller.rb</code>, and
-change the <code>index</code> action to fetch all articles from the database:</p><div class="code_container">
+<p>此方法返回一个 <a href="https://edgeapi.rubyonrails.org/classes/ActiveRecord/Relation.html"><code>ActiveRecord::Relation</code></a> 
+对象——您可以将其想象为一个超级数列。</p><div class="info"><p>学习更多模型知识查阅 <a href="active_record_basics.html">Active Record 基础</a> 和 <a href="active_record_querying.html">Active Record 查询接口</a>。</p></div><p>模型是 MVC 拼图的最后一块。接下来我们将所有拼图拼到一起。</p><h4 id="显示文章列表"><a class="anchorlink" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8" data-turbolinks="false">6.4 显示文章列表</a></h4><p>让我们返回到控制器 <code>app/controllers/articles_controller.rb</code>，修改 <code>index</code> 动作
+让其获取数据库所有文章：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
     <span class="vi">@articles</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">all</span>
@@ -757,9 +745,8 @@ change the <code>index</code> action to fetch all articles from the database:</p
 end
 ">复制</button>
 </div>
-<p>Controller instance variables can be accessed by the view. That means we can
-reference <code>@articles</code> in <code>app/views/articles/index.html.erb</code>. Let's open that
-file, and replace its contents with:</p><div class="code_container">
+<p>控制器实例变量可以在视图中访问，这就是说我们可以在 <code>app/views/articles/index.html.erb</code>
+ 中引用 <code>@articles</code> 。打开文件输入下面内容：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span>Articles<span class="nt">&lt;/h1&gt;</span>
 
 <span class="nt">&lt;ul&gt;</span>
@@ -781,33 +768,26 @@ file, and replace its contents with:</p><div class="code_container">
 &lt;/ul&gt;
 ">复制</button>
 </div>
-<p>The above code is a mixture of HTML and <em>ERB</em>. ERB is a templating system that
-evaluates Ruby code embedded in a document. Here, we can see two types of ERB
-tags: <code>&lt;% %&gt;</code> and <code>&lt;%= %&gt;</code>. The <code>&lt;% %&gt;</code> tag means "evaluate the enclosed Ruby
-code." The <code>&lt;%= %&gt;</code> tag means "evaluate the enclosed Ruby code, and output the
-value it returns." Anything you could write in a regular Ruby program can go
-inside these ERB tags, though it's usually best to keep the contents of ERB tags
-short, for readability.</p><p>Since we don't want to output the value returned by <code>@articles.each</code>, we've
-enclosed that code in <code>&lt;% %&gt;</code>. But, since we <em>do</em> want to output the value
-returned by <code>article.title</code> (for each article), we've enclosed that code in
-<code>&lt;%= %&gt;</code>.</p><p>We can see the final result by visiting <a href="http://localhost:3000">http://localhost:3000</a>. (Remember that
-<code>bin/rails server</code> must be running!) Here's what happens when we do that:</p>
+<p>上面代码混合了 HTML 和 <strong>ERB</strong>。ERB 是一个可以在文档中嵌入 Ruby 代码的模板系
+统。我们会在其中看到两种类型的 Ruby 标签：<code>&lt;% %&gt;</code> 和 <code>&lt;%= %&gt;</code>。<code>&lt;% %&gt;</code> 标签
+表示这是“一段 Ruby 代码”，<code>&lt;%= %&gt;</code> 标签表示这是“一段 Ruby 代码，并且输出
+返回值”。您能写的任何一段常规的 Ruby 程序都可以使用 ERB 标签表示，但是一般
+情况下，我们需要 ERB 标签尽量简洁、易读。</p><p>因为我们不想输出 <code>@articles.each</code> 的值，所以我们使用 <code>&lt;% %&gt;</code>，但是，因为我们
+<strong>想</strong>输出 <code>article.title</code> （每一篇文章）的值，所以我们使用了 <code>&lt;%= %&gt;</code>。</p><p>我们访问 <a href="http://localhost:3000">http://localhost:3000</a> 可以看到最终结果。（记得要先运行
+<code>bin/rails server</code> ！）这就是我们所做的：</p>
 <ol>
-<li>The browser makes a request: <code>GET http://localhost:3000</code>.</li>
-<li>Our Rails application receives this request.</li>
-<li>The Rails router maps the root route to the <code>index</code> action of <code>ArticlesController</code>.</li>
-<li>The <code>index</code> action uses the <code>Article</code> model to fetch all articles in the database.</li>
-<li>Rails automatically renders the <code>app/views/articles/index.html.erb</code> view.</li>
-<li>The ERB code in the view is evaluated to output HTML.</li>
-<li>The server sends a response containing the HTML back to the browser.</li>
+<li>浏览器发送请求： <code>GET http://localhost:3000</code>。</li>
+<li>我们的 Rails 应用程序接收请求。</li>
+<li>Rails 路由映射根路由到控制器 <code>ArticlesController</code> 的 <code>index</code> 动作。</li>
+<li>
+<code>index</code> 动作使用 <code>Article</code> 模型从数据库获取所有文章。</li>
+<li>Rails 自动使用 <code>app/views/articles/index.html.erb</code> 试图渲染。</li>
+<li>试图中的 ERB 代码执行并输出 HTML。</li>
+<li>服务器发送一个 HTML 响应给浏览器。</li>
 </ol>
-<p>We've connected all the MVC pieces together, and we have our first controller
-action! Next, we'll move on to the second action.</p><h3 id="当-crud-则-crud"><a class="anchorlink" href="#%E5%BD%93-crud-%E5%88%99-crud" data-turbolinks="false">7 当 CRUD 则 CRUD</a></h3><p>Almost all web applications involve <a href="https://en.wikipedia.org/wiki/Create,_read,_update,_and_delete">CRUD (Create, Read, Update, and Delete)</a> operations. You
-may even find that the majority of the work your application does is CRUD. Rails
-acknowledges this, and provides many features to help simplify code doing CRUD.</p><p>Let's begin exploring these features by adding more functionality to our
-application.</p><h4 id="显示一篇文章"><a class="anchorlink" href="#%E6%98%BE%E7%A4%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0" data-turbolinks="false">7.1 显示一篇文章</a></h4><p>We currently have a view that lists all articles in our database. Let's add a
-new view that shows the title and body of a single article.</p><p>We start by adding a new route that maps to a new controller action (which we
-will add next). Open <code>config/routes.rb</code>, and insert the last route shown here:</p><div class="code_container">
+<p>我们整合了 MVC 的各个部分，而且我们有了第一个控制器动作！接下来，我们开始第二个动作。</p><h3 id="当-crud-则-crud"><a class="anchorlink" href="#%E5%BD%93-crud-%E5%88%99-crud" data-turbolinks="false">7 当 CRUD 则 CRUD</a></h3><p>几乎所有的 Web 应用程序都会涉及到 <a href="https://en.wikipedia.org/wiki/Create,_read,_update,_and_delete">CRUD（Create、Read、Update 和 Delete）</a> 操作。您可能已经
+发现应用程序的主要工作就是 CRUD。Rails 也是如此，它提供横多功能来帮助简化 CRUD 的编码。</p><p>让我们通过给我们的应用程序添加更多功能来探索这些特色吧。</p><h4 id="显示一篇文章"><a class="anchorlink" href="#%E6%98%BE%E7%A4%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0" data-turbolinks="false">7.1 显示一篇文章</a></h4><p>我们现在有一个列出所有数据库文章的视图，再添加一个显示单篇文章标题和内容的新视图。</p><p>我们开始添加一个映射到新控制器动作（我们接下来将添加） 的新路由。打开 <code>config/routes.rb</code>，
+插入下面现实的最后一个路由：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
   <span class="n">root</span> <span class="s2">"articles#index"</span>
 
@@ -823,14 +803,13 @@ will add next). Open <code>config/routes.rb</code>, and insert the last route sh
 end
 '>复制</button>
 </div>
-<p>The new route is another <code>get</code> route, but it has something extra in its path:
-<code>:id</code>. This designates a route <em>parameter</em>. A route parameter captures a segment
-of the request's path, and puts that value into the <code>params</code> Hash, which is
-accessible by the controller action. For example, when handling a request like
-<code>GET http://localhost:3000/articles/1</code>, <code>1</code> would be captured as the value for
-<code>:id</code>, which would then be accessible as <code>params[:id]</code> in the <code>show</code> action of
-<code>ArticlesController</code>.</p><p>Let's add that <code>show</code> action now, below the <code>index</code> action in
-<code>app/controllers/articles_controller.rb</code>:</p><div class="code_container">
+<p>新路由是另一个 <code>get</code> 路由，但是它有一些额外的东西：<code>:id</code>。这是指定的路由<strong>参数</strong>。
+一个路由参数会匹配请求路径的一部分，然后将其值放入 <code>params</code> 哈希内，该值可以在控制器
+动作内访问。例如：当处理一个类似
+<code>GET http://localhost:3000/articles/1</code> 的请求时，<code>1</code> 就会匹配为 <code>:id</code> 的值，然后就
+可以在控制器 <code>ArticlesController</code> 的 <code>show</code> 动作内通过 <code>params[:id]</code> 访问。
+.</p><p>现在让我们在 <code>app/controllers/articles_controller.rb</code> 的 <code>index</code> 动作下方添加
+ <code>show</code> 动作：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
     <span class="vi">@articles</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">all</span>
@@ -852,11 +831,9 @@ accessible by the controller action. For example, when handling a request like
 end
 ">复制</button>
 </div>
-<p>The <code>show</code> action calls <code>Article.find</code> (<a href="#%E7%94%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%92%E5%8A%A8">mentioned
-previously</a>) with the ID captured
-by the route parameter. The returned article is stored in the <code>@article</code>
-instance variable, so it is accessible by the view. By default, the <code>show</code>
-action will render <code>app/views/articles/show.html.erb</code>.</p><p>Let's create <code>app/views/articles/show.html.erb</code>, with the following contents:</p><div class="code_container">
+<p><code>show</code> 动作调用 <code>Article.find</code> (<a href="#%E7%94%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%92%E5%8A%A8">前面提过</a>) 通过路由参数匹
+配到的 ID 找到文章。返回的文章存储在 <code>@article</code> 实例变量中，所以可以视图中访问。默认
+情况下，<code>show</code> 动作通过 <code>app/views/articles/show.html.erb</code> 渲染。</p><p>用下面内容创建 <code>app/views/articles/show.html.erb</code>：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
 
 <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">body</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
@@ -866,8 +843,8 @@ action will render <code>app/views/articles/show.html.erb</code>.</p><p>Let's cr
 &lt;p&gt;&lt;%= @article.body %&gt;&lt;/p&gt;
 ">复制</button>
 </div>
-<p>Now we can see the article when we visit <a href="http://localhost:3000/articles/1">http://localhost:3000/articles/1</a>!</p><p>To finish up, let's add a convenient way to get to an article's page. We'll link
-each article's title in <code>app/views/articles/index.html.erb</code> to its page:</p><div class="code_container">
+<p>现在通过访问 <a href="http://localhost:3000/articles/1">http://localhost:3000/articles/1</a> 可以看到文章信息了！</p><p>完善一下，我们以约定方式转到文章详细页面。我们将在 <code>app/views/articles/index.html.erb</code>
+ 页面通过标题链接到该文章详细页面：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span>Articles<span class="nt">&lt;/h1&gt;</span>
 
 <span class="nt">&lt;ul&gt;</span>
