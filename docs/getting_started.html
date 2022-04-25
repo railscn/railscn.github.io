@@ -832,7 +832,7 @@ end
 ">复制</button>
 </div>
 <p><code>show</code> 动作调用 <code>Article.find</code> (<a href="#%E7%94%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%92%E5%8A%A8">前面提过</a>) 通过路由参数匹
-配到的 ID 找到文章。返回的文章存储在 <code>@article</code> 实例变量中，所以可以视图中访问。默认
+配到的 ID 找到文章。返回的文章存储在 <code>@article</code> 实例变量中，所以可以在视图中访问。默认
 情况下，<code>show</code> 动作通过 <code>app/views/articles/show.html.erb</code> 渲染。</p><p>用下面内容创建 <code>app/views/articles/show.html.erb</code>：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@article</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h1&gt;</span>
 
@@ -870,15 +870,13 @@ end
 &lt;/ul&gt;
 '>复制</button>
 </div>
-<h4 id="资源化路由"><a class="anchorlink" href="#%E8%B5%84%E6%BA%90%E5%8C%96%E8%B7%AF%E7%94%B1" data-turbolinks="false">7.2 资源化路由</a></h4><p>So far, we've covered the "R" (Read) of CRUD. We will eventually cover the "C"
-(Create), "U" (Update), and "D" (Delete). As you might have guessed, we will do
-so by adding new routes, controller actions, and views. Whenever we have such a
-combination of routes, controller actions, and views that work together to
-perform CRUD operations on an entity, we call that entity a <em>resource</em>. For
-example, in our application, we would say an article is a resource.</p><p>Rails provides a routes method named <a href="https://edgeapi.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Resources.html#method-i-resources"><code>resources</code></a>
-that maps all of the conventional routes for a collection of resources, such as
-articles. So before we proceed to the "C", "U", and "D" sections, let's replace
-the two <code>get</code> routes in <code>config/routes.rb</code> with <code>resources</code>:</p><div class="code_container">
+<h4 id="资源化路由"><a class="anchorlink" href="#%E8%B5%84%E6%BA%90%E5%8C%96%E8%B7%AF%E7%94%B1" data-turbolinks="false">7.2 资源化路由</a></h4><p>迄今为止，我们已经看过了 CRUD 的“R”（Read——读），接下来了解一下“C”（
+Create——创建）、“U”（Update——更新）和“D”（删除）。可能您已经猜到，我们
+会通过添加新路由、控制器动作和试图来实现。每当我们有这样的路由、控制器操作和
+视图的组合并且它们一起工作以对实体执行 CRUD 操作时，我们称该实体为<strong>资源</strong>。
+例如，在我们的应用程序中，我们会说一篇文章是一个资源。</p><p>Rails 提供了叫做 <a href="https://edgeapi.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Resources.html#method-i-resources"><code>resources</code></a>
+的路由方法（映射所有约定路由到一个资源集合，例如 articles）。所以在我们开始
+“C”、“U”和“D”部分之前，先将 <code>config/routes.rb</code> 的两个 <code>get</code> 路由用 <code>resources</code>替换:</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
   <span class="n">root</span> <span class="s2">"articles#index"</span>
 
@@ -892,7 +890,7 @@ the two <code>get</code> routes in <code>config/routes.rb</code> with <code>reso
 end
 '>复制</button>
 </div>
-<p>We can inspect what routes are mapped by running the <code>bin/rails routes</code> command:</p><div class="code_container">
+<p>我们可以运行 <code>bin/rails routes</code> 命令看一下应用程序的路由映射：</p><div class="code_container">
 <pre><code class="highlight console"><span class="gp">$</span><span class="w"> </span><span class="nb">bin/rails </span>routes
 <span class="gp">      Prefix Verb   URI Pattern                  Controller#</span>Action
 <span class="gp">        root GET    /                            articles#</span>index
@@ -907,12 +905,10 @@ end
 <button class="clipboard-button" data-clipboard-text="bin/rails routes
 ">复制</button>
 </div>
-<p>The <code>resources</code> method also sets up URL and path helper methods that we can use
-to keep our code from depending on a specific route configuration. The values
-in the "Prefix" column above plus a suffix of <code>_url</code> or <code>_path</code> form the names
-of these helpers. For example, the <code>article_path</code> helper returns
-<code>"/articles/#{article.id}"</code> when given an article. We can use it to tidy up our
-links in <code>app/views/articles/index.html.erb</code>:</p><div class="code_container">
+<p><code>resources</code> 方法也设置了可以帮我们将代码脱离对于特定路由配置依赖的 URL 和路
+径辅助方法。上面“Prefix”列的值加上后缀 <code>_url</code> 或者 <code>_path</code> 形式就是这些辅助
+方法的名字。例如：当指定一篇文章时 <code>article_path</code> 辅助方法返回 <code>"/articles/#{article.id}"</code>。
+我们可以用该辅助方法来简化 <code>app/views/articles/index.html.erb</code> 中的链接：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span>Articles<span class="nt">&lt;/h1&gt;</span>
 
 <span class="nt">&lt;ul&gt;</span>
@@ -938,13 +934,12 @@ links in <code>app/views/articles/index.html.erb</code>:</p><div class="code_con
 &lt;/ul&gt;
 '>复制</button>
 </div>
-<p>However, we will take this one step further by using the <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to"><code>link_to</code></a>
-helper. The <code>link_to</code> helper renders a link with its first argument as the
-link's text and its second argument as the link's destination. If we pass a
-model object as the second argument, <code>link_to</code> will call the appropriate path
-helper to convert the object to a path. For example, if we pass an article,
-<code>link_to</code> will call <code>article_path</code>. So <code>app/views/articles/index.html.erb</code>
-becomes:</p><div class="code_container">
+<p>然而，我们要在这一步通过使用 <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to"><code>link_to</code></a>
+辅助方法做进一步优化。<code>link_to</code> 辅助方法用第一个参数做为链接文本第二个参数作
+为链接目标来渲染一个链接。如果我们传递一个模型对象做为第二个参数，<code>link_to</code> 
+会调用相关路径辅助方法来转换对象为路径。例如：如果我们传递一个 article 做为
+第二个参数,<code>link_to</code> 会调用 <code>article_path</code>。所以 <code>app/views/articles/index.html.erb</code>
+变成了：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span>Articles<span class="nt">&lt;/h1&gt;</span>
 
 <span class="nt">&lt;ul&gt;</span>
@@ -966,7 +961,7 @@ becomes:</p><div class="code_container">
 &lt;/ul&gt;
 ">复制</button>
 </div>
-<p>Nice!</p><div class="info"><p>To learn more about routing, see <a href="routing.html">Rails Routing from the Outside In</a>.</p></div><h4 id="新建一篇文章"><a class="anchorlink" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0" data-turbolinks="false">7.3 新建一篇文章</a></h4><p>Now we move on to the "C" (Create) of CRUD. Typically, in web applications,
+<p>漂亮！</p><div class="info"><p>学习更多路由知识参阅 <a href="routing.html">Rails 路由全解</a>。</p></div><h4 id="新建一篇文章"><a class="anchorlink" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0" data-turbolinks="false">7.3 新建一篇文章</a></h4><p>Now we move on to the "C" (Create) of CRUD. Typically, in web applications,
 creating a new resource is a multi-step process. First, the user requests a form
 to fill out. Then, the user submits the form. If there are no errors, then the
 resource is created and some kind of confirmation is displayed. Else, the form
