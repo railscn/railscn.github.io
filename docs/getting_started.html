@@ -961,13 +961,10 @@ end
 &lt;/ul&gt;
 ">复制</button>
 </div>
-<p>漂亮！</p><div class="info"><p>学习更多路由知识参阅 <a href="routing.html">Rails 路由全解</a>。</p></div><h4 id="新建一篇文章"><a class="anchorlink" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0" data-turbolinks="false">7.3 新建一篇文章</a></h4><p>Now we move on to the "C" (Create) of CRUD. Typically, in web applications,
-creating a new resource is a multi-step process. First, the user requests a form
-to fill out. Then, the user submits the form. If there are no errors, then the
-resource is created and some kind of confirmation is displayed. Else, the form
-is redisplayed with error messages, and the process is repeated.</p><p>In a Rails application, these steps are conventionally handled by a controller's
-<code>new</code> and <code>create</code> actions. Let's add a typical implementation of these actions
-to <code>app/controllers/articles_controller.rb</code>, below the <code>show</code> action:</p><div class="code_container">
+<p>漂亮！</p><div class="info"><p>学习更多路由知识参阅 <a href="routing.html">Rails 路由全解</a>。</p></div><h4 id="新建一篇文章"><a class="anchorlink" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0" data-turbolinks="false">7.3 新建一篇文章</a></h4><p>现在我们来到了 CRUD 的 “C”（Create——创建）。在 Web 应用程序中创建一个新资源是一个多步
+骤过程。首先，用户需要请求一个需要填充的表单。然后用户提交该表单。如果表单填充无误，
+资源创建成功，显示确认信息。否则返回表单错误信息，重新填写表单。</p><p>在 Rails 应用程序中，这些步骤由控制器的 <code>new</code> 和 <code>create</code> 动作处理完成。接下来让我们在
+ <code>app/controllers/articles_controller.rb</code> 中具体实践一下，下面是 <code>show</code> 操作：</p><div class="code_container">
 <pre><code class="highlight ruby"><span class="k">class</span> <span class="nc">ArticlesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
     <span class="vi">@articles</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">all</span>
@@ -1017,22 +1014,17 @@ to <code>app/controllers/articles_controller.rb</code>, below the <code>show</co
 end
 '>复制</button>
 </div>
-<p>The <code>new</code> action instantiates a new article, but does not save it. This article
-will be used in the view when building the form. By default, the <code>new</code> action
-will render <code>app/views/articles/new.html.erb</code>, which we will create next.</p><p>The <code>create</code> action instantiates a new article with values for the title and
-body, and attempts to save it. If the article is saved successfully, the action
-redirects the browser to the article's page at <code>"http://localhost:3000/articles/#{@article.id}"</code>.
-Else, the action redisplays the form by rendering <code>app/views/articles/new.html.erb</code>
-with status code <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422">422 Unprocessable Entity</a>.
-The title and body here are dummy values. After we create the form, we will come
-back and change these.</p><div class="note"><p><a href="https://edgeapi.rubyonrails.org/classes/ActionController/Redirecting.html#method-i-redirect_to"><code>redirect_to</code></a>
-will cause the browser to make a new request,
-whereas <a href="https://edgeapi.rubyonrails.org/classes/AbstractController/Rendering.html#method-i-render"><code>render</code></a>
-renders the specified view for the current request.
-It is important to use <code>redirect_to</code> after mutating the database or application state.
-Otherwise, if the user refreshes the page, the browser will make the same request, and the mutation will be repeated.</p></div><h5 id="使用表单构建器"><a class="anchorlink" href="#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%8D%95%E6%9E%84%E5%BB%BA%E5%99%A8" data-turbolinks="false">7.3.1 使用表单构建器</a></h5><p>We will use a feature of Rails called a <em>form builder</em> to create our form. Using
-a form builder, we can write a minimal amount of code to output a form that is
-fully configured and follows Rails conventions.</p><p>Let's create <code>app/views/articles/new.html.erb</code> with the following contents:</p><div class="code_container">
+<p><code>new</code> 操作实例化一篇新 article，但是没有保存。该 article 会在视图构建表单时使用。默认
+情况下，<code>new</code> 操作由我们接下来要创建的 <code>app/views/articles/new.html.erb</code> 渲染。</p><p><code>create</code> 操作用带值 title 和 body 实例化一个新 article，并且视图保存。如果 article 保
+存成功，操作将浏览器转向到文章详细页面 <code>"http://localhost:3000/articles/#{@article.id}"</code>。
+否则，操作用响应状态码<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422">422 Unprocessable Entity</a>并渲染 <code>app/views/articles/new.html.erb</code> 重新显示表单。
+title 和 body 在这里填的都是假值。等我们创建表单后，我们再回来修改这些。</p><div class="note"><p><a href="https://edgeapi.rubyonrails.org/classes/ActionController/Redirecting.html#method-i-redirect_to"><code>redirect_to</code></a>
+会导致浏览器发送一个新请求，
+而 <a href="https://edgeapi.rubyonrails.org/classes/AbstractController/Rendering.html#method-i-render"><code>render</code></a>
+为当前请求渲染指定视图。
+当我们修改数据库或者改变应用程序状态后使用 <code>redirect_to</code> 很重要。
+否则，如果用户刷新页面，浏览器将生成同样的请求，修改将再次发生。</p></div><h5 id="使用表单构造器"><a class="anchorlink" href="#%E4%BD%BF%E7%94%A8%E8%A1%A8%E5%8D%95%E6%9E%84%E9%80%A0%E5%99%A8" data-turbolinks="false">7.3.1 使用表单构造器</a></h5><p>我们将使用 Rails 叫做<strong>表单构造器（form builder）</strong>的功能创建我们的表单。使用表单构
+造器，我们可以用最少的代码创建全程可配置和遵循 Rails 约定的表单。</p><p>让我们创建 <code>app/views/articles/new.html.erb</code>，内容如下：</p><div class="code_container">
 <pre><code class="highlight erb"><span class="nt">&lt;h1&gt;</span>New Article<span class="nt">&lt;/h1&gt;</span>
 
 <span class="cp">&lt;%=</span> <span class="n">form_with</span> <span class="ss">model: </span><span class="vi">@article</span> <span class="k">do</span> <span class="o">|</span><span class="n">form</span><span class="o">|</span> <span class="cp">%&gt;</span>
@@ -1070,11 +1062,10 @@ fully configured and follows Rails conventions.</p><p>Let's create <code>app/vie
 &lt;% end %&gt;
 ">复制</button>
 </div>
-<p>The <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>
-helper method instantiates a form builder. In the <code>form_with</code> block we call
-methods like <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-label"><code>label</code></a>
-and <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-text_field"><code>text_field</code></a>
-on the form builder to output the appropriate form elements.</p><p>The resulting output from our <code>form_with</code> call will look like:</p><div class="code_container">
+<p><a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a>
+辅助方法实例化一个表单构造器，在 <code>form_with</code> 代码块中我们调用表单构造器诸如 <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-label"><code>label</code></a>
+和 <a href="https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html#method-i-text_field"><code>text_field</code></a>
+方法，输出相关的表单元素。</p><p>The resulting output from our <code>form_with</code> call will look like:</p><div class="code_container">
 <pre><code class="highlight html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/articles"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"..."</span><span class="nt">&gt;</span>
 
